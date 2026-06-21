@@ -46,6 +46,12 @@ export default async function CaseStudies() {
             </article>
           ))}
         </div>
+
+        <div className="mt-12 text-center">
+          <a href="#contact" className="inline-block px-8 py-4 bg-gold text-navy font-semibold rounded hover:bg-gold-light transition-colors">
+            Schedule a Consultation
+          </a>
+        </div>
       </div>
     </section>
   )
