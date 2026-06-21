@@ -34,6 +34,9 @@ export default async function Team() {
                 <div className="text-[0.8125rem] text-gold font-semibold mt-0.5 mb-2">{m.role}</div>
                 <p className="text-[0.8125rem] text-slate leading-[1.6] mb-3">{m.bio}</p>
                 <div className="text-[0.7rem] tracking-[0.06em] text-slate-light uppercase">{m.credentials}</div>
+                <a href="#contact" className="mt-4 inline-block text-sm font-semibold text-gold hover:text-gold-light transition-colors">
+                  Work With {m.name} →
+                </a>
               </div>
             </article>
           ))}
