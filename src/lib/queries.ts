@@ -1,7 +1,7 @@
 import { client } from './sanity'
 import type { SiteSettings, Service, TeamMember, Testimonial, CaseStudy, Post } from '@/types'
 
-export async function getSiteSettings(): Promise<SiteSettings> {
+export async function getSiteSettings(): Promise<SiteSettings | null> {
   return client.fetch(`*[_type == "siteSettings"][0]`)
 }
 

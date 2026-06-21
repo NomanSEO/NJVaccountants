@@ -3,6 +3,7 @@ import { getSiteSettings } from '@/lib/queries'
 
 export default async function Hero() {
   const s = await getSiteSettings()
+  if (!s) return null
   const titleParts = s.heroTitleHighlight
     ? s.heroTitle.split(s.heroTitleHighlight)
     : [s.heroTitle, '']
@@ -10,7 +11,7 @@ export default async function Hero() {
   return (
     <section id="home" className="min-h-screen bg-navy flex items-center relative overflow-hidden pt-[70px]" aria-label="Hero">
       {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-[#0d2544]" />
+      <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy-deep" />
       <div className="hero-pattern absolute inset-0" />
       <div className="absolute right-0 top-0 bottom-0 w-[42%] bg-gold/[0.04] border-l border-gold/[0.12]" />
 

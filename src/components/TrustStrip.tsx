@@ -3,6 +3,7 @@ import { getSiteSettings } from '@/lib/queries'
 
 export default async function TrustStrip() {
   const s = await getSiteSettings()
+  if (!s) return null
 
   return (
     <div className="bg-cream border-t border-border border-b py-7" aria-label="Client logos">

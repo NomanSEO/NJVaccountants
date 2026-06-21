@@ -3,6 +3,7 @@ import { getSiteSettings } from '@/lib/queries'
 
 export default async function CTABanner() {
   const s = await getSiteSettings()
+  if (!s) return null
 
   return (
     <div className="bg-gold py-[72px]" aria-label="Call to action">
