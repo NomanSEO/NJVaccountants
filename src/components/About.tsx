@@ -79,7 +79,7 @@ export default function About() {
               <div className="grid grid-cols-4 gap-4 mt-5 pt-5 border-t border-white/[0.08]">
                 {TEAM.map(m => (
                   <div key={m.initials} className="text-center">
-                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-[#a07830] flex items-center justify-center font-display text-base font-bold text-navy mx-auto mb-2">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center font-display text-base font-bold text-navy mx-auto mb-2">
                       {m.initials}
                     </div>
                     <div className="text-[0.7rem] text-white/60">{m.name}</div>
