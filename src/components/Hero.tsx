@@ -63,7 +63,7 @@ export default async function Hero() {
               <div className="relative z-10 bg-white/[0.06] border border-gold/20 rounded-lg p-7 backdrop-blur-[12px]">
                 <div className="text-[0.7rem] tracking-[0.1em] uppercase text-gold mb-3">Q3 Financial Overview</div>
                 <div className="font-display text-[2rem] font-bold text-white">$2,847,000</div>
-                <div className="text-[0.8125rem] text-[#4ade80] mt-1.5">↑ 18.4% vs prior year</div>
+                <div className="text-[0.8125rem] text-green-400 mt-1.5">↑ 18.4% vs prior year</div>
                 <div className="flex justify-between mt-5 pt-4 border-t border-white/10">
                   {[
                     { label: 'Tax Savings', val: '$384,200' },

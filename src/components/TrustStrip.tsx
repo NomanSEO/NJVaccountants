@@ -13,7 +13,7 @@ export default async function TrustStrip() {
           </div>
           <div className="flex items-center gap-9 flex-wrap">
             {s.trustLogos.map(logo => (
-              <div key={logo.name} className="font-display text-base font-semibold text-[#b0a090] opacity-60 tracking-[0.02em]">
+              <div key={logo.name} className="font-display text-base font-semibold text-logo opacity-60 tracking-[0.02em]">
                 {logo.name}
               </div>
             ))}

@@ -12,6 +12,7 @@
   --color-slate-light: #718096;
   --color-border:      #E2D9C8;
   --color-text:        #1A2332;
+  --color-logo:        #b0a090;
 
   --font-display: var(--font-playfair), Georgia, serif;
   --font-body:    var(--font-inter), system-ui, sans-serif;
