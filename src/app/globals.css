@@ -1,26 +1,73 @@
+/* src/app/globals.css */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-navy:        #0B1F3A;
+  --color-navy-light:  #132A50;
+  --color-navy-dark:   #070F1E;
+  --color-gold:        #C9A84C;
+  --color-gold-light:  #E8C96A;
+  --color-cream:       #F8F6F1;
+  --color-slate:       #4A5568;
+  --color-slate-light: #718096;
+  --color-border:      #E2D9C8;
+  --color-text:        #1A2332;
+
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+
+  --max-width-site: 1180px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+html { scroll-behavior: smooth; }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  color: #1A2332;
+  background: #fff;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #F8F6F1; }
+::-webkit-scrollbar-thumb { background: #C9A84C; border-radius: 3px; }
+
+/* Hero SVG pattern overlay */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+}
+.hero-pattern::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A84C' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Service card left-border slide animation (can't do ::before with Tailwind) */
+.service-card { position: relative; overflow: hidden; }
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 0;
+  background: #C9A84C;
+  transition: height 0.3s;
+}
+.service-card:hover::before { height: 100%; }
+
+/* Fade-up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-up          { animation: fadeUp 0.7s ease both; }
+.fade-up-delay-1  { animation-delay: 0.15s; }
+.fade-up-delay-2  { animation-delay: 0.3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up { animation: none; }
 }
