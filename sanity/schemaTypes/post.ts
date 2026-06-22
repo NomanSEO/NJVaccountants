@@ -1,5 +1,5 @@
 // sanity/schemaTypes/post.ts
-import { defineType, defineField } from 'sanity'
+import { defineType, defineField, defineArrayMember } from 'sanity'
 
 export const post = defineType({
   name: 'post',
@@ -7,6 +7,7 @@ export const post = defineType({
   type: 'document',
   fields: [
     defineField({ name: 'title', type: 'string', title: 'Title' }),
+    defineField({ name: 'slug', title: 'Slug', type: 'slug', options: { source: 'title', maxLength: 96 } }),
     defineField({ name: 'excerpt', type: 'text', title: 'Excerpt', rows: 2 }),
     defineField({ name: 'category', type: 'string', title: 'Category' }),
     defineField({
@@ -17,5 +18,30 @@ export const post = defineType({
     }),
     defineField({ name: 'publishedAt', type: 'datetime', title: 'Published At' }),
     defineField({ name: 'readTime', type: 'number', title: 'Read Time (minutes)' }),
+    defineField({
+      name: 'headerImage',
+      title: 'Header Image',
+      type: 'image',
+      options: { hotspot: true },
+      fields: [
+        defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
+      ],
+    }),
+    defineField({
+      name: 'body',
+      title: 'Body Content',
+      type: 'array',
+      of: [
+        defineArrayMember({ type: 'block' }),
+        defineArrayMember({
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({ name: 'alt', type: 'string', title: 'Alt Text' }),
+            defineField({ name: 'caption', type: 'string', title: 'Caption' }),
+          ],
+        }),
+      ],
+    }),
   ],
 })

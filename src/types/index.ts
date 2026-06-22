@@ -60,12 +60,26 @@ export interface CaseStudy {
   order: number
 }
 
+export interface SanityImage {
+  asset: { _ref: string; _type: string }
+  hotspot?: { x: number; y: number; width: number; height: number }
+  crop?: { top: number; bottom: number; left: number; right: number }
+  alt?: string
+  caption?: string
+}
+
 export interface Post {
   _id: string
   title: string
+  slug: { current: string }
   excerpt: string
   category: string
   author: { name: string }
   publishedAt: string
   readTime: number
+  headerImage?: SanityImage
+}
+
+export interface PostFull extends Post {
+  body: any[]
 }

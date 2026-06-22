@@ -2,7 +2,14 @@
 import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  // Allows next-sanity's embedded studio to function
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+      },
+    ],
+  },
 }
 
 export default nextConfig

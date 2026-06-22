@@ -1,5 +1,5 @@
 import { client } from './sanity'
-import type { SiteSettings, Service, TeamMember, Testimonial, CaseStudy, Post } from '@/types'
+import type { SiteSettings, Service, TeamMember, Testimonial, CaseStudy, Post, PostFull } from '@/types'
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   return client.fetch(`*[_type == "siteSettings"][0]`)
@@ -23,6 +23,19 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
 
 export async function getPosts(): Promise<Post[]> {
   return client.fetch(
+    `*[_type == "post"] | order(publishedAt desc)[0...3] { ..., author->{ name } }`
+  )
+}
+
+export async function getAllPosts(): Promise<Post[]> {
+  return client.fetch(
     `*[_type == "post"] | order(publishedAt desc) { ..., author->{ name } }`
+  )
+}
+
+export async function getPost(slug: string): Promise<PostFull | null> {
+  return client.fetch(
+    `*[_type == "post" && slug.current == $slug][0] { ..., author->{ name } }`,
+    { slug }
   )
 }
