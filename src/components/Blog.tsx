@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { getPosts } from '@/lib/queries'
-import { urlFor } from '@/lib/sanity'
+import { getPosts } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/sanity'
 
 const SYMBOLS = ['§', '₤', '↗']
 

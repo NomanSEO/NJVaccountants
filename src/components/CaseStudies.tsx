@@ -1,5 +1,5 @@
 // src/components/CaseStudies.tsx
-import { getCaseStudies } from '@/lib/queries'
+import { getCaseStudies } from '@/sanity/lib/queries'
 
 export default async function CaseStudies() {
   const cases = await getCaseStudies()

@@ -1,5 +1,5 @@
 // src/components/Services.tsx
-import { getServices } from '@/lib/queries'
+import { getServices } from '@/sanity/lib/queries'
 
 export default async function Services() {
   const services = await getServices()

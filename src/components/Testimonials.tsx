@@ -1,5 +1,5 @@
 // src/components/Testimonials.tsx
-import { getTestimonials } from '@/lib/queries'
+import { getTestimonials } from '@/sanity/lib/queries'
 
 export default async function Testimonials() {
   const items = await getTestimonials()

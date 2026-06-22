@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { getAllPosts } from '@/lib/queries'
-import { urlFor } from '@/lib/sanity'
+import { getAllPosts } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/sanity'
 
 export const revalidate = 3600
 

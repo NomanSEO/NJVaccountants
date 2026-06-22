@@ -1,5 +1,5 @@
 // src/components/Hero.tsx
-import { getSiteSettings } from '@/lib/queries'
+import { getSiteSettings } from '@/sanity/lib/queries'
 
 export default async function Hero() {
   const s = await getSiteSettings()

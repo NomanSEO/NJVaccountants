@@ -1,5 +1,5 @@
 // src/components/CTABanner.tsx
-import { getSiteSettings } from '@/lib/queries'
+import { getSiteSettings } from '@/sanity/lib/queries'
 
 export default async function CTABanner() {
   const s = await getSiteSettings()

@@ -1,4 +1,4 @@
-import { getTeamMembers } from '@/lib/queries'
+import { getTeamMembers } from '@/sanity/lib/queries'
 
 export default async function Team() {
   const members = await getTeamMembers()

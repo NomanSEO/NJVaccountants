@@ -1,5 +1,5 @@
 // src/components/TrustStrip.tsx
-import { getSiteSettings } from '@/lib/queries'
+import { getSiteSettings } from '@/sanity/lib/queries'
 
 export default async function TrustStrip() {
   const s = await getSiteSettings()

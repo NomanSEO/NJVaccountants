@@ -4,8 +4,8 @@ import { PortableText } from 'next-sanity'
 import type { Metadata } from 'next'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import { getPost, getAllPosts } from '@/lib/queries'
-import { urlFor } from '@/lib/sanity'
+import { getPost, getAllPosts } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/sanity'
 
 export const revalidate = 3600
 
