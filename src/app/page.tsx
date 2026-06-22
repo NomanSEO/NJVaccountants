@@ -35,5 +35,7 @@ export default function Page() {
       <Contact />
       <Footer />
     </>
+    
   )
 }
+// 
