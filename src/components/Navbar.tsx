@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: '#case-studies', label: 'Case Studies' },
   { href: '#team', label: 'Our Team' },
   { href: '#blog', label: 'Insights' },
+  { href: '/calculators', label: 'Calculators' },
   { href: '#contact', label: 'Contact' },
 ]
 
