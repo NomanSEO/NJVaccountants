@@ -61,7 +61,7 @@ export interface CaseStudy {
 }
 
 export interface SanityImage {
-  asset: { _ref: string; _type: string }
+  asset?: { _ref: string; _type: string }
   hotspot?: { x: number; y: number; width: number; height: number }
   crop?: { top: number; bottom: number; left: number; right: number }
   alt?: string

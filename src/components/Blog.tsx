@@ -31,7 +31,7 @@ export default async function Blog() {
                 <a href={`/blog/${post.slug?.current ?? '#'}`} className="block no-underline">
                   {/* Card image */}
                   <div className="relative overflow-hidden" style={{ height: `${imgHeight}px` }}>
-                    {post.headerImage ? (
+                    {post.headerImage?.asset ? (
                       <>
                         <Image
                           src={urlFor(post.headerImage).width(i === 0 ? 800 : 400).height(imgHeight).fit('crop').url()}

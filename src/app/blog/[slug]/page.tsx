@@ -25,7 +25,7 @@ export async function generateMetadata(
   return {
     title: `${post.title} | Pinnacle Advisory Group`,
     description: post.excerpt,
-    openGraph: post.headerImage
+    openGraph: post.headerImage?.asset
       ? { images: [{ url: urlFor(post.headerImage).width(1200).height(630).url() }] }
       : undefined,
   }
@@ -68,7 +68,7 @@ export default async function BlogPostPage(
     ? post.author.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
     : '??'
 
-  const headerImageUrl = post.headerImage
+  const headerImageUrl = post.headerImage?.asset
     ? urlFor(post.headerImage).width(1200).height(520).fit('crop').url()
     : null
 

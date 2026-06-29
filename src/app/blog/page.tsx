@@ -54,7 +54,7 @@ export default async function BlogPage() {
                   >
                     {/* Card image */}
                     <div className="relative overflow-hidden shrink-0" style={{ height: '200px' }}>
-                      {post.headerImage ? (
+                      {post.headerImage?.asset ? (
                         <>
                           <Image
                             src={urlFor(post.headerImage).width(600).height(200).fit('crop').url()}
