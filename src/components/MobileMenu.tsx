@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 interface Props {
   open: boolean
   onClose: () => void
@@ -21,16 +23,16 @@ export default function MobileMenu({ open, onClose, links }: Props) {
       >
         ✕
       </button>
-      <a href="#home" onClick={onClose} className="text-white font-display text-[1.75rem] font-bold no-underline hover:text-gold transition-colors">Home</a>
+      <Link href="/#home" onClick={onClose} className="text-white font-display text-[1.75rem] font-bold no-underline hover:text-gold transition-colors">Home</Link>
       {links.map(link => (
-        <a
+        <Link
           key={link.href}
           href={link.href}
           onClick={onClose}
           className="text-white font-display text-[1.75rem] font-bold no-underline hover:text-gold transition-colors"
         >
           {link.label}
-        </a>
+        </Link>
       ))}
     </div>
   )

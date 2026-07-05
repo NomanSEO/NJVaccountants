@@ -16,7 +16,7 @@ import HeroSkeleton from '@/components/skeletons/HeroSkeleton'
 import SectionSkeleton from '@/components/skeletons/SectionSkeleton'
 import CardGridSkeleton from '@/components/skeletons/CardGridSkeleton'
 
-export const revalidate = 3600
+export const revalidate = 600
 
 export default function Page() {
   return (

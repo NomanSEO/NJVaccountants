@@ -2,7 +2,11 @@ import { client } from './sanity'
 import type { SiteSettings, Service, TeamMember, Testimonial, CaseStudy, Post, PostFull } from '@/types'
 
 export async function getSiteSettings(): Promise<SiteSettings | null> {
-  return client.fetch(`*[_type == "siteSettings"][0]`)
+  return client.fetch(`*[_type == "siteSettings"][0] {
+    ...,
+    "heroStats": coalesce(heroStats, []),
+    "trustLogos": coalesce(trustLogos, [])
+  }`)
 }
 
 export async function getServices(): Promise<Service[]> {

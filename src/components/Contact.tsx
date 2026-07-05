@@ -48,7 +48,7 @@ export default function Contact() {
               {[
                 { icon: '📍', label: 'Main Office', value: '1200 Financial District Blvd, Suite 4400\nNew York, NY 10004' },
                 { icon: '📞', label: 'Telephone', value: '+1 (800) 746-6225\nMon – Fri, 8am – 6pm EST' },
-                { icon: '✉️', label: 'Email', value: 'hello@pinnacleadvisory.com\nReplies within 4 business hours' },
+                { icon: '✉️', label: 'Email', value: 'hello@njvaccountants.pk\nReplies within 4 business hours' },
                 { icon: '🏢', label: 'Other Offices', value: 'London · Chicago · Toronto · Dubai' },
               ].map(item => (
                 <div key={item.label} className="flex gap-4 items-start">

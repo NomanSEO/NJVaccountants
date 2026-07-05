@@ -7,7 +7,7 @@ import Footer from '@/components/Footer'
 import { getPost, getAllPosts } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/sanity'
 
-export const revalidate = 3600
+export const revalidate = 600
 
 export async function generateStaticParams() {
   const posts = await getAllPosts()
@@ -21,9 +21,9 @@ export async function generateMetadata(
 ): Promise<Metadata> {
   const { slug } = await params
   const post = await getPost(slug)
-  if (!post) return { title: 'Post Not Found | Pinnacle Advisory Group' }
+  if (!post) return { title: 'Post Not Found | NJV Accountants' }
   return {
-    title: `${post.title} | Pinnacle Advisory Group`,
+    title: `${post.title} | NJV Accountants`,
     description: post.excerpt,
     openGraph: post.headerImage?.asset
       ? { images: [{ url: urlFor(post.headerImage).width(1200).height(630).url() }] }
@@ -42,7 +42,7 @@ const portableTextComponents = {
               src={urlFor(value).width(800).url()}
               alt={value.alt ?? ''}
               fill
-              className="object-cover"
+              className="object-contain bg-cream"
               sizes="(max-width: 800px) 100vw, 800px"
             />
           </div>
@@ -69,7 +69,7 @@ export default async function BlogPostPage(
     : '??'
 
   const headerImageUrl = post.headerImage?.asset
-    ? urlFor(post.headerImage).width(1200).height(520).fit('crop').url()
+    ? urlFor(post.headerImage).width(1200).url()
     : null
 
   return (
@@ -129,7 +129,7 @@ export default async function BlogPostPage(
               alt={post.headerImage?.alt ?? post.title}
               fill
               priority
-              className="object-cover"
+              className="object-contain"
               sizes="100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-navy/30 to-transparent" />

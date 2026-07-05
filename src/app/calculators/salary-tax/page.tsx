@@ -4,7 +4,7 @@ import SalaryTaxCalculator from '@/components/SalaryTaxCalculator'
 import { SALARY_TAX_SLABS_2026_27 } from '@/lib/salaryTax'
 
 export const metadata = {
-  title: 'Salary Tax Calculator 2026–2027 | Pinnacle Advisory Group',
+  title: 'Salary Tax Calculator 2026–2027 | NJV Accountants',
   description:
     'Estimate your income tax on salary for tax year 2026–2027 with our free salary tax calculator. Monthly and annual breakdown across all tax slabs.',
 }

@@ -4,10 +4,10 @@ import Footer from '@/components/Footer'
 import { getAllPosts } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/sanity'
 
-export const revalidate = 3600
+export const revalidate = 600
 
 export const metadata = {
-  title: 'Insights & Analysis | Pinnacle Advisory Group',
+  title: 'Insights & Analysis | NJV Accountants',
   description: 'Timely, practical perspectives on accounting, tax, regulation, and business strategy from our senior professionals.',
 }
 
@@ -57,10 +57,10 @@ export default async function BlogPage() {
                       {post.headerImage?.asset ? (
                         <>
                           <Image
-                            src={urlFor(post.headerImage).width(600).height(200).fit('crop').url()}
+                            src={urlFor(post.headerImage).width(600).url()}
                             alt={post.headerImage.alt ?? post.title}
                             fill
-                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="object-contain bg-cream"
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
                           <div className="absolute inset-0 bg-navy/40" />

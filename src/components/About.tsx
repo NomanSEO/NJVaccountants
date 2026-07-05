@@ -16,7 +16,7 @@ const TEAM = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 bg-navy" aria-label="About Pinnacle">
+    <section id="about" className="py-24 bg-navy" aria-label="About NJV Accountants">
       <div className="max-w-site mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
 
@@ -30,7 +30,7 @@ export default function About() {
               Built on <em className="not-italic text-gold">Integrity,</em> Driven by Results
             </h2>
             <p className="text-[0.9375rem] text-white/65 leading-[1.75] mb-4">
-              Founded in 1998, Pinnacle Advisory Group has grown from a boutique practice into one of the most trusted mid-market accounting and advisory firms in the region. Our independence is our greatest asset — we answer only to our clients.
+              Founded in 1998, NJV Accountants has grown from a boutique practice into one of the most trusted mid-market accounting and advisory firms in the region. Our independence is our greatest asset — we answer only to our clients.
             </p>
             <p className="text-[0.9375rem] text-white/65 leading-[1.75] mb-9">
               We combine the personal service of a boutique firm with the technical depth and resource of a large practice. Every client relationship is led by a senior partner, ensuring continuity, accountability, and strategic focus at every stage.

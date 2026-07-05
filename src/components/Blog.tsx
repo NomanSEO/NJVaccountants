@@ -34,10 +34,10 @@ export default async function Blog() {
                     {post.headerImage?.asset ? (
                       <>
                         <Image
-                          src={urlFor(post.headerImage).width(i === 0 ? 800 : 400).height(imgHeight).fit('crop').url()}
+                          src={urlFor(post.headerImage).width(i === 0 ? 800 : 400).url()}
                           alt={post.headerImage.alt ?? post.title}
                           fill
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-contain bg-cream"
                           sizes={i === 0 ? '(max-width: 768px) 100vw, 50vw' : '(max-width: 768px) 100vw, 25vw'}
                         />
                         <div className="absolute inset-0 bg-navy/40" />

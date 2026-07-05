@@ -1,4 +1,6 @@
 // src/components/Footer.tsx
+import BrandLogo from './BrandLogo'
+
 const SERVICES_LINKS = ['Accounting & Bookkeeping','Taxation Services','Audit & Assurance','Business Advisory','M&A Due Diligence','Forensic Accounting','ESG Reporting']
 const COMPANY_LINKS  = [['About Us','#about'],['Our Team','#team'],['Case Studies','#case-studies'],['Insights','#blog'],['Testimonials','#testimonials'],['Careers','#contact'],['Press & Media','#contact']]
 const OFFICES        = ['New York (HQ)','London','Chicago','Toronto','Dubai']
@@ -10,16 +12,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-3 no-underline mb-4">
-              <div className="w-9 h-9 bg-gold rounded-sm flex items-center justify-center shrink-0">
-                <svg viewBox="0 0 20 20" fill="none" className="w-5 h-5">
-                  <path d="M10 2L3 7v10h4v-6h6v6h4V7L10 2z" fill="#0B1F3A" />
-                </svg>
-              </div>
-              <div className="font-display font-bold text-[1.2rem] text-white leading-[1.1]">
-                Pinnacle
-                <span className="block text-[0.625rem] font-body font-normal tracking-[0.15em] uppercase text-gold mt-px">Advisory Group</span>
-              </div>
+            <div className="mb-4 max-w-[260px]">
+              <BrandLogo variant="full" />
             </div>
             <p className="text-[0.875rem] text-white/45 leading-[1.65] max-w-[260px]">
               Independent accounting, tax, and advisory. Partnering with ambitious businesses since 1998.
@@ -73,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/[0.07] pt-7 flex flex-col md:flex-row justify-between items-center gap-3 flex-wrap">
-          <div className="text-[0.8125rem] text-white/30">© 2025 Pinnacle Advisory Group. All rights reserved.</div>
+          <div className="text-[0.8125rem] text-white/30">© 2025 NJV Accountants. All rights reserved.</div>
           <div className="flex gap-6">
             {['Privacy Policy','Terms of Service','Cookie Policy','Accessibility'].map(l => (
               <a key={l} href="#" className="text-[0.8125rem] text-white/30 no-underline hover:text-gold transition-colors">{l}</a>

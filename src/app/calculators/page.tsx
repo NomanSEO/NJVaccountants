@@ -2,9 +2,9 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 
 export const metadata = {
-  title: 'Calculators | Pinnacle Advisory Group',
+  title: 'Calculators | NJV Accountants',
   description:
-    'Free financial calculators from Pinnacle Advisory Group — estimate salary tax and more for tax year 2026–2027.',
+    'Free financial calculators from NJV Accountants — estimate salary tax and more for tax year 2026–2027.',
 }
 
 const CALCULATORS = [

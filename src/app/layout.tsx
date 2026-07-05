@@ -19,15 +19,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: 'Pinnacle Advisory Group | Accounting, Tax & Audit Services',
-  description: 'Pinnacle Advisory Group — trusted accounting, taxation, advisory, and audit services for businesses and individuals. Decades of expertise, measurable results.',
+  title: 'NJV Accountants | Accounting, Tax & Audit Services',
+  description: 'NJV Accountants — trusted accounting, taxation, advisory, and audit services for businesses and individuals. Decades of expertise, measurable results.',
   keywords: 'accounting firm, taxation services, business advisory, audit services, financial consulting, CPA firm, tax planning, forensic accounting',
   robots: 'index, follow',
   openGraph: {
-    title: 'Pinnacle Advisory Group | Accounting, Tax & Audit',
+    title: 'NJV Accountants | Accounting, Tax & Audit',
     description: 'Trusted accounting, taxation, advisory, and audit services.',
+    images: ['/njv-logo-dark.png'],
     type: 'website',
-    url: 'https://pinnacleadvisory.com',
+    url: 'https://njvaccountants.pk',
   },
 }
 
