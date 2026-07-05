@@ -269,7 +269,7 @@ export default function SalaryTaxPage() {
           exemptions, and file your annual income tax return correctly and on time.
         </p>
         <a
-          href="#contact"
+          href="/#contact"
           className="inline-flex items-center gap-2 bg-gold text-navy px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light hover:-translate-y-px transition-all"
         >
           Talk to a Tax Specialist ›
