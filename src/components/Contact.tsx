@@ -46,10 +46,10 @@ export default function Contact() {
             </p>
             <div className="mt-10 flex flex-col gap-6">
               {[
-                { icon: '📍', label: 'Main Office', value: '1200 Financial District Blvd, Suite 4400\nNew York, NY 10004' },
-                { icon: '📞', label: 'Telephone', value: '+1 (800) 746-6225\nMon – Fri, 8am – 6pm EST' },
-                { icon: '✉️', label: 'Email', value: 'hello@njvaccountants.pk\nReplies within 4 business hours' },
-                { icon: '🏢', label: 'Other Offices', value: 'London · Chicago · Toronto · Dubai' },
+                { icon: '📍', label: 'Main Office', value: 'Gulshan-e-Madina,Phase1\nFaisalabad,Pakistan' },
+                { icon: '📞', label: 'Telephone', value: '+92-322-5401701\nMon – Fri, 9am – 6pm ' },
+                { icon: '✉️', label: 'Email', value: 'Nomanj.ajs@gmail.com\nReplies within 1 business hour' },
+               
               ].map(item => (
                 <div key={item.label} className="flex gap-4 items-start">
                   <div className="w-10 h-10 bg-gold/10 border border-gold/20 rounded-sm flex items-center justify-center shrink-0 text-base">
