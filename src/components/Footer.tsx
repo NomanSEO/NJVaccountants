@@ -3,7 +3,7 @@ import BrandLogo from './BrandLogo'
 
 const SERVICES_LINKS = ['Accounting & Bookkeeping','Taxation Services','Audit & Assurance','Business Advisory','M&A Due Diligence','Forensic Accounting','ESG Reporting']
 const COMPANY_LINKS  = [['About Us','#about'],['Our Team','#team'],['Case Studies','#case-studies'],['Insights','#blog'],['Testimonials','#testimonials'],['Careers','#contact'],['Press & Media','#contact']]
-const OFFICES        = ['Faisalabad']
+const OFFICES        = ['Faisalabad,Lahore']
 
 export default function Footer() {
   return (
@@ -16,7 +16,7 @@ export default function Footer() {
               <BrandLogo variant="full" />
             </div>
             <p className="text-[0.875rem] text-white/45 leading-[1.65] max-w-[260px]">
-              Independent accounting, tax, and advisory. Partnering with ambitious businesses since 1998.
+              Independent accounting, tax, and advisory. Partnering with ambitious businesses since 2020.
             </p>
             <div className="flex gap-3 mt-6">
               {[['in','LinkedIn'],['𝕏','Twitter'],['f','Facebook'],['▶','YouTube']].map(([icon, label]) => (
@@ -56,9 +56,9 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-7">
-              <div className="font-display text-[0.875rem] font-bold text-white mb-3 uppercase tracking-[0.06em]">Accreditations</div>
+              <div className="font-display text-[0.875rem] font-bold text-white mb-3 uppercase tracking-[0.06em]">Why Choose Us?</div>
               <div className="flex flex-col gap-1.5">
-                {['🏆 AICPA Member Firm','✓ PCAOB Registered','⭐ ISO 27001 Certified'].map(a => (
+                {['🏆 Qualified CA Team','✓ Registered Tax Practiciner','⭐ Experienced Finance Professionals'].map(a => (
                   <span key={a} className="text-[0.8rem] text-white/40">{a}</span>
                 ))}
               </div>
@@ -67,10 +67,10 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-white/[0.07] pt-7 flex flex-col md:flex-row justify-between items-center gap-3 flex-wrap">
-          <div className="text-[0.8125rem] text-white/30">© 2025 NJV Accountants. All rights reserved.</div>
+          <div className="text-[0.8125rem] text-white/30">© 2026 NJV Accountants. All rights reserved.</div>
           <div className="flex gap-6">
             {['Privacy Policy','Terms of Service','Cookie Policy','Accessibility'].map(l => (
-              <a key={l} href="#" className="text-[0.8125rem] text-white/30 no-underline hover:text-gold transition-colors">{l}</a>
+              <a key={l} href="https://www.linkedin.com/company/njv-accountants" className="text-[0.8125rem] text-white/30 no-underline hover:text-gold transition-colors">{l}</a>
             ))}
           </div>
         </div>
