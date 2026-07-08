@@ -3,7 +3,7 @@ import BrandLogo from './BrandLogo'
 
 const SERVICES_LINKS = ['Accounting & Bookkeeping','Taxation Services','Audit & Assurance','Business Advisory','M&A Due Diligence','Forensic Accounting','ESG Reporting']
 const COMPANY_LINKS  = [['About Us','#about'],['Our Team','#team'],['Case Studies','#case-studies'],['Insights','#blog'],['Testimonials','#testimonials'],['Careers','#contact'],['Press & Media','#contact']]
-const OFFICES        = ['New York (HQ)','London','Chicago','Toronto','Dubai']
+const OFFICES        = ['Faisalabad']
 
 export default function Footer() {
   return (
