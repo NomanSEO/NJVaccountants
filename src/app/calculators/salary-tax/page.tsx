@@ -4,9 +4,9 @@ import SalaryTaxCalculator from '@/components/SalaryTaxCalculator'
 import { SALARY_TAX_SLABS_2026_27 } from '@/lib/salaryTax'
 
 export const metadata = {
-  title: 'Salary Tax Calculator 2026–2027 | NJV Accountants',
+  title: 'Salary Tax Calculator Pakistan 2026–2027 | NJV Accountants',
   description:
-    'Estimate your income tax on salary for tax year 2026–2027 with our free salary tax calculator. Monthly and annual breakdown across all tax slabs.',
+    'Estimate your income tax on salary for tax year 2026–2027 with our free salary tax calculator as per FBR and Income tax rules. Monthly and annual breakdown across all tax slabs.',
 }
 
 const fmtRs = (n: number) =>
@@ -143,7 +143,7 @@ export default function SalaryTaxPage() {
           How This <em className="not-italic text-gold">Salary Tax Calculator</em> Works
         </h2>
         <p className="text-[1.0625rem] text-slate leading-[1.8] mb-4">
-          Our <strong className="text-navy">salary tax calculator</strong> gives you an instant, accurate
+          Our <strong className="text-navy">salary tax calculator Pakistan 2026-27</strong> gives you an instant, accurate
           estimate of the income tax deducted from your monthly or annual salary in Pakistan for tax year
           2026–2027. Simply enter your gross salary and the calculator applies the latest FBR salary tax
           slabs to show your total tax liability, monthly tax deduction, and net take-home pay — all in a
