@@ -22,7 +22,7 @@ export default async function Hero() {
           <div className="fade-up">
             <div className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-6">
               <span className="block w-6 h-0.5 bg-gold" />
-              Est. 1998 · Trusted by 1,200+ Clients
+              Est. 2020 · Trusted by 50+ Clients
             </div>
 
             <h1 className="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-bold text-white leading-[1.1] mb-6">
