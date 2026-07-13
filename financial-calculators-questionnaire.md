@@ -46,42 +46,43 @@ Use this questionnaire before planning or building each calculator. Questions ma
 
 11. **Optional:** Should inputs be saved in the browser?
 
- do not retain financial data.
+      Do not retain financial data.
 
 12. **Optional:** Should results include a contact or consultation call-to-action?
 
-use the existing site CTA.
+      use the existing site CTA.
 
 13. **Optional:** Are analytics events required for calculator starts, completions, and CTA clicks?
 
-Not Now
+      Not Now
 
 14. **Required:** What disclaimer and limitation-of-liability wording should appear?
 
-    No wording now
+      No wording now
 
 15. **Required:** What example cases will the firm use to verify the results?
 
-    Nothing
+      Nothing
 
 ---
 
 ## 1. Federal Taxable Income Tax Calculator
+
 1. Is this for U.S. federal income tax, Pakistan income tax, or another jurisdiction?
 
    USA
 
-Tax bracket table
+   Tax bracket table
 
-| Tax rate | Single filer | Married filing jointly / Surviving spouse | Head of household |Married filing separately |
-|------|----------|-----------------|------------|-----------------------------------------|
-|10% |$0 to $12,400 |$0 to $24,800| $0 to $17,700| $0 to $12,400|
-|12% |$12,401 to $50,400 |$24,801 to $100,800| $17,701 to $67,450| $12,401 to $50,400|
-|22% |$50,401 to $105,700| $100,801 to $211,400| $67,451 to $105,700| $50,401 to $105,700|
-|24% |$105,701 to $201,775| $211,401 to $403,550| $105,701 to $201,750| $105,701 to $201,775|
-|32% |$201,776 to $256,225| $403,551 to $512,450| $201,751 to $256,200| $201,776 to $256,225|
-|35% |$256,226 to $640,600| $512,451 to $768,700| $256,201 to $640,600| $256,226 to $384,350|
-|37% |$640,601 or more| $768,701 or more| $640,601 or more| $384,351 or more|
+| Tax rate | Single filer         | Married filing jointly / Surviving spouse | Head of household    | Married filing separately |
+| -------- | -------------------- | ----------------------------------------- | -------------------- | ------------------------- |
+| 10%      | $0 to $12,400        | $0 to $24,800                             | $0 to $17,700        | $0 to $12,400             |
+| 12%      | $12,401 to $50,400   | $24,801 to $100,800                       | $17,701 to $67,450   | $12,401 to $50,400        |
+| 22%      | $50,401 to $105,700  | $100,801 to $211,400                      | $67,451 to $105,700  | $50,401 to $105,700       |
+| 24%      | $105,701 to $201,775 | $211,401 to $403,550                      | $105,701 to $201,750 | $105,701 to $201,775      |
+| 32%      | $201,776 to $256,225 | $403,551 to $512,450                      | $201,751 to $256,200 | $201,776 to $256,225      |
+| 35%      | $256,226 to $640,600 | $512,451 to $768,700                      | $256,201 to $640,600 | $256,226 to $384,350      |
+| 37%      | $640,601 or more     | $768,701 or more                          | $640,601 or more     | $384,351 or more          |
 
 2. Which tax year or years must be supported?
 
@@ -119,126 +120,280 @@ Tax bracket table
 
 1. Which mortgage market and currency should it target?
 
-USA , UK and USD, Pound, Euro
+   USA , UK and USD, Pound, Euro
 
 2. Should inputs include home price, deposit/down payment, interest rate, and term?
 
-Yes
+   Yes
 
 3. Should property tax, home insurance, HOA/service charges, and mortgage insurance be included?
 
-yes
+   yes
 
 4. Should it support fixed-rate, adjustable-rate, interest-only, or repayment mortgages?
 
-Support all
+   Support all
 
 5. Should results show monthly payment, total interest, total cost, and an amortization schedule?
 
-Yes
+   Yes
 
 6. Should users enter the rate manually, or should current market rates be supplied?
 
-Manually
+   Manually
 
 7. How should payment frequency and rounding be handled?
 
-Round to nearest 1 and for payment frequency give options for monthly and yearly
+   Round to nearest 1 and for payment frequency give options for monthly and yearly
 
 ## 3. Car Loan Calculator
 
-1. Which country, currency, and auto-finance conventions apply? USA ,UK and USD,Pound,Euro - Default is USD
-2. Should the price input include taxes, registration, dealer fees, and add-ons? Yes optional
-3. Should cash down payment, trade-in value, and existing trade-in balance be separate inputs?  Yes
-4. Should the tool calculate payment from rate and term, or solve for affordable vehicle price as well?  It should include impact of cost car , down payment , remaining payment and term of loan and apply interest rate
-5. Should it support monthly, fortnightly, or weekly payments? Monthly
-6. Should results show total interest, total financed amount, and payoff schedule? Yes
-7. Are balloon payments or residual values required? Optional
+1. Which country, currency, and auto-finance conventions apply?
+
+   USA ,UK and USD,Pound,Euro - Default is USD
+
+2. Should the price input include taxes, registration, dealer fees, and add-ons?
+
+   Yes optional
+
+3. Should cash down payment, trade-in value, and existing trade-in balance be separate inputs?
+
+   Yes
+
+4. Should the tool calculate payment from rate and term, or solve for affordable vehicle price as well?
+
+   It should include impact of cost car , down payment , remaining payment and term of loan and apply interest rate
+
+5. Should it support monthly, fortnightly, or weekly payments?
+
+   Monthly
+
+6. Should results show total interest, total financed amount, and payoff schedule?
+
+   Yes
+
+7. Are balloon payments or residual values required?
+
+   Optional
 
 ## 4. Loan Calculator
 
-1. What loan types should this general calculator cover? All Loan types it is a general calculator for loan not specific
-2. Should it support amortized, interest-only, deferred-payment, and balloon-payment loans? Yes
-3. Which value may users solve for: payment, principal, rate, or term? User will enter loan amount , interest rate ,  loan terms ( options in year/month) and result will occur in monthly payment against loan
-4. Should origination fees and other upfront charges affect APR and net proceeds? Yes optional
-5. Which payment frequencies are required? Give options for yearly and monthly – default monthly
-6. Should an amortization schedule and total-cost comparison be included? Yes
+1. What loan types should this general calculator cover?
+
+      All Loan types it is a general calculator for loan not specific
+
+2. Should it support amortized, interest-only, deferred-payment, and balloon-payment loans?
+
+      Yes
+
+3. Which value may users solve for: payment, principal, rate, or term?
+
+      User will enter loan amount , interest rate , loan terms ( options in year/month) and result will occur in monthly payment against loan
+
+4. Should origination fees and other upfront charges affect APR and net proceeds?
+
+      Yes optional
+
+5. Which payment frequencies are required?
+
+      Give options for yearly and monthly – default monthly
+
+6. Should an amortization schedule and total-cost comparison be included?
+
+      Yes
 
 ## 5. Personal Loan Calculator
 
-1. Which personal-loan market and currency apply? USA ,UK and USD,Pound,Euro - Default is USD
-2. Should users enter principal, APR, term, and origination fee? Yes with origination fee optional
-3. Should the fee be deducted from proceeds or added to the financed balance? added
-4. Should the tool show monthly payment, net cash received, total interest, and total repayment? Yes
-5. Should it compare multiple loan offers? Yes
-6. Are prepayment or late-payment scenarios required?  no
+1. Which personal-loan market and currency apply?
+
+   USA ,UK and USD,Pound,Euro - Default is USD
+
+2. Should users enter principal, APR, term, and origination fee?
+
+   Yes with origination fee optional
+
+3. Should the fee be deducted from proceeds or added to the financed balance?
+
+   added
+
+4. Should the tool show monthly payment, net cash received, total interest, and total repayment?
+
+   Yes
+
+5. Should it compare multiple loan offers?
+
+   Yes
+
+6. Are prepayment or late-payment scenarios required?
+
+   no
 
 ## 6. Retirement Calculator
 
-1. Which retirement system and country should it target? USA
-2. Should it estimate a target nest egg, projected balance, sustainable income, or all three? All Three
-3. Which inputs are required: current age, retirement age, savings, contributions, income, and desired retirement spending? Current age and retirement age input required
-4. What defaults should be used for investment return, inflation, salary growth, and life expectancy? 5% investment return , 3% inflation , 3% salary growth , 80 Life expectancy
-5. Should government benefits, pensions, employer plans, and other income be included? no
-6. Should returns be modeled before or after inflation and fees? after
-7. Should the tool show optimistic, expected, and conservative scenarios? Yes
+1. Which retirement system and country should it target?
+
+   USA
+
+2. Should it estimate a target nest egg, projected balance, sustainable income, or all three?
+
+   All Three
+
+3. Which inputs are required: current age, retirement age, savings, contributions, income, and desired retirement spending?
+
+   Current age and retirement age input required
+
+4. What defaults should be used for investment return, inflation, salary growth, and life expectancy?
+
+   5% investment return , 3% inflation , 3% salary growth , 80 Life expectancy
+
+5. Should government benefits, pensions, employer plans, and other income be included?
+
+   no
+
+6. Should returns be modeled before or after inflation and fees?
+
+   after
+
+7. Should the tool show optimistic, expected, and conservative scenarios?
+
+   Yes
 
 ## 7. CD Calculator
 
-1. Does CD mean a U.S.-style certificate of deposit or another fixed-deposit product? US Style
-2. Should users enter nominal rate, APY, or either one? APY
-3. Which compounding frequencies are required? Give options to select either monthly or yearly
-4. Should the calculator support additional deposits or only one initial deposit? One initial deposit
-5. Should tax on interest be included? no
-6. Are early-withdrawal penalties required? no
-7. Should results show maturity value, interest earned, and period-by-period growth?  Yes
+1. Does CD mean a U.S.-style certificate of deposit or another fixed-deposit product?
+
+   US Style
+
+2. Should users enter nominal rate, APY, or either one?
+
+   APY
+
+3. Which compounding frequencies are required?
+
+   Give options to select either monthly or yearly
+
+4. Should the calculator support additional deposits or only one initial deposit?
+
+   One initial deposit
+
+5. Should tax on interest be included?
+
+   no
+
+6. Are early-withdrawal penalties required?
+
+   no
+
+7. Should results show maturity value, interest earned, and period-by-period growth?
+
+   Yes
 
 ## 8. Salary Paycheck Calculator
 
-1. Which country, state/province, and local jurisdiction apply? USA , give option for all states to be selected , local jurisdiction of selected state would apply
-2. Which tax year and payroll withholding tables should be used? Current tax year which is 2026 - update the data according to current date and time
-3. Which pay frequencies must be supported? Weekly , bi-weekly , monthly , semi-monthly , give options for these
-4. Which filing status, allowance, dependant, and withholding fields are required? Filing Status single or married filing separately , married filing jointly or qualifying surviving spouse , head of household.  Give options to select and for others make it optional
-5. Should pre-tax and post-tax deductions be configurable? Yes
-6. Should social insurance, Medicare, pension, or other payroll charges be included? Yes optional
-7. Should bonuses, commissions, overtime, and benefits-in-kind be supported? Yes
-8. Which payroll authority or provider will validate the calculation? IRS regarding tax calculation
+1. Which country, state/province, and local jurisdiction apply?
+
+   USA , give option for all states to be selected , local jurisdiction of selected state would apply
+
+2. Which tax year and payroll withholding tables should be used?
+
+   Current tax year which is 2026 - update the data according to current date and time
+
+3. Which pay frequencies must be supported?
+
+   Weekly , bi-weekly , monthly , semi-monthly , give options for these
+
+4. Which filing status, allowance, dependant, and withholding fields are required?
+
+   Filing Status single or married filing separately , married filing jointly or qualifying surviving spouse head of household. Give options to select and for others make it optional
+
+5. Should pre-tax and post-tax deductions be configurable?
+
+   Yes
+
+6. Should social insurance, Medicare, pension, or other payroll charges be included?
+
+   Yes optional
+
+7. Should bonuses, commissions, overtime, and benefits-in-kind be supported?
+
+   Yes
+
+8. Which payroll authority or provider will validate the calculation?
+
+   IRS regarding tax calculation
 
 ## 9. Roth IRA Calculator
 
-1. Is this specifically for U.S. Roth IRA rules? Yes
-2. Which tax year’s contribution and income limits should apply? 2026
-3. Should eligibility and phase-out limits be calculated from filing status and modified AGI? Yes
-4. Should the calculator compare Roth and traditional IRA outcomes? Yes
-5. What return, inflation, fee, and tax-rate assumptions are required? 6% return ,3% inflation rate ,
+1. Is this specifically for U.S. Roth IRA rules?
+
+   Yes
+
+2. Which tax year’s contribution and income limits should apply?
+
+   2026
+
+3. Should eligibility and phase-out limits be calculated from filing status and modified AGI?
+
+   Yes
+
+4. Should the calculator compare Roth and traditional IRA outcomes?
+
+   Yes
+
+5. What return, inflation, fee, and tax-rate assumptions are required?
+
+   6% return ,3% inflation rate ,
+
 Table for above calculations limits as per IRS:
 
-Filing status	Modified gross adjusted income	Contribution limits
-•	Single
-•	Head of household
-•	Married filing separately (if you didn't live with your spouse during the year)	Less than $153,000.	$7,500 ($8,600 if 50 or older).
-	$153,000 or more, but less than $168,000.	Contribution is reduced.
-	$168,000 or more.	No contribution allowed.
-•	Married filing jointly
-•	Surviving spouse	Less than $242,000.	$7,500 ($8,600 if 50 or older).
-	$242,000 or more, but less than $252,000.	Contribution is reduced.
-	$252,000 or more.	No contribution allowed.
-•	Married filing separately (if you lived with spouse at any time during year)	Less than $10,000.	Contribution is reduced.
-	$10,000 or more.	No contribution allowed.
+| Filing status | Modified gross adjusted income | Contribution limits|
+|---|---|---|
+|• Single  <br> • Head of household <br> • Married filing separately (if you didn't live with your spouse during the year) | Less than $153,000. | $7,500 ($8,600 if 50 or older).|
+||$153,000 or more, but less than $168,000.| Contribution is reduced.|
+||$168,000 or more.| No contribution allowed.|
+|• Married filing jointly <br>• Surviving spouse | Less than $242,000.|  $7,500 ($8,600 if 50 or older).|
+||$242,000 or more, but less than $252,000.| Contribution is reduced.|
+||$252,000 or more.| No contribution allowed.|
+|• Married filing separately (if you lived with spouse at any time during year)| Less than $10,000. |Contribution is reduced.|
+||$10,000 or more.| No contribution allowed.|
 
+7. Should contributions be monthly, annual, or both?
 
-7. Should contributions be monthly, annual, or both?  Default annual but give options for both monthly and annual
-8. Should it account for catch-up contributions and contribution timing? Yes
+   Default annual but give options for both monthly and annual
+
+8. Should it account for catch-up contributions and contribution timing?
+
+   Yes
 
 ## 10. Investment Calculator
 
-1. Should the tool model a lump sum, recurring contributions, or both? both
-2. Should users enter nominal return, inflation-adjusted return, or both? Nominal return
-3. Which compounding and contribution frequencies are required? Give options for weekly,bi-weekly, monthly, semi-annually, annually
-4. Should fees, taxes, and inflation be included? no
-5. Should contributions increase annually? Depending on frequencies selected
-6. Should results include a chart, yearly table, total contributions, and investment growth? Yes
-7. Should the calculator support best/base/worst-case scenarios? Yes
+1. Should the tool model a lump sum, recurring contributions, or both?
+
+   both
+
+2. Should users enter nominal return, inflation-adjusted return, or both?
+
+   Nominal return
+
+3. Which compounding and contribution frequencies are required?
+
+   Give options for weekly,bi-weekly, monthly, semi-annually, annually
+
+4. Should fees, taxes, and inflation be included?
+
+   no
+
+5. Should contributions increase annually?
+
+   Depending on frequencies selected
+
+6. Should results include a chart, yearly table, total contributions, and investment growth?
+
+   Yes
+
+7. Should the calculator support best/base/worst-case scenarios?
+
+   Yes
 
 ## 11. Amortization Calculator
 
