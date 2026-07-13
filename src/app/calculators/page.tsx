@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import Link from 'next/link'
 
 export const metadata = {
   title: 'Calculators | NJV Accountants',
@@ -33,6 +34,70 @@ const CALCULATORS = [
     symbol: '§',
     available: true,
   },
+  {
+    href: '/calculators/car-loan',
+    title: 'Car Loan Calculator',
+    tag: 'Vehicle Finance',
+    description: 'Estimate your vehicle payment, interest costs, and payoff schedule.',
+    symbol: '⌁',
+    available: true,
+  },
+  {
+    href: '/calculators/loan',
+    title: 'Loan Calculator',
+    tag: 'Borrowing Planner',
+    description: 'Model loan payments, total interest, and your full repayment schedule.',
+    symbol: '↔',
+    available: true,
+  },
+  {
+    href: '/calculators/personal-loan',
+    title: 'Personal Loan Calculator',
+    tag: 'Personal Finance',
+    description: 'See what a personal loan could cost and plan affordable repayments.',
+    symbol: '♙',
+    available: true,
+  },
+  {
+    href: '/calculators/retirement',
+    title: 'Retirement Calculator',
+    tag: 'Long-Term Planning',
+    description: 'Project savings growth and estimate the income you may need in retirement.',
+    symbol: '◴',
+    available: true,
+  },
+  {
+    href: '/calculators/cd',
+    title: 'CD Calculator',
+    tag: 'Savings & CDs',
+    description: 'Calculate certificate of deposit growth with your rate and term.',
+    symbol: '%',
+    available: true,
+  },
+  {
+    href: '/calculators/salary-paycheck',
+    title: 'Salary Paycheck Calculator',
+    tag: 'U.S. Payroll',
+    description: 'Estimate federal withholding, FICA taxes, and take-home pay per paycheck.',
+    symbol: '≡',
+    available: true,
+  },
+  {
+    href: '/calculators/roth-ira',
+    title: 'Roth IRA Calculator',
+    tag: 'Retirement Savings',
+    description: 'Project tax-free Roth IRA growth and review annual contribution limits.',
+    symbol: 'R',
+    available: true,
+  },
+  {
+    href: '/calculators/investment',
+    title: 'Investment Calculator',
+    tag: 'Investment Growth',
+    description: 'Forecast portfolio growth with contributions, returns, and time.',
+    symbol: '↗',
+    available: true,
+  },
 ]
 
 export default function CalculatorsPage() {
@@ -43,12 +108,12 @@ export default function CalculatorsPage() {
         {/* Hero */}
         <section className="pt-[70px] bg-navy">
           <div className="max-w-site mx-auto px-6 py-20">
-            <a
+            <Link
               href="/"
               className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
             >
               ← Back to Home
-            </a>
+            </Link>
             <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
               <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
               Tools & Calculators
@@ -68,7 +133,7 @@ export default function CalculatorsPage() {
           <div className="max-w-site mx-auto px-6">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
               {CALCULATORS.map((calc) => (
-                <a
+                <Link
                   key={calc.href}
                   href={calc.href}
                   className="service-card group border border-border rounded-sm bg-white p-7 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)] hover:-translate-y-0.5 transition-all duration-300 no-underline flex flex-col"
@@ -88,7 +153,7 @@ export default function CalculatorsPage() {
                   <span className="text-[0.8125rem] font-semibold text-navy tracking-[0.04em] flex items-center gap-1.5 group-hover:text-gold transition-colors mt-auto">
                     Open Calculator &rsaquo;
                   </span>
-                </a>
+                </Link>
               ))}
             </div>
           </div>
