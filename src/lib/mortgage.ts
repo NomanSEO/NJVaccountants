@@ -57,8 +57,8 @@ export function calculateMortgage(input: MortgageInput): MortgageResult {
     return {
       loanAmount,
       monthlyPrincipalAndInterest: 0,
-      monthlyHousingCost: 0,
-      yearlyHousingCost: 0,
+      monthlyHousingCost: escrow,
+      yearlyHousingCost: escrow * 12,
       totalInterest: 0,
       totalPaid: 0,
       schedule: [],

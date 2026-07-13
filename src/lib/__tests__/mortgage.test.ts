@@ -50,11 +50,13 @@ describe('calculateMortgage', () => {
     expect(result.schedule[60].payment).toBeCloseTo(2_104.60, 2)
   })
 
-  it('returns an empty zero-cost schedule when the down payment covers the home', () => {
+  it('retains escrow housing costs when the down payment covers the home', () => {
     const result = calculateMortgage({ ...baseInput, downPayment: 400_000 })
 
     expect(result.loanAmount).toBe(0)
     expect(result.monthlyPrincipalAndInterest).toBe(0)
+    expect(result.monthlyHousingCost).toBe(500)
+    expect(result.yearlyHousingCost).toBe(6_000)
     expect(result.totalInterest).toBe(0)
     expect(result.schedule).toHaveLength(0)
   })
