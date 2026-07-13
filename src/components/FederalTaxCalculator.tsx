@@ -33,16 +33,20 @@ export default function FederalTaxCalculator() {
   const [input, setInput] = useState(initialInput)
   const [showDetails, setShowDetails] = useState(false)
 
-  const invalidFields = useMemo(() => {
-    const negative = Object.entries(input).some(([key, value]) =>
-      key !== 'filingStatus' && key !== 'deductionType' && typeof value === 'number' && value < 0,
-    )
-    return {
-      negative,
-      stateLocalRate: input.stateLocalRate > 1,
-    }
+  const errors = useMemo(() => {
+    const next: Partial<Record<Exclude<keyof FederalTaxInput, 'filingStatus' | 'deductionType'>, string>> = {}
+    const fields = Object.entries(input) as [keyof FederalTaxInput, FederalTaxInput[keyof FederalTaxInput]][]
+
+    fields.forEach(([field, value]) => {
+      if (field !== 'filingStatus' && field !== 'deductionType' && typeof value === 'number' && value < 0) {
+        next[field] = 'Enter zero or a positive amount.'
+      }
+    })
+    if (input.stateLocalRate > 1) next.stateLocalRate = 'Enter a rate between 0% and 100%.'
+
+    return next
   }, [input])
-  const isInvalid = invalidFields.negative || invalidFields.stateLocalRate
+  const isInvalid = Object.keys(errors).length > 0
   const result = useMemo(() => calculateFederalTax(input), [input])
 
   const setNumber = (field: Exclude<keyof FederalTaxInput, 'filingStatus' | 'deductionType'>, value: string) => {
@@ -60,7 +64,8 @@ export default function FederalTaxCalculator() {
     ['Federal income tax', result.federalTax],
     ['State/local estimate', result.stateLocalEstimate],
     ['Total estimated tax', result.totalTax],
-    [result.refundOrBalance >= 0 ? 'Estimated refund' : 'Estimated balance due', Math.abs(result.refundOrBalance)],
+    [input.withholding + input.estimatedPayments - result.federalTax >= 0 ? 'Estimated federal refund' : 'Estimated federal balance due', Math.abs(input.withholding + input.estimatedPayments - result.federalTax)],
+    ['State/local payments', 'Not included in this estimate'],
     [],
     ['Bracket rate', 'Taxable income in bracket', 'Tax'],
     ...result.bracketBreakdown.map((bracket) => [formatPercent(bracket.rate), bracket.taxableAmount, bracket.tax]),
@@ -68,7 +73,7 @@ export default function FederalTaxCalculator() {
 
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-      <section className="bg-white border border-border rounded-sm p-7 md:p-8 shadow-[0_8px_30px_rgba(11,31,58,0.05)]" aria-labelledby="federal-tax-inputs">
+      <section className="bg-white border border-border rounded-sm p-7 md:p-8 shadow-sm" aria-labelledby="federal-tax-inputs">
         <h2 id="federal-tax-inputs" className="font-display text-[1.5rem] font-bold text-navy">Your tax details</h2>
         <p className="mt-2 text-sm text-slate leading-relaxed">Enter annual amounts in U.S. dollars. This tool provides a federal tax estimate, not tax advice.</p>
 
@@ -80,8 +85,8 @@ export default function FederalTaxCalculator() {
             </select>
           </label>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <NumberField id="gross-income" label="Gross annual income" value={input.grossIncome} onChange={(value) => setNumber('grossIncome', value)} />
-            <NumberField id="age" label="Age" value={input.age} onChange={(value) => setNumber('age', value)} prefix="" />
+            <NumberField id="gross-income" label="Gross annual income" value={input.grossIncome} onChange={(value) => setNumber('grossIncome', value)} error={errors.grossIncome} />
+            <NumberField id="age" label="Age" value={input.age} onChange={(value) => setNumber('age', value)} prefix="" error={errors.age} />
           </div>
 
           <fieldset>
@@ -95,22 +100,20 @@ export default function FederalTaxCalculator() {
               ))}
             </div>
           </fieldset>
-          {input.deductionType === 'itemized' && <NumberField id="itemized-deductions" label="Itemized deductions" value={input.itemizedDeductions} onChange={(value) => setNumber('itemizedDeductions', value)} />}
+          {input.deductionType === 'itemized' && <NumberField id="itemized-deductions" label="Itemized deductions" value={input.itemizedDeductions} onChange={(value) => setNumber('itemizedDeductions', value)} error={errors.itemizedDeductions} />}
 
           <button type="button" onClick={() => setShowDetails((shown) => !shown)} className="text-sm font-semibold text-navy hover:text-gold-dark">
             {showDetails ? '− Hide additional details' : '+ Add contributions, credits and payments'}
           </button>
           {showDetails && <div className="grid grid-cols-1 gap-5 border-t border-border pt-5 sm:grid-cols-2">
-            <NumberField id="retirement" label="Retirement contributions" value={input.retirementContributions} onChange={(value) => setNumber('retirementContributions', value)} />
-            <NumberField id="adjustments" label="Other adjustments" value={input.otherAdjustments} onChange={(value) => setNumber('otherAdjustments', value)} />
-            <NumberField id="credits" label="Non-refundable credits" value={input.credits} onChange={(value) => setNumber('credits', value)} />
-            <NumberField id="withholding" label="Federal tax withheld" value={input.withholding} onChange={(value) => setNumber('withholding', value)} />
-            <NumberField id="estimated-payments" label="Estimated tax payments" value={input.estimatedPayments} onChange={(value) => setNumber('estimatedPayments', value)} />
-            <NumberField id="state-local-rate" label="State/local tax rate" value={input.stateLocalRate * 100} onChange={(value) => setNumber('stateLocalRate', String(Number(value) / 100))} suffix="%" />
+            <NumberField id="retirement" label="Retirement contributions" value={input.retirementContributions} onChange={(value) => setNumber('retirementContributions', value)} error={errors.retirementContributions} />
+            <NumberField id="adjustments" label="Other adjustments" value={input.otherAdjustments} onChange={(value) => setNumber('otherAdjustments', value)} error={errors.otherAdjustments} />
+            <NumberField id="credits" label="Non-refundable credits" value={input.credits} onChange={(value) => setNumber('credits', value)} error={errors.credits} />
+            <NumberField id="withholding" label="Federal tax withheld" value={input.withholding} onChange={(value) => setNumber('withholding', value)} error={errors.withholding} />
+            <NumberField id="estimated-payments" label="Estimated federal tax payments" value={input.estimatedPayments} onChange={(value) => setNumber('estimatedPayments', value)} error={errors.estimatedPayments} />
+            <NumberField id="state-local-rate" label="State/local tax rate" value={input.stateLocalRate * 100} onChange={(value) => setNumber('stateLocalRate', String(Number(value) / 100))} suffix="%" error={errors.stateLocalRate} />
           </div>}
         </div>
-        {invalidFields.negative && <p className="mt-5 text-sm text-red-700" role="alert">Amounts and age cannot be negative.</p>}
-        {invalidFields.stateLocalRate && <p className="mt-5 text-sm text-red-700" role="alert">State/local rate must be between 0% and 100%.</p>}
       </section>
 
       <section className="bg-navy rounded-sm p-7 md:p-8 text-white relative overflow-hidden" aria-labelledby="federal-tax-results">
@@ -121,7 +124,7 @@ export default function FederalTaxCalculator() {
           <p className="mt-2 text-sm text-white/65">Estimated only; your actual return may differ.</p>
           <div className="grid grid-cols-2 gap-4 mt-7">
             <Result label="Federal income tax" value={currency(result.federalTax)} accent />
-            <Result label="Total estimated tax" value={currency(result.totalTax)} />
+            <Result label="Federal + state/local estimate" value={currency(result.totalTax)} />
           </div>
           <div className="grid grid-cols-2 gap-px bg-white/10 rounded-sm overflow-hidden mt-6">
             <Stat label="Taxable income" value={currency(result.taxableIncome)} />
@@ -130,8 +133,9 @@ export default function FederalTaxCalculator() {
             <Stat label="Marginal rate" value={formatPercent(result.marginalRate)} />
           </div>
           <div className="mt-6 border border-gold/40 bg-white/5 p-4">
-            <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50">{result.refundOrBalance >= 0 ? 'Estimated refund' : 'Estimated balance due'}</div>
-            <div className="font-display text-2xl font-bold text-gold mt-1">{currency(Math.abs(result.refundOrBalance))}</div>
+            <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50">{input.withholding + input.estimatedPayments - result.federalTax >= 0 ? 'Estimated federal refund' : 'Estimated federal balance due'}</div>
+            <div className="font-display text-2xl font-bold text-gold mt-1">{currency(Math.abs(input.withholding + input.estimatedPayments - result.federalTax))}</div>
+            <p className="mt-2 text-xs leading-relaxed text-white/55">State/local taxes are a separate estimate and are not included because no state/local payments are entered.</p>
           </div>
         </div>
       </section>
@@ -155,8 +159,9 @@ export default function FederalTaxCalculator() {
   )
 }
 
-function NumberField({ id, label, value, onChange, prefix = '$', suffix }: { id: string; label: string; value: number; onChange: (value: string) => void; prefix?: string; suffix?: string }) {
-  return <label className="block"><span className="block text-xs font-semibold tracking-[0.08em] uppercase text-slate mb-2">{label}</span><div className="relative">{prefix && <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate">{prefix}</span>}<input id={id} type="number" min="0" inputMode="decimal" value={value} onChange={(event) => onChange(event.target.value)} className={`w-full bg-cream border border-border rounded-sm py-3 text-navy outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 ${prefix ? 'pl-8 pr-4' : suffix ? 'pl-4 pr-8' : 'px-4'}`} />{suffix && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate">{suffix}</span>}</div></label>
+function NumberField({ id, label, value, onChange, prefix = '$', suffix, error }: { id: string; label: string; value: number; onChange: (value: string) => void; prefix?: string; suffix?: string; error?: string }) {
+  const errorId = `${id}-error`
+  return <label className="block"><span className="block text-xs font-semibold tracking-[0.08em] uppercase text-slate mb-2">{label}</span><div className="relative">{prefix && <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate">{prefix}</span>}<input id={id} type="number" min="0" inputMode="decimal" value={value} onChange={(event) => onChange(event.target.value)} aria-invalid={Boolean(error)} aria-describedby={error ? errorId : undefined} className={`w-full bg-cream border rounded-sm py-3 text-navy outline-none focus:ring-2 focus:ring-gold/20 ${error ? 'border-gold focus:border-gold' : 'border-border focus:border-gold'} ${prefix ? 'pl-8 pr-4' : suffix ? 'pl-4 pr-8' : 'px-4'}`} />{suffix && <span className="absolute right-4 top-1/2 -translate-y-1/2 text-slate">{suffix}</span>}</div>{error && <span id={errorId} className="block mt-2 text-xs text-gold-dark" role="alert">{error}</span>}</label>
 }
 
 function Result({ label, value, accent = false }: { label: string; value: string; accent?: boolean }) {
