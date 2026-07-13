@@ -41,6 +41,7 @@ export const post = defineType({
             defineField({ name: 'caption', type: 'string', title: 'Caption' }),
           ],
         }),
+        defineArrayMember({ type: 'table', title: 'Table' }),
       ],
     }),
   ],

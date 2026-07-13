@@ -33,6 +33,40 @@ export async function generateMetadata(
 
 const portableTextComponents = {
   types: {
+    table: ({ value }: { value: any }) => {
+      const rows = value?.rows ?? []
+      if (rows.length === 0) return null
+      const [headerRow, ...bodyRows] = rows
+      return (
+        <div className="my-10 overflow-x-auto">
+          <table className="w-full border-collapse text-[0.9375rem]">
+            <thead>
+              <tr>
+                {headerRow.cells.map((cell: string, i: number) => (
+                  <th
+                    key={i}
+                    className="bg-navy text-white text-left font-semibold px-4 py-3 border border-border"
+                  >
+                    {cell}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {bodyRows.map((row: any, i: number) => (
+                <tr key={i} className="even:bg-cream">
+                  {row.cells.map((cell: string, j: number) => (
+                    <td key={j} className="px-4 py-3 border border-border text-slate align-top">
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )
+    },
     image: ({ value }: { value: any }) => {
       if (!value?.asset) return null
       return (
