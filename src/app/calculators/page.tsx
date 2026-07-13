@@ -9,6 +9,22 @@ export const metadata = {
 
 const CALCULATORS = [
   {
+    href: '/calculators/federal-tax',
+    title: 'Federal Income Tax Calculator',
+    tag: 'U.S. Tax Year 2026',
+    description: 'Estimate federal income tax, credits, withholding, and your potential refund or balance due.',
+    symbol: '$',
+    available: true,
+  },
+  {
+    href: '/calculators/mortgage',
+    title: 'Mortgage Calculator',
+    tag: 'USD · GBP · EUR',
+    description: 'Estimate mortgage payments, costs, and a complete amortization schedule.',
+    symbol: '⌂',
+    available: true,
+  },
+  {
     href: '/calculators/salary-tax',
     title: 'Salary Tax Calculator',
     tag: 'Tax Year 2026–2027',
