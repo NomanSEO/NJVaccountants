@@ -1,42 +1,48 @@
-import { notFound } from 'next/navigation'
-import Image from 'next/image'
-import { PortableText } from 'next-sanity'
-import type { Metadata } from 'next'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { getPost, getAllPosts } from '@/sanity/lib/queries'
-import { urlFor } from '@/sanity/lib/sanity'
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { PortableText } from "next-sanity";
+import type { Metadata } from "next";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { getPost, getAllPosts } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/sanity";
 
-export const revalidate = 600
+export const revalidate = 600;
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts()
+  const posts = await getAllPosts();
   return posts
-    .filter(p => p.slug?.current)
-    .map(p => ({ slug: p.slug.current }))
+    .filter((p) => p.slug?.current)
+    .map((p) => ({ slug: p.slug.current }));
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<{ slug: string }> }
-): Promise<Metadata> {
-  const { slug } = await params
-  const post = await getPost(slug)
-  if (!post) return { title: 'Post Not Found | NJV Accountants' }
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) return { title: "Post Not Found | NJV Accountants" };
   return {
     title: `${post.title} | NJV Accountants`,
     description: post.excerpt,
     openGraph: post.headerImage?.asset
-      ? { images: [{ url: urlFor(post.headerImage).width(1200).height(630).url() }] }
+      ? {
+          images: [
+            { url: urlFor(post.headerImage).width(1200).height(630).url() },
+          ],
+        }
       : undefined,
-  }
+  };
 }
 
 const portableTextComponents = {
   types: {
     table: ({ value }: { value: any }) => {
-      const rows = value?.rows ?? []
-      if (rows.length === 0) return null
-      const [headerRow, ...bodyRows] = rows
+      const rows = value?.rows ?? [];
+      if (rows.length === 0) return null;
+      const [headerRow, ...bodyRows] = rows;
       return (
         <div className="my-10 overflow-x-auto">
           <table className="w-full border-collapse text-[0.9375rem]">
@@ -56,7 +62,10 @@ const portableTextComponents = {
               {bodyRows.map((row: any, i: number) => (
                 <tr key={i} className="even:bg-cream">
                   {row.cells.map((cell: string, j: number) => (
-                    <td key={j} className="px-4 py-3 border border-border text-slate align-top">
+                    <td
+                      key={j}
+                      className="px-4 py-3 border border-border text-slate align-top"
+                    >
                       {cell}
                     </td>
                   ))}
@@ -65,16 +74,19 @@ const portableTextComponents = {
             </tbody>
           </table>
         </div>
-      )
+      );
     },
     image: ({ value }: { value: any }) => {
-      if (!value?.asset) return null
+      if (!value?.asset) return null;
       return (
         <figure className="my-10">
-          <div className="relative w-full overflow-hidden rounded-sm" style={{ aspectRatio: '16/9' }}>
+          <div
+            className="relative w-full overflow-hidden rounded-sm"
+            style={{ aspectRatio: "16/9" }}
+          >
             <Image
               src={urlFor(value).width(800).url()}
-              alt={value.alt ?? ''}
+              alt={value.alt ?? ""}
               fill
               className="object-contain bg-cream"
               sizes="(max-width: 800px) 100vw, 800px"
@@ -86,25 +98,32 @@ const portableTextComponents = {
             </figcaption>
           )}
         </figure>
-      )
+      );
     },
   },
-}
+};
 
-export default async function BlogPostPage(
-  { params }: { params: Promise<{ slug: string }> }
-) {
-  const { slug } = await params
-  const post = await getPost(slug)
-  if (!post) notFound()
+export default async function BlogPostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const post = await getPost(slug);
+  if (!post) notFound();
 
   const authorInitials = post.author?.name
-    ? post.author.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
-    : '??'
+    ? post.author.name
+        .split(" ")
+        .map((n: string) => n[0])
+        .join("")
+        .slice(0, 2)
+        .toUpperCase()
+    : "??";
 
   const headerImageUrl = post.headerImage?.asset
     ? urlFor(post.headerImage).width(1200).url()
-    : null
+    : null;
 
   return (
     <>
@@ -139,15 +158,22 @@ export default async function BlogPostPage(
                 {authorInitials}
               </div>
               <div>
-                <div className="text-white font-semibold text-[0.9rem]">{post.author?.name}</div>
+                <div className="text-white font-semibold text-[0.9rem]">
+                  {post.author?.name}
+                </div>
                 <div className="text-white/50 text-[0.8rem] flex gap-2 flex-wrap">
                   <span>
-                    {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                      month: 'long', day: 'numeric', year: 'numeric',
+                    {new Date(post.publishedAt).toLocaleDateString("en-US", {
+                      month: "long",
+                      day: "numeric",
+                      year: "numeric",
                     })}
                   </span>
                   {post.readTime && (
-                    <><span>·</span><span>{post.readTime} min read</span></>
+                    <>
+                      <span>·</span>
+                      <span>{post.readTime} min read</span>
+                    </>
                   )}
                 </div>
               </div>
@@ -157,7 +183,7 @@ export default async function BlogPostPage(
 
         {/* Header image — full width, bleeds below the navy section */}
         {headerImageUrl && (
-          <div className="relative w-full bg-navy" style={{ height: '420px' }}>
+          <div className="relative w-full bg-navy" style={{ height: "420px" }}>
             <Image
               src={headerImageUrl}
               alt={post.headerImage?.alt ?? post.title}
@@ -171,14 +197,19 @@ export default async function BlogPostPage(
         )}
 
         {/* Divider */}
-        {!headerImageUrl && <div className="h-1 bg-gradient-to-r from-gold via-gold-light to-gold" />}
+        {!headerImageUrl && (
+          <div className="h-1 bg-gradient-to-r from-gold via-gold-light to-gold" />
+        )}
 
         {/* Article body */}
         <section className="bg-white">
           <div className="max-w-[800px] mx-auto px-6 py-16">
             {post.body && post.body.length > 0 ? (
               <div className="prose">
-                <PortableText value={post.body} components={portableTextComponents} />
+                <PortableText
+                  value={post.body}
+                  components={portableTextComponents}
+                />
               </div>
             ) : (
               <p className="text-slate italic text-[1.0625rem]">
@@ -211,7 +242,8 @@ export default async function BlogPostPage(
                 Ready to put these insights into action?
               </div>
               <div className="text-[0.9375rem] text-white/60 mt-2">
-                Our senior partners are available for a complimentary consultation.
+                Our senior partners are available for a complimentary
+                consultation.
               </div>
             </div>
             <a
@@ -225,5 +257,5 @@ export default async function BlogPostPage(
       </main>
       <Footer />
     </>
-  )
+  );
 }

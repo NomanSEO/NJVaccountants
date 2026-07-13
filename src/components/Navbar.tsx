@@ -1,44 +1,51 @@
-'use client'
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import BrandLogo from './BrandLogo'
-import MobileMenu from './MobileMenu'
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import BrandLogo from "./BrandLogo";
+import MobileMenu from "./MobileMenu";
 
 const NAV_LINKS = [
-  { href: '/#services', label: 'Services' },
-  { href: '/#about', label: 'About' },
-  { href: '/#case-studies', label: 'Case Studies' },
-  { href: '/#team', label: 'Our Team' },
-  { href: '/#blog', label: 'Insights' },
-  { href: '/calculators', label: 'Calculators' },
-  { href: '/#contact', label: 'Contact' },
-]
+  { href: "/#services", label: "Services" },
+  { href: "/#about", label: "About" },
+  { href: "/#case-studies", label: "Case Studies" },
+  { href: "/#team", label: "Our Team" },
+  { href: "/#blog", label: "Insights" },
+  { href: "/calculators", label: "Calculators" },
+  { href: "/#contact", label: "Contact" },
+];
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <>
       <nav
         role="navigation"
         aria-label="Main navigation"
-        className={`fixed top-0 w-full z-[1000] bg-navy/[0.97] backdrop-blur-[8px] border-b border-gold/[0.15] transition-shadow duration-300${scrolled ? ' shadow-[0_4px_24px_rgba(0,0,0,0.3)]' : ''}`}
+        className={`fixed top-0 w-full z-[1000] bg-navy/[0.97] backdrop-blur-[8px] border-b border-gold/[0.15] transition-shadow duration-300${scrolled ? " shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
       >
         <div className="max-w-site mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 h-[70px]">
-          <Link href="/#home" aria-label="NJV Accountants home" className="flex shrink-0 items-center no-underline">
+          <Link
+            href="/#home"
+            aria-label="NJV Accountants home"
+            className="flex shrink-0 items-center no-underline"
+          >
             <BrandLogo priority />
           </Link>
 
           {/* Desktop links */}
-          <ul className="hidden lg:flex items-center gap-4 xl:gap-7 list-none m-0 p-0" role="list">
-            {NAV_LINKS.map(link => (
+          <ul
+            className="hidden lg:flex items-center gap-4 xl:gap-7 list-none m-0 p-0"
+            role="list"
+          >
+            {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -70,7 +77,11 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} links={NAV_LINKS} />
+      <MobileMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        links={NAV_LINKS}
+      />
     </>
-  )
+  );
 }

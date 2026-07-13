@@ -39,6 +39,7 @@
 ## Task 1: Establish the Test Harness and Shared Presentation Utilities
 
 **Files:**
+
 - Modify: `package.json`
 - Create: `vitest.config.ts`
 - Create: `src/lib/formatters.ts`
@@ -46,6 +47,7 @@
 - Create: `src/components/ResultBarChart.tsx`
 
 **Interfaces:**
+
 - Produces `formatCurrency(value: number, currency: CurrencyCode): string`, `formatPercent(value: number): string`, and `csvEscape(value: string | number): string`.
 - Produces `<CalculatorActions filename rows shareTitle />` and `<ResultBarChart title items />` for both calculator client components.
 
@@ -63,13 +65,13 @@
   Create `vitest.config.ts`:
 
   ```ts
-  import path from 'node:path'
-  import { defineConfig } from 'vitest/config'
+  import path from "node:path";
+  import { defineConfig } from "vitest/config";
 
   export default defineConfig({
-    resolve: { alias: { '@': path.resolve(__dirname, './src') } },
-    test: { environment: 'node', include: ['src/**/*.test.ts'] },
-  })
+    resolve: { alias: { "@": path.resolve(__dirname, "./src") } },
+    test: { environment: "node", include: ["src/**/*.test.ts"] },
+  });
   ```
 
 - [ ] **Step 2: Install the declared dependency and confirm the empty runner works.**
@@ -81,11 +83,17 @@
 - [ ] **Step 3: Implement the shared formatting and action components.**
 
   ```ts
-  export type CurrencyCode = 'USD' | 'GBP' | 'EUR'
+  export type CurrencyCode = "USD" | "GBP" | "EUR";
   export const formatCurrency = (value: number, currency: CurrencyCode) =>
-    new Intl.NumberFormat('en', { style: 'currency', currency, maximumFractionDigits: 0 }).format(value)
-  export const formatPercent = (value: number) => `${(value * 100).toFixed(2)}%`
-  export const csvEscape = (value: string | number) => `"${String(value).replaceAll('"', '""')}"`
+    new Intl.NumberFormat("en", {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 0,
+    }).format(value);
+  export const formatPercent = (value: number) =>
+    `${(value * 100).toFixed(2)}%`;
+  export const csvEscape = (value: string | number) =>
+    `"${String(value).replaceAll('"', '""')}"`;
   ```
 
   `CalculatorActions` must call `window.print()`, make a `Blob` from a header-plus-row CSV string and click a temporary download link, then call `navigator.share({ title: shareTitle, url: location.href })` when available or `navigator.clipboard.writeText(location.href)` otherwise. `ResultBarChart` must render an ordered list where each item has its visible name, formatted value, and a `role="img"` bar with `aria-label`.
@@ -100,37 +108,75 @@
 ## Task 2: Implement and Test Federal Tax Calculation Rules
 
 **Files:**
+
 - Create: `src/lib/federalTax.ts`
 - Create: `src/lib/__tests__/federalTax.test.ts`
 
 **Interfaces:**
+
 - Consumes: none.
 - Produces `calculateFederalTax(input: FederalTaxInput): FederalTaxResult`.
 
 - [ ] **Step 1: Write failing tax tests.**
 
   ```ts
-  import { describe, expect, it } from 'vitest'
-  import { calculateFederalTax } from '@/lib/federalTax'
+  import { describe, expect, it } from "vitest";
+  import { calculateFederalTax } from "@/lib/federalTax";
 
-  describe('calculateFederalTax', () => {
-    it('applies the 2026 single progressive brackets after the standard deduction', () => {
-      const result = calculateFederalTax({ filingStatus: 'single', grossIncome: 60_000, age: 40, deductionType: 'standard', itemizedDeductions: 0, retirementContributions: 0, otherAdjustments: 0, credits: 0, withholding: 0, estimatedPayments: 0, stateLocalRate: 0 })
-      expect(result.taxableIncome).toBe(43_900)
-      expect(result.federalTax).toBe(5_018)
-      expect(result.marginalRate).toBe(0.12)
-    })
+  describe("calculateFederalTax", () => {
+    it("applies the 2026 single progressive brackets after the standard deduction", () => {
+      const result = calculateFederalTax({
+        filingStatus: "single",
+        grossIncome: 60_000,
+        age: 40,
+        deductionType: "standard",
+        itemizedDeductions: 0,
+        retirementContributions: 0,
+        otherAdjustments: 0,
+        credits: 0,
+        withholding: 0,
+        estimatedPayments: 0,
+        stateLocalRate: 0,
+      });
+      expect(result.taxableIncome).toBe(43_900);
+      expect(result.federalTax).toBe(5_018);
+      expect(result.marginalRate).toBe(0.12);
+    });
 
-    it('never lets non-refundable credits reduce federal tax below zero', () => {
-      const result = calculateFederalTax({ filingStatus: 'marriedJoint', grossIncome: 30_000, age: 40, deductionType: 'standard', itemizedDeductions: 0, retirementContributions: 0, otherAdjustments: 0, credits: 9_999, withholding: 0, estimatedPayments: 0, stateLocalRate: 0 })
-      expect(result.federalTax).toBe(0)
-    })
+    it("never lets non-refundable credits reduce federal tax below zero", () => {
+      const result = calculateFederalTax({
+        filingStatus: "marriedJoint",
+        grossIncome: 30_000,
+        age: 40,
+        deductionType: "standard",
+        itemizedDeductions: 0,
+        retirementContributions: 0,
+        otherAdjustments: 0,
+        credits: 9_999,
+        withholding: 0,
+        estimatedPayments: 0,
+        stateLocalRate: 0,
+      });
+      expect(result.federalTax).toBe(0);
+    });
 
-    it('calculates a refund from withholding and estimated payments', () => {
-      const result = calculateFederalTax({ filingStatus: 'single', grossIncome: 30_000, age: 40, deductionType: 'standard', itemizedDeductions: 0, retirementContributions: 0, otherAdjustments: 0, credits: 0, withholding: 3_000, estimatedPayments: 500, stateLocalRate: 0 })
-      expect(result.refundOrBalance).toBe(2_120)
-    })
-  })
+    it("calculates a refund from withholding and estimated payments", () => {
+      const result = calculateFederalTax({
+        filingStatus: "single",
+        grossIncome: 30_000,
+        age: 40,
+        deductionType: "standard",
+        itemizedDeductions: 0,
+        retirementContributions: 0,
+        otherAdjustments: 0,
+        credits: 0,
+        withholding: 3_000,
+        estimatedPayments: 500,
+        stateLocalRate: 0,
+      });
+      expect(result.refundOrBalance).toBe(2_120);
+    });
+  });
   ```
 
 - [ ] **Step 2: Run the tests to verify the missing module fails.**
@@ -142,9 +188,34 @@
 - [ ] **Step 3: Write the minimal federal tax module.**
 
   ```ts
-  export type FilingStatus = 'single' | 'marriedSeparate' | 'marriedJoint' | 'headOfHousehold'
-  export type FederalTaxInput = { filingStatus: FilingStatus; grossIncome: number; age: number; deductionType: 'standard' | 'itemized'; itemizedDeductions: number; retirementContributions: number; otherAdjustments: number; credits: number; withholding: number; estimatedPayments: number; stateLocalRate: number }
-  export type FederalTaxResult = { adjustedIncome: number; deduction: number; taxableIncome: number; federalTaxBeforeCredits: number; federalTax: number; stateLocalEstimate: number; totalTax: number; refundOrBalance: number; effectiveRate: number; marginalRate: number; bracketBreakdown: { rate: number; taxableAmount: number; tax: number }[] }
+  export type FilingStatus =
+    "single" | "marriedSeparate" | "marriedJoint" | "headOfHousehold";
+  export type FederalTaxInput = {
+    filingStatus: FilingStatus;
+    grossIncome: number;
+    age: number;
+    deductionType: "standard" | "itemized";
+    itemizedDeductions: number;
+    retirementContributions: number;
+    otherAdjustments: number;
+    credits: number;
+    withholding: number;
+    estimatedPayments: number;
+    stateLocalRate: number;
+  };
+  export type FederalTaxResult = {
+    adjustedIncome: number;
+    deduction: number;
+    taxableIncome: number;
+    federalTaxBeforeCredits: number;
+    federalTax: number;
+    stateLocalEstimate: number;
+    totalTax: number;
+    refundOrBalance: number;
+    effectiveRate: number;
+    marginalRate: number;
+    bracketBreakdown: { rate: number; taxableAmount: number; tax: number }[];
+  };
   ```
 
   Define a `FEDERAL_TAX_RULES_2026` record that exactly contains the supplied boundaries for all four statuses and their 2026 standard deductions. Calculate adjusted income as `max(0, grossIncome - retirementContributions - otherAdjustments)`, choose `max(itemizedDeductions, standardDeduction)` only when the itemized option is selected, apply every bracket progressively, subtract credits with `max(0, taxBeforeCredits - credits)`, then calculate the optional state/local estimate separately.
@@ -167,40 +238,55 @@
 ## Task 3: Implement and Test Mortgage Calculation Rules
 
 **Files:**
+
 - Create: `src/lib/mortgage.ts`
 - Create: `src/lib/__tests__/mortgage.test.ts`
 
 **Interfaces:**
+
 - Consumes: `CurrencyCode` from `src/lib/formatters.ts`.
 - Produces `calculateMortgage(input: MortgageInput): MortgageResult`.
 
 - [ ] **Step 1: Write failing mortgage tests.**
 
   ```ts
-  import { describe, expect, it } from 'vitest'
-  import { calculateMortgage } from '@/lib/mortgage'
+  import { describe, expect, it } from "vitest";
+  import { calculateMortgage } from "@/lib/mortgage";
 
-  const base = { currency: 'USD' as const, homePrice: 400_000, downPayment: 80_000, annualRate: 0.06, termYears: 30, loanType: 'fixed' as const, adjustmentMonth: 60, adjustedAnnualRate: 0.07, annualPropertyTax: 4_800, annualInsurance: 1_200, annualHoa: 0, annualMortgageInsurance: 0 }
+  const base = {
+    currency: "USD" as const,
+    homePrice: 400_000,
+    downPayment: 80_000,
+    annualRate: 0.06,
+    termYears: 30,
+    loanType: "fixed" as const,
+    adjustmentMonth: 60,
+    adjustedAnnualRate: 0.07,
+    annualPropertyTax: 4_800,
+    annualInsurance: 1_200,
+    annualHoa: 0,
+    annualMortgageInsurance: 0,
+  };
 
-  describe('calculateMortgage', () => {
-    it('calculates a fixed principal-and-interest payment and amortizes to zero', () => {
-      const result = calculateMortgage(base)
-      expect(result.loanAmount).toBe(320_000)
-      expect(result.monthlyPrincipalAndInterest).toBeCloseTo(1918.56, 2)
-      expect(result.schedule.at(-1)?.endingBalance).toBeCloseTo(0, 2)
-    })
+  describe("calculateMortgage", () => {
+    it("calculates a fixed principal-and-interest payment and amortizes to zero", () => {
+      const result = calculateMortgage(base);
+      expect(result.loanAmount).toBe(320_000);
+      expect(result.monthlyPrincipalAndInterest).toBeCloseTo(1918.56, 2);
+      expect(result.schedule.at(-1)?.endingBalance).toBeCloseTo(0, 2);
+    });
 
-    it('handles a zero interest rate without division by zero', () => {
-      const result = calculateMortgage({ ...base, annualRate: 0 })
-      expect(result.monthlyPrincipalAndInterest).toBeCloseTo(888.89, 2)
-    })
+    it("handles a zero interest rate without division by zero", () => {
+      const result = calculateMortgage({ ...base, annualRate: 0 });
+      expect(result.monthlyPrincipalAndInterest).toBeCloseTo(888.89, 2);
+    });
 
-    it('keeps the balance outstanding for interest-only loans', () => {
-      const result = calculateMortgage({ ...base, loanType: 'interestOnly' })
-      expect(result.schedule[0].principal).toBe(0)
-      expect(result.schedule.at(-1)?.endingBalance).toBe(320_000)
-    })
-  })
+    it("keeps the balance outstanding for interest-only loans", () => {
+      const result = calculateMortgage({ ...base, loanType: "interestOnly" });
+      expect(result.schedule[0].principal).toBe(0);
+      expect(result.schedule.at(-1)?.endingBalance).toBe(320_000);
+    });
+  });
   ```
 
 - [ ] **Step 2: Run the tests to verify the missing module fails.**
@@ -212,9 +298,37 @@
 - [ ] **Step 3: Write the minimal amortization module.**
 
   ```ts
-  export type MortgageInput = { currency: CurrencyCode; homePrice: number; downPayment: number; annualRate: number; termYears: number; loanType: 'fixed' | 'adjustable' | 'interestOnly'; adjustmentMonth: number; adjustedAnnualRate: number; annualPropertyTax: number; annualInsurance: number; annualHoa: number; annualMortgageInsurance: number }
-  export type MortgageScheduleRow = { month: number; payment: number; principal: number; interest: number; endingBalance: number; escrow: number }
-  export type MortgageResult = { loanAmount: number; monthlyPrincipalAndInterest: number; monthlyHousingCost: number; yearlyHousingCost: number; totalInterest: number; totalPaid: number; schedule: MortgageScheduleRow[] }
+  export type MortgageInput = {
+    currency: CurrencyCode;
+    homePrice: number;
+    downPayment: number;
+    annualRate: number;
+    termYears: number;
+    loanType: "fixed" | "adjustable" | "interestOnly";
+    adjustmentMonth: number;
+    adjustedAnnualRate: number;
+    annualPropertyTax: number;
+    annualInsurance: number;
+    annualHoa: number;
+    annualMortgageInsurance: number;
+  };
+  export type MortgageScheduleRow = {
+    month: number;
+    payment: number;
+    principal: number;
+    interest: number;
+    endingBalance: number;
+    escrow: number;
+  };
+  export type MortgageResult = {
+    loanAmount: number;
+    monthlyPrincipalAndInterest: number;
+    monthlyHousingCost: number;
+    yearlyHousingCost: number;
+    totalInterest: number;
+    totalPaid: number;
+    schedule: MortgageScheduleRow[];
+  };
   ```
 
   Use `payment = principal * monthlyRate / (1 - (1 + monthlyRate) ** -remainingMonths)` and `principal / remainingMonths` when the monthly rate is zero. For adjustable loans, recalculate payment after `adjustmentMonth` with the remaining balance/months and `adjustedAnnualRate`. Add annual property tax, insurance, HOA, and mortgage insurance divided by 12 as `escrow`; do not add it to `totalInterest`.
@@ -238,17 +352,31 @@
 ## Task 4: Build the Federal Tax Calculator Route and UI
 
 **Files:**
+
 - Create: `src/components/FederalTaxCalculator.tsx`
 - Create: `src/app/calculators/federal-tax/page.tsx`
 
 **Interfaces:**
+
 - Consumes: `calculateFederalTax`, `CalculatorActions`, `ResultBarChart`, and `formatCurrency`.
 - Produces: the `/calculators/federal-tax` page.
 
 - [ ] **Step 1: Build a client form that initializes these values.**
 
   ```ts
-  const initialInput: FederalTaxInput = { filingStatus: 'single', grossIncome: 75_000, age: 40, deductionType: 'standard', itemizedDeductions: 0, retirementContributions: 0, otherAdjustments: 0, credits: 0, withholding: 0, estimatedPayments: 0, stateLocalRate: 0 }
+  const initialInput: FederalTaxInput = {
+    filingStatus: "single",
+    grossIncome: 75_000,
+    age: 40,
+    deductionType: "standard",
+    itemizedDeductions: 0,
+    retirementContributions: 0,
+    otherAdjustments: 0,
+    credits: 0,
+    withholding: 0,
+    estimatedPayments: 0,
+    stateLocalRate: 0,
+  };
   ```
 
   Render labeled inputs for the complete interface, a filing-status `<select>`, standard/itemized radio controls, and a details `<details>` section for retirement contributions, adjustments, credits, payments, and state/local rate. Convert all numeric changes with `Number(event.target.value) || 0`. Show inline errors for negative fields and state/local rates outside 0–100; disable result actions while errors exist.
@@ -277,10 +405,12 @@
 ## Task 5: Build the Mortgage Calculator Route and UI
 
 **Files:**
+
 - Create: `src/components/MortgageCalculator.tsx`
 - Create: `src/app/calculators/mortgage/page.tsx`
 
 **Interfaces:**
+
 - Consumes: `calculateMortgage`, `CalculatorActions`, `ResultBarChart`, and shared formatting.
 - Produces: the `/calculators/mortgage` page.
 
@@ -289,7 +419,20 @@
   Start with:
 
   ```ts
-  const initialInput: MortgageInput = { currency: 'USD', homePrice: 400_000, downPayment: 80_000, annualRate: 0.06, termYears: 30, loanType: 'fixed', adjustmentMonth: 60, adjustedAnnualRate: 0.07, annualPropertyTax: 4_800, annualInsurance: 1_200, annualHoa: 0, annualMortgageInsurance: 0 }
+  const initialInput: MortgageInput = {
+    currency: "USD",
+    homePrice: 400_000,
+    downPayment: 80_000,
+    annualRate: 0.06,
+    termYears: 30,
+    loanType: "fixed",
+    adjustmentMonth: 60,
+    adjustedAnnualRate: 0.07,
+    annualPropertyTax: 4_800,
+    annualInsurance: 1_200,
+    annualHoa: 0,
+    annualMortgageInsurance: 0,
+  };
   ```
 
   Include currency, home price, deposit/down payment, rate, term, and monthly/yearly display frequency controls. Reveal adjustment period/rate only for adjustable loans. Include tax, insurance, HOA/service charge, and mortgage insurance in an optional costs `<details>` section. Reject negative values, non-positive term, and down payment above home price before rendering results.
@@ -318,9 +461,11 @@
 ## Task 6: Publish the Calculator Entries and Verify the Integrated Feature
 
 **Files:**
+
 - Modify: `src/app/calculators/page.tsx`
 
 **Interfaces:**
+
 - Produces cards linking to `/calculators/federal-tax` and `/calculators/mortgage`.
 
 - [ ] **Step 1: Add the two cards to `CALCULATORS`.**

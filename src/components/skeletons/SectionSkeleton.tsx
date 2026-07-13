@@ -9,5 +9,5 @@ export default function SectionSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }

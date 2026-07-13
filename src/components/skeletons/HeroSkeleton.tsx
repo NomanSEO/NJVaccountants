@@ -16,5 +16,5 @@ export default function HeroSkeleton() {
         <div className="h-64 bg-white/5 border border-gold/20 rounded-lg" />
       </div>
     </div>
-  )
+  );
 }

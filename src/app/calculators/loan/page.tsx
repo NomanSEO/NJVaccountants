@@ -1,8 +1,96 @@
-import Footer from '@/components/Footer'
-import LoanCalculator from '@/components/LoanCalculator'
-import Navbar from '@/components/Navbar'
-import Link from 'next/link'
+import Footer from "@/components/Footer";
+import LoanCalculator from "@/components/LoanCalculator";
+import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
-export const metadata = { title: 'Loan Calculator | NJV Accountants', description: 'Estimate loan repayments, interest costs, and your complete repayment schedule with our free loan calculator.' }
+export const metadata = {
+  title: "Loan Calculator | NJV Accountants",
+  description:
+    "Estimate loan repayments, interest costs, and your complete repayment schedule with our free loan calculator.",
+};
 
-export default function LoanCalculatorPage() { return <><Navbar /><main><section className="bg-navy pt-[70px]"><div className="mx-auto max-w-site px-6 py-16"><Link href="/calculators" className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gold/70 no-underline transition-colors hover:text-gold">← All Calculators</Link><div className="mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[.12em] uppercase text-gold"><span className="block h-[22px] w-[3px] shrink-0 bg-gold" />Borrowing tool</div><h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-bold leading-tight text-white">Loan <em className="not-italic text-gold">Calculator</em></h1><p className="mt-5 max-w-[620px] text-[1.0625rem] leading-[1.75] text-white/65">Estimate your loan payment, total interest, and full repayment schedule. Compare terms, rates, fees, deferrals, and balloon payments before you borrow.</p></div></section><section className="bg-cream py-16"><div className="mx-auto max-w-site px-6"><LoanCalculator /></div></section><section className="bg-white py-16"><div className="mx-auto max-w-site px-6"><div className="max-w-3xl"><p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">A practical guide</p><h2 className="mt-4 font-display text-3xl font-bold text-navy">How loan repayments work</h2><p className="mt-4 leading-relaxed text-slate">A repayment loan combines principal and interest in each scheduled payment. At the beginning of a typical loan, more of each payment goes to interest; as the balance reduces, more goes to principal.</p><p className="mt-4 leading-relaxed text-slate">Interest-only loans pay the interest during the term and leave the original balance to repay at the end. A deferred period postpones payments but interest can continue to accrue. A balloon payment is the amount left due at the end of the agreed term.</p><p className="mt-4 leading-relaxed text-slate">This is a planning estimate, not a lending offer. Actual rates, fees, payment dates, and lender conditions may change your final cost.</p></div></div></section><section className="bg-gold py-16"><div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-8 px-6"><div><h2 className="font-display text-2xl font-bold text-navy">Need help planning your finances?</h2><p className="mt-2 text-sm text-navy/70">Our advisers can help you make informed financial decisions.</p></div><Link href="/#contact" className="shrink-0 rounded-sm bg-navy px-8 py-3.5 text-sm font-semibold tracking-[.05em] text-white uppercase no-underline transition-colors hover:bg-navy-light">Speak to a Partner ›</Link></div></section></main><Footer /></> }
+export default function LoanCalculatorPage() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <section className="bg-navy pt-[70px]">
+          <div className="mx-auto max-w-site px-6 py-16">
+            <Link
+              href="/calculators"
+              className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-gold/70 no-underline transition-colors hover:text-gold"
+            >
+              ← All Calculators
+            </Link>
+            <div className="mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[.12em] uppercase text-gold">
+              <span className="block h-[22px] w-[3px] shrink-0 bg-gold" />
+              Borrowing tool
+            </div>
+            <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-bold leading-tight text-white">
+              Loan <em className="not-italic text-gold">Calculator</em>
+            </h1>
+            <p className="mt-5 max-w-[620px] text-[1.0625rem] leading-[1.75] text-white/65">
+              Estimate your loan payment, total interest, and full repayment
+              schedule. Compare terms, rates, fees, deferrals, and balloon
+              payments before you borrow.
+            </p>
+          </div>
+        </section>
+        <section className="bg-cream py-16">
+          <div className="mx-auto max-w-site px-6">
+            <LoanCalculator />
+          </div>
+        </section>
+        <section className="bg-white py-16">
+          <div className="mx-auto max-w-site px-6">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+                A practical guide
+              </p>
+              <h2 className="mt-4 font-display text-3xl font-bold text-navy">
+                How loan repayments work
+              </h2>
+              <p className="mt-4 leading-relaxed text-slate">
+                A repayment loan combines principal and interest in each
+                scheduled payment. At the beginning of a typical loan, more of
+                each payment goes to interest; as the balance reduces, more goes
+                to principal.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate">
+                Interest-only loans pay the interest during the term and leave
+                the original balance to repay at the end. A deferred period
+                postpones payments but interest can continue to accrue. A
+                balloon payment is the amount left due at the end of the agreed
+                term.
+              </p>
+              <p className="mt-4 leading-relaxed text-slate">
+                This is a planning estimate, not a lending offer. Actual rates,
+                fees, payment dates, and lender conditions may change your final
+                cost.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section className="bg-gold py-16">
+          <div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-8 px-6">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-navy">
+                Need help planning your finances?
+              </h2>
+              <p className="mt-2 text-sm text-navy/70">
+                Our advisers can help you make informed financial decisions.
+              </p>
+            </div>
+            <Link
+              href="/#contact"
+              className="shrink-0 rounded-sm bg-navy px-8 py-3.5 text-sm font-semibold tracking-[.05em] text-white uppercase no-underline transition-colors hover:bg-navy-light"
+            >
+              Speak to a Partner ›
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

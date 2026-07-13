@@ -1,13 +1,17 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 type BrandLogoProps = {
-  variant?: 'compact' | 'full'
-  priority?: boolean
-  className?: string
-}
+  variant?: "compact" | "full";
+  priority?: boolean;
+  className?: string;
+};
 
-export default function BrandLogo({ variant = 'compact', priority = false, className = '' }: BrandLogoProps) {
-  if (variant === 'full') {
+export default function BrandLogo({
+  variant = "compact",
+  priority = false,
+  className = "",
+}: BrandLogoProps) {
+  if (variant === "full") {
     return (
       <Image
         src="/njv-logo-dark.png"
@@ -17,7 +21,7 @@ export default function BrandLogo({ variant = 'compact', priority = false, class
         className={`block h-auto w-full rounded-sm bg-navy object-contain ${className}`}
         priority={priority}
       />
-    )
+    );
   }
 
   return (
@@ -39,5 +43,5 @@ export default function BrandLogo({ variant = 'compact', priority = false, class
         </span>
       </span>
     </span>
-  )
+  );
 }

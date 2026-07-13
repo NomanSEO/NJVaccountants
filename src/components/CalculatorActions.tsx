@@ -1,13 +1,13 @@
-'use client'
+"use client";
 
-import { csvEscape } from '@/lib/formatters'
+import { csvEscape } from "@/lib/formatters";
 
-type CsvValue = string | number
+type CsvValue = string | number;
 
 interface CalculatorActionsProps {
-  filename: string
-  rows: CsvValue[][]
-  shareTitle: string
+  filename: string;
+  rows: CsvValue[][];
+  shareTitle: string;
 }
 
 export default function CalculatorActions({
@@ -16,28 +16,26 @@ export default function CalculatorActions({
   shareTitle,
 }: CalculatorActionsProps) {
   const downloadCsv = () => {
-    const csv = rows
-      .map((row) => row.map(csvEscape).join(','))
-      .join('\n')
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8' })
-    const link = document.createElement('a')
+    const csv = rows.map((row) => row.map(csvEscape).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const link = document.createElement("a");
 
-    link.href = URL.createObjectURL(blob)
-    link.download = filename
-    document.body.appendChild(link)
-    link.click()
-    link.remove()
-    URL.revokeObjectURL(link.href)
-  }
+    link.href = URL.createObjectURL(blob);
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(link.href);
+  };
 
   const share = async () => {
     if (navigator.share) {
-      await navigator.share({ title: shareTitle, url: location.href })
-      return
+      await navigator.share({ title: shareTitle, url: location.href });
+      return;
     }
 
-    await navigator.clipboard.writeText(location.href)
-  }
+    await navigator.clipboard.writeText(location.href);
+  };
 
   return (
     <div className="flex flex-wrap gap-3" aria-label="Calculator actions">
@@ -63,5 +61,5 @@ export default function CalculatorActions({
         Share
       </button>
     </div>
-  )
+  );
 }

@@ -1,104 +1,114 @@
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import Link from 'next/link'
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Link from "next/link";
 
 export const metadata = {
-  title: 'Calculators | NJV Accountants',
+  title: "Calculators | NJV Accountants",
   description:
-    'Free financial calculators from NJV Accountants — estimate salary tax and more for tax year 2026–2027.',
-}
+    "Free financial calculators from NJV Accountants — estimate salary tax and more for tax year 2026–2027.",
+};
 
 const CALCULATORS = [
   {
-    href: '/calculators/federal-tax',
-    title: 'Federal Income Tax Calculator',
-    tag: 'U.S. Tax Year 2026',
-    description: 'Estimate federal income tax, credits, withholding, and your potential refund or balance due.',
-    symbol: '$',
-    available: true,
-  },
-  {
-    href: '/calculators/mortgage',
-    title: 'Mortgage Calculator',
-    tag: 'USD · GBP · EUR',
-    description: 'Estimate mortgage payments, costs, and a complete amortization schedule.',
-    symbol: '⌂',
-    available: true,
-  },
-  {
-    href: '/calculators/salary-tax',
-    title: 'Salary Tax Calculator',
-    tag: 'Tax Year 2026–2027',
+    href: "/calculators/federal-tax",
+    title: "Federal Income Tax Calculator",
+    tag: "U.S. Tax Year 2026",
     description:
-      'Estimate the income tax payable on your salary, your take-home pay, and a full slab-wise breakdown.',
-    symbol: '§',
+      "Estimate federal income tax, credits, withholding, and your potential refund or balance due.",
+    symbol: "$",
     available: true,
   },
   {
-    href: '/calculators/car-loan',
-    title: 'Car Loan Calculator',
-    tag: 'Vehicle Finance',
-    description: 'Estimate your vehicle payment, interest costs, and payoff schedule.',
-    symbol: '⌁',
+    href: "/calculators/mortgage",
+    title: "Mortgage Calculator",
+    tag: "USD · GBP · EUR",
+    description:
+      "Estimate mortgage payments, costs, and a complete amortization schedule.",
+    symbol: "⌂",
     available: true,
   },
   {
-    href: '/calculators/loan',
-    title: 'Loan Calculator',
-    tag: 'Borrowing Planner',
-    description: 'Model loan payments, total interest, and your full repayment schedule.',
-    symbol: '↔',
+    href: "/calculators/salary-tax",
+    title: "Salary Tax Calculator",
+    tag: "Tax Year 2026–2027",
+    description:
+      "Estimate the income tax payable on your salary, your take-home pay, and a full slab-wise breakdown.",
+    symbol: "§",
     available: true,
   },
   {
-    href: '/calculators/personal-loan',
-    title: 'Personal Loan Calculator',
-    tag: 'Personal Finance',
-    description: 'See what a personal loan could cost and plan affordable repayments.',
-    symbol: '♙',
+    href: "/calculators/car-loan",
+    title: "Car Loan Calculator",
+    tag: "Vehicle Finance",
+    description:
+      "Estimate your vehicle payment, interest costs, and payoff schedule.",
+    symbol: "⌁",
     available: true,
   },
   {
-    href: '/calculators/retirement',
-    title: 'Retirement Calculator',
-    tag: 'Long-Term Planning',
-    description: 'Project savings growth and estimate the income you may need in retirement.',
-    symbol: '◴',
+    href: "/calculators/loan",
+    title: "Loan Calculator",
+    tag: "Borrowing Planner",
+    description:
+      "Model loan payments, total interest, and your full repayment schedule.",
+    symbol: "↔",
     available: true,
   },
   {
-    href: '/calculators/cd',
-    title: 'CD Calculator',
-    tag: 'Savings & CDs',
-    description: 'Calculate certificate of deposit growth with your rate and term.',
-    symbol: '%',
+    href: "/calculators/personal-loan",
+    title: "Personal Loan Calculator",
+    tag: "Personal Finance",
+    description:
+      "See what a personal loan could cost and plan affordable repayments.",
+    symbol: "♙",
     available: true,
   },
   {
-    href: '/calculators/salary-paycheck',
-    title: 'Salary Paycheck Calculator',
-    tag: 'U.S. Payroll',
-    description: 'Estimate federal withholding, FICA taxes, and take-home pay per paycheck.',
-    symbol: '≡',
+    href: "/calculators/retirement",
+    title: "Retirement Calculator",
+    tag: "Long-Term Planning",
+    description:
+      "Project savings growth and estimate the income you may need in retirement.",
+    symbol: "◴",
     available: true,
   },
   {
-    href: '/calculators/roth-ira',
-    title: 'Roth IRA Calculator',
-    tag: 'Retirement Savings',
-    description: 'Project tax-free Roth IRA growth and review annual contribution limits.',
-    symbol: 'R',
+    href: "/calculators/cd",
+    title: "CD Calculator",
+    tag: "Savings & CDs",
+    description:
+      "Calculate certificate of deposit growth with your rate and term.",
+    symbol: "%",
     available: true,
   },
   {
-    href: '/calculators/investment',
-    title: 'Investment Calculator',
-    tag: 'Investment Growth',
-    description: 'Forecast portfolio growth with contributions, returns, and time.',
-    symbol: '↗',
+    href: "/calculators/salary-paycheck",
+    title: "Salary Paycheck Calculator",
+    tag: "U.S. Payroll",
+    description:
+      "Estimate federal withholding, FICA taxes, and take-home pay per paycheck.",
+    symbol: "≡",
     available: true,
   },
-]
+  {
+    href: "/calculators/roth-ira",
+    title: "Roth IRA Calculator",
+    tag: "Retirement Savings",
+    description:
+      "Project tax-free Roth IRA growth and review annual contribution limits.",
+    symbol: "R",
+    available: true,
+  },
+  {
+    href: "/calculators/investment",
+    title: "Investment Calculator",
+    tag: "Investment Growth",
+    description:
+      "Forecast portfolio growth with contributions, returns, and time.",
+    symbol: "↗",
+    available: true,
+  },
+];
 
 export default function CalculatorsPage() {
   return (
@@ -122,8 +132,8 @@ export default function CalculatorsPage() {
               Financial <em className="not-italic text-gold">Calculators</em>
             </h1>
             <p className="text-[1.0625rem] text-white/65 leading-[1.75] max-w-[560px]">
-              Quick, practical tools to help you plan ahead — built and maintained
-              by our advisory team.
+              Quick, practical tools to help you plan ahead — built and
+              maintained by our advisory team.
             </p>
           </div>
         </section>
@@ -139,7 +149,9 @@ export default function CalculatorsPage() {
                   className="service-card group border border-border rounded-sm bg-white p-7 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)] hover:-translate-y-0.5 transition-all duration-300 no-underline flex flex-col"
                 >
                   <div className="w-12 h-12 bg-navy rounded-sm flex items-center justify-center mb-5 shrink-0">
-                    <span className="font-display text-2xl text-gold">{calc.symbol}</span>
+                    <span className="font-display text-2xl text-gold">
+                      {calc.symbol}
+                    </span>
                   </div>
                   <div className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-gold mb-2">
                     {calc.tag}
@@ -161,5 +173,5 @@ export default function CalculatorsPage() {
       </main>
       <Footer />
     </>
-  )
+  );
 }

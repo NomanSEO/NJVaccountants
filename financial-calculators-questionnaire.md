@@ -46,23 +46,23 @@ Use this questionnaire before planning or building each calculator. Questions ma
 
 11. **Optional:** Should inputs be saved in the browser?
 
-      Do not retain financial data.
+    Do not retain financial data.
 
 12. **Optional:** Should results include a contact or consultation call-to-action?
 
-      use the existing site CTA.
+    use the existing site CTA.
 
 13. **Optional:** Are analytics events required for calculator starts, completions, and CTA clicks?
 
-      Not Now
+    Not Now
 
 14. **Required:** What disclaimer and limitation-of-liability wording should appear?
 
-      No wording now
+    No wording now
 
 15. **Required:** What example cases will the firm use to verify the results?
 
-      Nothing
+    Nothing
 
 ---
 
@@ -180,27 +180,27 @@ Use this questionnaire before planning or building each calculator. Questions ma
 
 1. What loan types should this general calculator cover?
 
-      All Loan types it is a general calculator for loan not specific
+   All Loan types it is a general calculator for loan not specific
 
 2. Should it support amortized, interest-only, deferred-payment, and balloon-payment loans?
 
-      Yes
+   Yes
 
 3. Which value may users solve for: payment, principal, rate, or term?
 
-      User will enter loan amount , interest rate , loan terms ( options in year/month) and result will occur in monthly payment against loan
+   User will enter loan amount , interest rate , loan terms ( options in year/month) and result will occur in monthly payment against loan
 
 4. Should origination fees and other upfront charges affect APR and net proceeds?
 
-      Yes optional
+   Yes optional
 
 5. Which payment frequencies are required?
 
-      Give options for yearly and monthly – default monthly
+   Give options for yearly and monthly – default monthly
 
 6. Should an amortization schedule and total-cost comparison be included?
 
-      Yes
+   Yes
 
 ## 5. Personal Loan Calculator
 
@@ -346,16 +346,16 @@ Use this questionnaire before planning or building each calculator. Questions ma
 
 Table for above calculations limits as per IRS:
 
-| Filing status | Modified gross adjusted income | Contribution limits|
-|---|---|---|
-|• Single  <br> • Head of household <br> • Married filing separately (if you didn't live with your spouse during the year) | Less than $153,000. | $7,500 ($8,600 if 50 or older).|
-||$153,000 or more, but less than $168,000.| Contribution is reduced.|
-||$168,000 or more.| No contribution allowed.|
-|• Married filing jointly <br>• Surviving spouse | Less than $242,000.|  $7,500 ($8,600 if 50 or older).|
-||$242,000 or more, but less than $252,000.| Contribution is reduced.|
-||$252,000 or more.| No contribution allowed.|
-|• Married filing separately (if you lived with spouse at any time during year)| Less than $10,000. |Contribution is reduced.|
-||$10,000 or more.| No contribution allowed.|
+| Filing status                                                                                                            | Modified gross adjusted income            | Contribution limits             |
+| ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- | ------------------------------- |
+| • Single <br> • Head of household <br> • Married filing separately (if you didn't live with your spouse during the year) | Less than $153,000.                       | $7,500 ($8,600 if 50 or older). |
+|                                                                                                                          | $153,000 or more, but less than $168,000. | Contribution is reduced.        |
+|                                                                                                                          | $168,000 or more.                         | No contribution allowed.        |
+| • Married filing jointly <br>• Surviving spouse                                                                          | Less than $242,000.                       | $7,500 ($8,600 if 50 or older). |
+|                                                                                                                          | $242,000 or more, but less than $252,000. | Contribution is reduced.        |
+|                                                                                                                          | $252,000 or more.                         | No contribution allowed.        |
+| • Married filing separately (if you lived with spouse at any time during year)                                           | Less than $10,000.                        | Contribution is reduced.        |
+|                                                                                                                          | $10,000 or more.                          | No contribution allowed.        |
 
 7. Should contributions be monthly, annual, or both?
 

@@ -1,29 +1,35 @@
-'use client'
+"use client";
 
-import { useMemo, useState } from 'react'
-import { calculateSalaryTax } from '@/lib/salaryTax'
+import { useMemo, useState } from "react";
+import { calculateSalaryTax } from "@/lib/salaryTax";
 
-type Period = 'monthly' | 'annual'
+type Period = "monthly" | "annual";
 
-const fmt = (n: number) =>
-  'Rs. ' + Math.round(n).toLocaleString('en-PK')
+const fmt = (n: number) => "Rs. " + Math.round(n).toLocaleString("en-PK");
 
-const pct = (n: number) => (n * 100).toFixed(2) + '%'
+const pct = (n: number) => (n * 100).toFixed(2) + "%";
 
 export default function SalaryTaxCalculator() {
-  const [rawValue, setRawValue] = useState('')
-  const [period, setPeriod] = useState<Period>('monthly')
+  const [rawValue, setRawValue] = useState("");
+  const [period, setPeriod] = useState<Period>("monthly");
 
   const numericValue = useMemo(() => {
-    const cleaned = rawValue.replace(/[^0-9.]/g, '')
-    return cleaned === '' ? null : parseFloat(cleaned)
-  }, [rawValue])
+    const cleaned = rawValue.replace(/[^0-9.]/g, "");
+    return cleaned === "" ? null : parseFloat(cleaned);
+  }, [rawValue]);
 
   const annualIncome =
-    numericValue == null ? 0 : period === 'monthly' ? numericValue * 12 : numericValue
+    numericValue == null
+      ? 0
+      : period === "monthly"
+        ? numericValue * 12
+        : numericValue;
 
-  const result = useMemo(() => calculateSalaryTax(annualIncome), [annualIncome])
-  const hasInput = numericValue != null && numericValue > 0
+  const result = useMemo(
+    () => calculateSalaryTax(annualIncome),
+    [annualIncome],
+  );
+  const hasInput = numericValue != null && numericValue > 0;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
@@ -39,15 +45,15 @@ export default function SalaryTaxCalculator() {
 
         {/* Period toggle */}
         <div className="inline-flex p-1 bg-cream border border-border rounded-sm mb-5">
-          {(['monthly', 'annual'] as Period[]).map((p) => (
+          {(["monthly", "annual"] as Period[]).map((p) => (
             <button
               key={p}
               type="button"
               onClick={() => setPeriod(p)}
               className={`px-5 py-2 text-[0.8125rem] font-semibold tracking-[0.04em] uppercase rounded-sm transition-colors ${
                 period === p
-                  ? 'bg-navy text-white'
-                  : 'bg-transparent text-slate hover:text-navy'
+                  ? "bg-navy text-white"
+                  : "bg-transparent text-slate hover:text-navy"
               }`}
             >
               {p}
@@ -60,7 +66,7 @@ export default function SalaryTaxCalculator() {
           htmlFor="salary"
           className="block text-xs font-semibold tracking-[0.08em] uppercase text-slate mb-2"
         >
-          {period === 'monthly' ? 'Monthly' : 'Annual'} Taxable Salary
+          {period === "monthly" ? "Monthly" : "Annual"} Taxable Salary
         </label>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate font-semibold pointer-events-none">
@@ -76,17 +82,21 @@ export default function SalaryTaxCalculator() {
           />
         </div>
 
-        {period === 'monthly' && hasInput && (
+        {period === "monthly" && hasInput && (
           <p className="text-[0.8125rem] text-slate-light mt-3">
-            Annual taxable income: <strong className="text-navy">{fmt(annualIncome)}</strong>
+            Annual taxable income:{" "}
+            <strong className="text-navy">{fmt(annualIncome)}</strong>
           </p>
         )}
 
         <p className="text-xs text-slate-light mt-6 leading-relaxed border-t border-border pt-4">
-          This is an estimate based on the published salary tax slabs for tax year
-          2026–2027 and assumes the full amount is taxable salary income. For
-          tailored advice,{' '}
-          <a href="/#contact" className="text-gold font-semibold hover:text-gold-dark">
+          This is an estimate based on the published salary tax slabs for tax
+          year 2026–2027 and assumes the full amount is taxable salary income.
+          For tailored advice,{" "}
+          <a
+            href="/#contact"
+            className="text-gold font-semibold hover:text-gold-dark"
+          >
             speak to a partner
           </a>
           .
@@ -106,18 +116,24 @@ export default function SalaryTaxCalculator() {
           <div className="grid grid-cols-2 gap-4 mb-7">
             <div>
               <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50 mb-1">
-                Tax / {period === 'monthly' ? 'Month' : 'Year'}
+                Tax / {period === "monthly" ? "Month" : "Year"}
               </div>
               <div className="font-display text-[1.75rem] font-bold text-gold leading-tight">
-                {fmt(period === 'monthly' ? result.monthlyTax : result.annualTax)}
+                {fmt(
+                  period === "monthly" ? result.monthlyTax : result.annualTax,
+                )}
               </div>
             </div>
             <div>
               <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50 mb-1">
-                Take-home / {period === 'monthly' ? 'Month' : 'Year'}
+                Take-home / {period === "monthly" ? "Month" : "Year"}
               </div>
               <div className="font-display text-[1.75rem] font-bold text-white leading-tight">
-                {fmt(period === 'monthly' ? result.monthlyTakeHome : result.annualTakeHome)}
+                {fmt(
+                  period === "monthly"
+                    ? result.monthlyTakeHome
+                    : result.annualTakeHome,
+                )}
               </div>
             </div>
           </div>
@@ -136,8 +152,8 @@ export default function SalaryTaxCalculator() {
           </div>
           {result.breakdown.length === 0 ? (
             <p className="text-sm text-white/60 leading-relaxed">
-              No tax payable — taxable income is within the tax-free threshold of
-              Rs. 600,000.
+              No tax payable — taxable income is within the tax-free threshold
+              of Rs. 600,000.
             </p>
           ) : (
             <div className="space-y-2.5">
@@ -162,7 +178,7 @@ export default function SalaryTaxCalculator() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -173,5 +189,5 @@ function Stat({ label, value }: { label: string; value: string }) {
       </div>
       <div className="font-semibold text-white">{value}</div>
     </div>
-  )
+  );
 }

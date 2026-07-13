@@ -1,7 +1,81 @@
-import Footer from '@/components/Footer'
-import InvestmentCalculator from '@/components/InvestmentCalculator'
-import Navbar from '@/components/Navbar'
-import Link from 'next/link'
+import Footer from "@/components/Footer";
+import InvestmentCalculator from "@/components/InvestmentCalculator";
+import Navbar from "@/components/Navbar";
+import Link from "next/link";
 
-export const metadata = { title: 'Investment Calculator | NJV Accountants', description: 'Project investment growth with recurring contributions and return scenarios.' }
-export default function InvestmentCalculatorPage() { return <><Navbar /><main><section className="bg-navy pt-[70px]"><div className="mx-auto max-w-site px-6 py-16"><Link href="/calculators" className="mb-8 inline-flex text-sm font-semibold text-gold/70 no-underline hover:text-gold">← All Calculators</Link><div className="mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[.12em] uppercase text-gold"><span className="block h-[22px] w-[3px] bg-gold" />Investment tool</div><h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-bold text-white">Investment <em className="not-italic text-gold">Calculator</em></h1><p className="mt-5 max-w-[620px] text-[1.0625rem] leading-[1.75] text-white/65">Explore how an initial investment and recurring contributions could grow over time.</p></div></section><section className="bg-cream py-16"><div className="mx-auto max-w-site px-6"><InvestmentCalculator /></div></section><section className="bg-white py-16"><div className="mx-auto max-w-site px-6 max-w-3xl"><p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">About the estimate</p><h2 className="mt-4 font-display text-3xl font-bold text-navy">Returns are uncertain</h2><p className="mt-4 leading-relaxed text-slate">Regular contributions and time in the market can materially affect a long-term investment balance. This tool uses a nominal annual return for illustration, shown alongside lower and higher return scenarios. Investments can fall as well as rise, and returns are never guaranteed.</p></div></section><section className="bg-gold py-16"><div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-8 px-6"><div><h2 className="font-display text-2xl font-bold text-navy">Want to discuss your financial plan?</h2><p className="mt-2 text-sm text-navy/70">Our advisers can help you consider your options.</p></div><Link href="/#contact" className="bg-navy px-8 py-3.5 text-sm font-semibold uppercase text-white no-underline">Speak to a Partner ›</Link></div></section></main><Footer /></> }
+export const metadata = {
+  title: "Investment Calculator | NJV Accountants",
+  description:
+    "Project investment growth with recurring contributions and return scenarios.",
+};
+export default function InvestmentCalculatorPage() {
+  return (
+    <>
+      <Navbar />
+      <main>
+        <section className="bg-navy pt-[70px]">
+          <div className="mx-auto max-w-site px-6 py-16">
+            <Link
+              href="/calculators"
+              className="mb-8 inline-flex text-sm font-semibold text-gold/70 no-underline hover:text-gold"
+            >
+              ← All Calculators
+            </Link>
+            <div className="mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[.12em] uppercase text-gold">
+              <span className="block h-[22px] w-[3px] bg-gold" />
+              Investment tool
+            </div>
+            <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-bold text-white">
+              Investment <em className="not-italic text-gold">Calculator</em>
+            </h1>
+            <p className="mt-5 max-w-[620px] text-[1.0625rem] leading-[1.75] text-white/65">
+              Explore how an initial investment and recurring contributions
+              could grow over time.
+            </p>
+          </div>
+        </section>
+        <section className="bg-cream py-16">
+          <div className="mx-auto max-w-site px-6">
+            <InvestmentCalculator />
+          </div>
+        </section>
+        <section className="bg-white py-16">
+          <div className="mx-auto max-w-site px-6 max-w-3xl">
+            <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+              About the estimate
+            </p>
+            <h2 className="mt-4 font-display text-3xl font-bold text-navy">
+              Returns are uncertain
+            </h2>
+            <p className="mt-4 leading-relaxed text-slate">
+              Regular contributions and time in the market can materially affect
+              a long-term investment balance. This tool uses a nominal annual
+              return for illustration, shown alongside lower and higher return
+              scenarios. Investments can fall as well as rise, and returns are
+              never guaranteed.
+            </p>
+          </div>
+        </section>
+        <section className="bg-gold py-16">
+          <div className="mx-auto flex max-w-site flex-wrap items-center justify-between gap-8 px-6">
+            <div>
+              <h2 className="font-display text-2xl font-bold text-navy">
+                Want to discuss your financial plan?
+              </h2>
+              <p className="mt-2 text-sm text-navy/70">
+                Our advisers can help you consider your options.
+              </p>
+            </div>
+            <Link
+              href="/#contact"
+              className="bg-navy px-8 py-3.5 text-sm font-semibold uppercase text-white no-underline"
+            >
+              Speak to a Partner ›
+            </Link>
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

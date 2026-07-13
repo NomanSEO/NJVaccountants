@@ -1,20 +1,21 @@
-import Image from 'next/image'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
-import { getAllPosts } from '@/sanity/lib/queries'
-import { urlFor } from '@/sanity/lib/sanity'
+import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { getAllPosts } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/sanity";
 
-export const revalidate = 600
+export const revalidate = 600;
 
 export const metadata = {
-  title: 'Insights & Analysis | NJV Accountants',
-  description: 'Timely, practical perspectives on accounting, tax, regulation, and business strategy from our senior professionals.',
-}
+  title: "Insights & Analysis | NJV Accountants",
+  description:
+    "Timely, practical perspectives on accounting, tax, regulation, and business strategy from our senior professionals.",
+};
 
-const SYMBOLS = ['§', '₤', '↗', '∑', '¥', '€', '∆', '∞']
+const SYMBOLS = ["§", "₤", "↗", "∑", "¥", "€", "∆", "∞"];
 
 export default async function BlogPage() {
-  const posts = await getAllPosts()
+  const posts = await getAllPosts();
 
   return (
     <>
@@ -23,7 +24,10 @@ export default async function BlogPage() {
         {/* Hero */}
         <section className="pt-[70px] bg-navy">
           <div className="max-w-site mx-auto px-6 py-20">
-            <a href="/" className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline">
+            <a
+              href="/"
+              className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
+            >
               ← Back to Home
             </a>
             <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
@@ -34,7 +38,8 @@ export default async function BlogPage() {
               From Our <em className="not-italic text-gold">Expert</em> Team
             </h1>
             <p className="text-[1.0625rem] text-white/65 leading-[1.75] max-w-[560px]">
-              Timely, practical perspectives on accounting, tax, regulation, and business strategy — written by our senior professionals.
+              Timely, practical perspectives on accounting, tax, regulation, and
+              business strategy — written by our senior professionals.
             </p>
           </div>
         </section>
@@ -43,17 +48,22 @@ export default async function BlogPage() {
         <section className="py-20 bg-cream">
           <div className="max-w-site mx-auto px-6">
             {posts.length === 0 ? (
-              <div className="text-center py-24 text-slate">No posts published yet.</div>
+              <div className="text-center py-24 text-slate">
+                No posts published yet.
+              </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
                 {posts.map((post, i) => (
                   <a
                     key={post._id}
-                    href={`/blog/${post.slug?.current ?? '#'}`}
+                    href={`/blog/${post.slug?.current ?? "#"}`}
                     className="group border border-border rounded-sm overflow-hidden hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)] hover:-translate-y-0.5 transition-all duration-300 bg-white no-underline flex flex-col"
                   >
                     {/* Card image */}
-                    <div className="relative overflow-hidden shrink-0" style={{ height: '200px' }}>
+                    <div
+                      className="relative overflow-hidden shrink-0"
+                      style={{ height: "200px" }}
+                    >
                       {post.headerImage?.asset ? (
                         <>
                           <Image
@@ -88,18 +98,28 @@ export default async function BlogPage() {
                         <span>{post.author?.name}</span>
                         <span>·</span>
                         <span>
-                          {new Date(post.publishedAt).toLocaleDateString('en-US', {
-                            month: 'long', day: 'numeric', year: 'numeric',
-                          })}
+                          {new Date(post.publishedAt).toLocaleDateString(
+                            "en-US",
+                            {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            },
+                          )}
                         </span>
                         {post.readTime && (
-                          <><span>·</span><span>{post.readTime} min read</span></>
+                          <>
+                            <span>·</span>
+                            <span>{post.readTime} min read</span>
+                          </>
                         )}
                       </div>
                       <h2 className="font-display text-[1.125rem] font-bold text-navy leading-[1.3] mb-2.5 group-hover:text-gold transition-colors">
                         {post.title}
                       </h2>
-                      <p className="text-[0.875rem] text-slate leading-[1.6] mb-4 flex-1">{post.excerpt}</p>
+                      <p className="text-[0.875rem] text-slate leading-[1.6] mb-4 flex-1">
+                        {post.excerpt}
+                      </p>
                       <span className="text-[0.8125rem] font-semibold text-navy tracking-[0.04em] flex items-center gap-1.5 group-hover:text-gold transition-colors mt-auto">
                         Read Article &rsaquo;
                       </span>
@@ -133,5 +153,5 @@ export default async function BlogPage() {
       </main>
       <Footer />
     </>
-  )
+  );
 }
