@@ -61,7 +61,13 @@ export default function FederalTaxPage() {
             <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-navy mb-7">
               2026 federal income tax brackets
             </h2>
-            <div className="overflow-x-auto border border-border rounded-sm">
+            <div
+              className="overflow-x-auto border border-border rounded-sm"
+              data-calculator-table
+            >
+              <p className="px-3 pt-3 text-xs text-slate sm:hidden">
+                Swipe to view all columns
+              </p>
               <table className="w-full min-w-[720px] text-left border-collapse">
                 <thead>
                   <tr className="bg-navy text-white">

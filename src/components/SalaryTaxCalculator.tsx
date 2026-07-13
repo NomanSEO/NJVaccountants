@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { calculateSalaryTax } from "@/lib/salaryTax";
+import Link from "next/link";
 
 type Period = "monthly" | "annual";
 
@@ -34,7 +35,7 @@ export default function SalaryTaxCalculator() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       {/* ── Input panel ── */}
-      <div className="bg-white border border-border rounded-sm p-7 md:p-8 shadow-[0_8px_30px_rgba(11,31,58,0.05)]">
+      <div className="bg-white border border-border rounded-sm p-4 sm:p-6 md:p-8 shadow-[0_8px_30px_rgba(11,31,58,0.05)]">
         <h2 className="font-display text-[1.375rem] font-bold text-navy mb-1.5">
           Your Salary
         </h2>
@@ -93,18 +94,18 @@ export default function SalaryTaxCalculator() {
           This is an estimate based on the published salary tax slabs for tax
           year 2026–2027 and assumes the full amount is taxable salary income.
           For tailored advice,{" "}
-          <a
+          <Link
             href="/#contact"
             className="text-gold font-semibold hover:text-gold-dark"
           >
             speak to a partner
-          </a>
+          </Link>
           .
         </p>
       </div>
 
       {/* ── Results panel ── */}
-      <div className="bg-navy rounded-sm p-7 md:p-8 text-white relative overflow-hidden">
+      <div className="bg-navy rounded-sm p-4 sm:p-6 md:p-8 text-white relative overflow-hidden">
         <div className="hero-pattern" />
         <div className="relative">
           <div className="flex items-center gap-3 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-6">
@@ -113,7 +114,7 @@ export default function SalaryTaxCalculator() {
           </div>
 
           {/* Headline numbers */}
-          <div className="grid grid-cols-2 gap-4 mb-7">
+          <div className="grid grid-cols-1 gap-4 mb-7 sm:grid-cols-2">
             <div>
               <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50 mb-1">
                 Tax / {period === "monthly" ? "Month" : "Year"}
@@ -139,7 +140,7 @@ export default function SalaryTaxCalculator() {
           </div>
 
           {/* Secondary stats */}
-          <div className="grid grid-cols-2 gap-px bg-white/10 rounded-sm overflow-hidden mb-7">
+          <div className="grid grid-cols-1 gap-px bg-white/10 rounded-sm overflow-hidden mb-7 sm:grid-cols-2">
             <Stat label="Annual Tax" value={fmt(result.annualTax)} />
             <Stat label="Annual Take-home" value={fmt(result.annualTakeHome)} />
             <Stat label="Effective Rate" value={pct(result.effectiveRate)} />

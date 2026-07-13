@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SalaryTaxCalculator from "@/components/SalaryTaxCalculator";
 import { SALARY_TAX_SLABS_2026_27 } from "@/lib/salaryTax";
+import Link from "next/link";
 
 export const metadata = {
   title: "Salary Tax Calculator Pakistan 2026–2027 | NJV Accountants",
@@ -61,7 +62,13 @@ export default function SalaryTaxPage() {
             <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-navy mb-7">
               Salary Tax Slabs 2026–2027
             </h2>
-            <div className="overflow-x-auto border border-border rounded-sm">
+            <div
+              className="overflow-x-auto border border-border rounded-sm"
+              data-calculator-table
+            >
+              <p className="px-3 pt-3 text-xs text-slate sm:hidden">
+                Swipe to view all columns
+              </p>
               <table className="w-full text-left border-collapse min-w-[560px]">
                 <thead>
                   <tr className="bg-navy text-white">
@@ -309,12 +316,12 @@ export default function SalaryTaxPage() {
                   claim eligible exemptions, and file your annual income tax
                   return correctly and on time.
                 </p>
-                <a
+                <Link
                   href="/#contact"
                   className="inline-flex items-center gap-2 bg-gold text-navy px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light hover:-translate-y-px transition-all"
                 >
                   Talk to a Tax Specialist ›
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -330,12 +337,12 @@ export default function SalaryTaxPage() {
                 Our partners can help you plan ahead and stay compliant.
               </div>
             </div>
-            <a
+            <Link
               href="/#contact"
               className="inline-flex items-center gap-2 bg-navy text-white px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-navy-light transition-colors shrink-0"
             >
               Speak to a Partner &rsaquo;
-            </a>
+            </Link>
           </div>
         </div>
       </main>

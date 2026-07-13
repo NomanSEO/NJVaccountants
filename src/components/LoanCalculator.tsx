@@ -101,7 +101,7 @@ export default function LoanCalculator() {
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <form
         noValidate
-        className="rounded-sm border border-border bg-white p-7 shadow-sm md:p-8"
+        className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8"
       >
         <h2 className="font-display text-2xl font-bold text-navy">
           Loan details
@@ -204,7 +204,7 @@ export default function LoanCalculator() {
         </fieldset>
       </form>
       <section
-        className="rounded-sm bg-navy p-7 text-white md:p-8"
+        className="rounded-sm bg-navy p-4 text-white sm:p-6 md:p-8"
         aria-live="polite"
         aria-labelledby="loan-results"
       >
@@ -274,7 +274,7 @@ export default function LoanCalculator() {
         )}
       </section>
       {isValid && (
-        <section className="space-y-8 rounded-sm border border-border bg-white p-7 lg:col-span-2 md:p-8">
+        <section className="space-y-8 rounded-sm border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
           <ResultBarChart
             title="Loan cost breakdown"
             items={[
@@ -314,7 +314,10 @@ export default function LoanCalculator() {
               ]}
             />
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" data-calculator-table>
+            <p className="mb-2 text-xs text-slate sm:hidden">
+              Swipe to view all columns
+            </p>
             <table className="w-full min-w-[650px] text-left text-sm">
               <caption className="sr-only">Loan repayment schedule</caption>
               <thead className="border-b border-border text-xs tracking-[.08em] uppercase text-slate">

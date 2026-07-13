@@ -186,3 +186,16 @@
 .prose blockquote p {
   margin-bottom: 0;
 }
+
+/* Calculator layouts stay dense enough for phones without changing desktop containers. */
+@media (max-width: 639px) {
+  main > section > .max-w-site {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+
+  [data-calculator-table] {
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+}

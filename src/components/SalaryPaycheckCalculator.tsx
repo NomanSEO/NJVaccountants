@@ -112,7 +112,7 @@ export default function SalaryPaycheckCalculator() {
   ];
   return (
     <div className="grid gap-8 lg:grid-cols-2">
-      <section className="border border-border bg-white p-7 shadow-sm">
+      <section className="border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8">
         <h2 className="font-display text-2xl font-bold text-navy">
           Pay details
         </h2>
@@ -221,7 +221,7 @@ export default function SalaryPaycheckCalculator() {
           Include Medicare
         </label>
       </section>
-      <section className="bg-navy p-7 text-white">
+      <section className="bg-navy p-4 text-white sm:p-6 md:p-8">
         <h2 className="font-display text-2xl font-bold">
           Your paycheck estimate
         </h2>
@@ -231,7 +231,7 @@ export default function SalaryPaycheckCalculator() {
         <p className="font-display text-4xl font-bold text-gold">
           {money(result.netPerPaycheck)}
         </p>
-        <div className="mt-6 grid grid-cols-2 gap-4">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
           {[
             ["Gross pay", result.grossPerPaycheck],
             ["Federal estimate", result.federalPerPaycheck],
@@ -249,7 +249,7 @@ export default function SalaryPaycheckCalculator() {
           ))}
         </div>
       </section>
-      <section className="space-y-6 border border-border bg-white p-7 lg:col-span-2">
+      <section className="space-y-6 border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
         <ResultBarChart
           title="Paycheck deductions"
           items={[
@@ -273,8 +273,11 @@ export default function SalaryPaycheckCalculator() {
             },
           ]}
         />
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
+        <div className="overflow-x-auto" data-calculator-table>
+          <p className="mb-2 text-xs text-slate sm:hidden">
+            Swipe to view all columns
+          </p>
+          <table className="w-full min-w-[440px] text-left text-sm">
             <thead>
               <tr>
                 <th>Item</th>

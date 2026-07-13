@@ -98,7 +98,7 @@ export default function CarLoanCalculator() {
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <form
-        className="rounded-sm border border-border bg-white p-7 shadow-sm md:p-8"
+        className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8"
         noValidate
       >
         <h2 className="font-display text-2xl font-bold text-navy">
@@ -192,7 +192,7 @@ export default function CarLoanCalculator() {
       </form>
 
       <section
-        className="rounded-sm bg-navy p-7 text-white md:p-8"
+        className="rounded-sm bg-navy p-4 text-white sm:p-6 md:p-8"
         aria-live="polite"
         aria-labelledby="car-loan-results"
       >
@@ -243,7 +243,7 @@ export default function CarLoanCalculator() {
       </section>
 
       {isValid && (
-        <section className="space-y-8 rounded-sm border border-border bg-white p-7 lg:col-span-2 md:p-8">
+        <section className="space-y-8 rounded-sm border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
           <ResultBarChart
             title="Finance cost breakdown"
             items={[
@@ -283,7 +283,10 @@ export default function CarLoanCalculator() {
               ]}
             />
           </div>
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto" data-calculator-table>
+            <p className="mb-2 text-xs text-slate sm:hidden">
+              Swipe to view all columns
+            </p>
             <table className="w-full min-w-[620px] text-left text-sm">
               <caption className="sr-only">Car loan payment schedule</caption>
               <thead className="border-b border-border text-xs tracking-[.08em] uppercase text-slate">

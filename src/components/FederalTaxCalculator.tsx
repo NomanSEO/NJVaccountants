@@ -112,7 +112,7 @@ export default function FederalTaxCalculator() {
   return (
     <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
       <section
-        className="bg-white border border-border rounded-sm p-7 md:p-8 shadow-sm"
+        className="bg-white border border-border rounded-sm p-4 sm:p-6 md:p-8 shadow-sm"
         aria-labelledby="federal-tax-inputs"
       >
         <h2
@@ -269,7 +269,7 @@ export default function FederalTaxCalculator() {
       </section>
 
       <section
-        className="bg-navy rounded-sm p-7 md:p-8 text-white relative overflow-hidden"
+        className="bg-navy rounded-sm p-4 sm:p-6 md:p-8 text-white relative overflow-hidden"
         aria-labelledby="federal-tax-results"
       >
         <div className="hero-pattern" />
@@ -287,7 +287,7 @@ export default function FederalTaxCalculator() {
           <p className="mt-2 text-sm text-white/65">
             Estimated only; your actual return may differ.
           </p>
-          <div className="grid grid-cols-2 gap-4 mt-7">
+          <div className="grid grid-cols-1 gap-4 mt-7 sm:grid-cols-2">
             <Result
               label="Federal income tax"
               value={currency(result.federalTax)}
@@ -298,7 +298,7 @@ export default function FederalTaxCalculator() {
               value={currency(result.totalTax)}
             />
           </div>
-          <div className="grid grid-cols-2 gap-px bg-white/10 rounded-sm overflow-hidden mt-6">
+          <div className="grid grid-cols-1 gap-px bg-white/10 rounded-sm overflow-hidden mt-6 sm:grid-cols-2">
             <Stat
               label="Taxable income"
               value={currency(result.taxableIncome)}
@@ -342,7 +342,7 @@ export default function FederalTaxCalculator() {
         </div>
       </section>
 
-      <section className="lg:col-span-2 bg-white border border-border rounded-sm p-7 md:p-8">
+      <section className="lg:col-span-2 bg-white border border-border rounded-sm p-4 sm:p-6 md:p-8">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
           <ResultBarChart
             title="Tax by federal bracket"
@@ -356,7 +356,13 @@ export default function FederalTaxCalculator() {
             <h3 className="font-display text-xl font-bold text-navy">
               Bracket breakdown
             </h3>
-            <div className="overflow-x-auto mt-4 border border-border rounded-sm">
+            <div
+              className="overflow-x-auto mt-4 border border-border rounded-sm"
+              data-calculator-table
+            >
+              <p className="px-3 pt-3 text-xs text-slate sm:hidden">
+                Swipe to view all columns
+              </p>
               <table className="w-full min-w-[440px] text-left text-sm">
                 <thead className="bg-cream text-navy">
                   <tr>
