@@ -12,14 +12,14 @@ export default function SalaryPaycheckPage() {
     <>
       <Navbar />
       <main>
-        <section className="bg-navy pt-[70px]">
+        <section className="bg-navy pt-17.5">
           <div className="max-w-site mx-auto px-6 py-16">
             <Link href="/calculators" className="text-gold">
               ← All Calculators
             </Link>
-            <h1 className="mt-6 font-display text-4xl font-bold text-white">
+            <h1 className="font-display mt-6 text-4xl font-bold text-white">
               Salary Paycheck{" "}
-              <em className="not-italic text-gold">Calculator</em>
+              <em className="text-gold not-italic">Calculator</em>
             </h1>
             <p className="mt-4 text-white/70">
               Estimate federal withholding, payroll taxes, and net pay for 2026.
@@ -32,11 +32,11 @@ export default function SalaryPaycheckPage() {
           </div>
         </section>
         <section className="bg-white py-16">
-          <div className="max-w-site mx-auto px-6 max-w-3xl">
-            <h2 className="font-display text-3xl font-bold text-navy">
+          <div className="max-w-site mx-auto max-w-3xl px-6">
+            <h2 className="font-display text-navy text-3xl font-bold">
               How this Salary Paycheck Calculator works
             </h2>
-            <p className="mt-4 text-slate">
+            <p className="text-slate mt-4">
               The salary paycheck calculator annualizes your income and
               deductions, estimates federal income tax and payroll taxes, then
               divides the estimate across your selected pay periods. State and

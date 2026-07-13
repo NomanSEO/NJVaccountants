@@ -25,50 +25,50 @@ export default function FederalTaxPage() {
     <>
       <Navbar />
       <main>
-        <section className="pt-[70px] bg-navy">
+        <section className="bg-navy pt-17.5">
           <div className="max-w-site mx-auto px-6 py-16">
             <Link
               href="/calculators"
-              className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
+              className="text-gold/70 hover:text-gold mb-8 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors"
             >
               ← All Calculators
             </Link>
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-              <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+            <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
               Tax year 2026
             </div>
-            <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-bold text-white leading-tight mb-5">
+            <h1 className="font-display mb-5 text-[clamp(2.25rem,5vw,3.25rem)] leading-tight font-bold text-white">
               Federal Income Tax{" "}
-              <em className="not-italic text-gold">Calculator</em>
+              <em className="text-gold not-italic">Calculator</em>
             </h1>
-            <p className="text-[1.0625rem] text-white/65 leading-[1.75] max-w-[620px]">
+            <p className="max-w-155 text-[1.0625rem] leading-[1.75] text-white/65">
               Estimate your U.S. federal income tax, state and local tax, and
               potential refund or balance due for 2026.
             </p>
           </div>
         </section>
-        <section className="py-16 bg-cream">
+        <section className="bg-cream py-16">
           <div className="max-w-site mx-auto px-6">
             <FederalTaxCalculator />
           </div>
         </section>
-        <section className="py-16 bg-white">
+        <section className="bg-white py-16">
           <div className="max-w-site mx-auto px-6">
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-4">
-              <span className="block w-[3px] h-[18px] bg-gold shrink-0" />
+            <div className="text-gold mb-4 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-4.5 w-0.75 shrink-0" />
               Reference
             </div>
-            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-navy mb-7">
+            <h2 className="font-display text-navy mb-7 text-[clamp(1.5rem,3vw,2rem)] font-bold">
               2026 federal income tax brackets
             </h2>
             <div
-              className="overflow-x-auto border border-border rounded-sm"
+              className="border-border overflow-x-auto rounded-sm border"
               data-calculator-table
             >
-              <p className="px-3 pt-3 text-xs text-slate sm:hidden">
+              <p className="text-slate px-3 pt-3 text-xs sm:hidden">
                 Swipe to view all columns
               </p>
-              <table className="w-full min-w-[720px] text-left border-collapse">
+              <table className="w-full min-w-180 border-collapse text-left">
                 <thead>
                   <tr className="bg-navy text-white">
                     <th className="px-5 py-3.5 text-xs uppercase">Rate</th>
@@ -90,7 +90,7 @@ export default function FederalTaxPage() {
                       key={rate}
                       className={index % 2 ? "bg-cream" : "bg-white"}
                     >
-                      <td className="px-5 py-3.5 text-sm font-semibold text-navy">
+                      <td className="text-navy px-5 py-3.5 text-sm font-semibold">
                         {rate}%
                       </td>
                       {(Object.keys(statusLabels) as FilingStatus[]).map(
@@ -102,7 +102,7 @@ export default function FederalTaxPage() {
                           return (
                             <td
                               key={status}
-                              className="px-5 py-3.5 text-sm text-slate"
+                              className="text-slate px-5 py-3.5 text-sm"
                             >
                               {upper
                                 ? `${money(lower)}–${money(upper - 1)}`
@@ -116,26 +116,26 @@ export default function FederalTaxPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-slate-light mt-4 leading-relaxed">
+            <p className="text-slate-light mt-4 text-xs leading-relaxed">
               Bracket figures and standard deductions are provided for quick
               reference. This calculator is an estimate and does not replace
               professional tax advice or an IRS filing.
             </p>
           </div>
         </section>
-        <section className="py-16 bg-cream" aria-labelledby="federal-tax-guide">
-          <div className="max-w-site mx-auto px-6 max-w-[900px]">
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-4">
-              <span className="block w-[3px] h-[18px] bg-gold shrink-0" />
+        <section className="bg-cream py-16" aria-labelledby="federal-tax-guide">
+          <div className="max-w-site mx-auto max-w-225 px-6">
+            <div className="text-gold mb-4 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-4.5 w-0.75 shrink-0" />
               Tax planning guide
             </div>
             <h2
               id="federal-tax-guide"
-              className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-navy mb-5"
+              className="font-display text-navy mb-5 text-[clamp(1.5rem,3vw,2rem)] font-bold"
             >
               Federal Income Tax Calculator
             </h2>
-            <div className="space-y-4 text-slate leading-[1.75]">
+            <div className="text-slate space-y-4 leading-[1.75]">
               <p>
                 Federal income tax is progressive: each portion of taxable
                 income is taxed at the rate for its bracket. Start with gross
@@ -159,18 +159,18 @@ export default function FederalTaxPage() {
           </div>
         </section>
         <div className="bg-gold py-16">
-          <div className="max-w-site mx-auto px-6 flex items-center justify-between gap-8 flex-wrap">
+          <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
-              <div className="font-display text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-navy leading-[1.3]">
+              <div className="font-display text-navy text-[clamp(1.25rem,2.5vw,1.75rem)] leading-[1.3] font-bold">
                 Need help with your tax planning?
               </div>
-              <div className="text-[0.9375rem] text-navy/70 mt-2">
+              <div className="text-navy/70 mt-2 text-[0.9375rem]">
                 Our advisers can help you understand your wider tax position.
               </div>
             </div>
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 bg-navy text-white px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-navy-light transition-colors shrink-0"
+              className="bg-navy hover:bg-navy-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-colors"
             >
               Speak to a Partner ›
             </Link>

@@ -101,12 +101,12 @@ export default function LoanCalculator() {
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <form
         noValidate
-        className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8"
+        className="border-border rounded-sm border bg-white p-4 shadow-sm sm:p-6 md:p-8"
       >
-        <h2 className="font-display text-2xl font-bold text-navy">
+        <h2 className="font-display text-navy text-2xl font-bold">
           Loan details
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate">
+        <p className="text-slate mt-2 text-sm leading-relaxed">
           Enter your borrowing terms to estimate repayments and see the full
           repayment schedule.
         </p>
@@ -174,8 +174,8 @@ export default function LoanCalculator() {
             </select>
           </Field>
         </div>
-        <fieldset className="mt-7 border-t border-border pt-6">
-          <legend className="px-0 text-xs font-semibold tracking-[.08em] uppercase text-slate">
+        <fieldset className="border-border mt-7 border-t pt-6">
+          <legend className="text-slate px-0 text-xs font-semibold tracking-[.08em] uppercase">
             Optional features
           </legend>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -204,18 +204,18 @@ export default function LoanCalculator() {
         </fieldset>
       </form>
       <section
-        className="rounded-sm bg-navy p-4 text-white sm:p-6 md:p-8"
+        className="bg-navy rounded-sm p-4 text-white sm:p-6 md:p-8"
         aria-live="polite"
         aria-labelledby="loan-results"
       >
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+            <p className="text-gold text-xs font-semibold tracking-[.12em] uppercase">
               Your estimate
             </p>
             <h2
               id="loan-results"
-              className="mt-2 font-display text-2xl font-bold"
+              className="font-display mt-2 text-2xl font-bold"
             >
               Loan repayment
             </h2>
@@ -235,7 +235,7 @@ export default function LoanCalculator() {
           </div>
         </div>
         {!isValid ? (
-          <p className="mt-7 rounded-sm border border-gold/50 bg-white/5 p-4 text-sm">
+          <p className="border-gold/50 mt-7 rounded-sm border bg-white/5 p-4 text-sm">
             Correct the highlighted fields to see your estimate.
           </p>
         ) : (
@@ -274,7 +274,7 @@ export default function LoanCalculator() {
         )}
       </section>
       {isValid && (
-        <section className="space-y-8 rounded-sm border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
+        <section className="border-border space-y-8 rounded-sm border bg-white p-4 sm:p-6 md:p-8 lg:col-span-2">
           <ResultBarChart
             title="Loan cost breakdown"
             items={[
@@ -298,10 +298,10 @@ export default function LoanCalculator() {
           />
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="font-display text-2xl font-bold text-navy">
+              <h2 className="font-display text-navy text-2xl font-bold">
                 Repayment schedule
               </h2>
-              <p className="mt-1 text-sm text-slate">
+              <p className="text-slate mt-1 text-sm">
                 How each payment is split across your loan term.
               </p>
             </div>
@@ -315,12 +315,12 @@ export default function LoanCalculator() {
             />
           </div>
           <div className="overflow-x-auto" data-calculator-table>
-            <p className="mb-2 text-xs text-slate sm:hidden">
+            <p className="text-slate mb-2 text-xs sm:hidden">
               Swipe to view all columns
             </p>
-            <table className="w-full min-w-[650px] text-left text-sm">
+            <table className="w-full min-w-162.5 text-left text-sm">
               <caption className="sr-only">Loan repayment schedule</caption>
-              <thead className="border-b border-border text-xs tracking-[.08em] uppercase text-slate">
+              <thead className="border-border text-slate border-b text-xs tracking-[.08em] uppercase">
                 <tr>
                   {[
                     frequency === "monthly" ? "Month" : "Year",
@@ -344,46 +344,46 @@ export default function LoanCalculator() {
                   ? visibleMonthlyRows.map((row) => (
                       <tr
                         key={row.period}
-                        className="border-b border-border/70"
+                        className="border-border/70 border-b"
                       >
                         <th
                           scope="row"
-                          className="px-3 py-3 font-medium text-navy"
+                          className="text-navy px-3 py-3 font-medium"
                         >
                           {row.period}
                         </th>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.payment, input.currency)}
                         </td>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.principal, input.currency)}
                         </td>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.interest, input.currency)}
                         </td>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.endingBalance, input.currency)}
                         </td>
                       </tr>
                     ))
                   : visibleYearlyRows.map((row) => (
-                      <tr key={row.year} className="border-b border-border/70">
+                      <tr key={row.year} className="border-border/70 border-b">
                         <th
                           scope="row"
-                          className="px-3 py-3 font-medium text-navy"
+                          className="text-navy px-3 py-3 font-medium"
                         >
                           {row.year}
                         </th>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.payment, input.currency)}
                         </td>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.principal, input.currency)}
                         </td>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.interest, input.currency)}
                         </td>
-                        <td className="px-3 py-3 text-slate">
+                        <td className="text-slate px-3 py-3">
                           {formatCurrency(row.endingBalance, input.currency)}
                         </td>
                       </tr>
@@ -395,7 +395,7 @@ export default function LoanCalculator() {
             <button
               type="button"
               onClick={() => setShowAll((current) => !current)}
-              className="border border-border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase text-navy hover:border-gold hover:text-gold-dark"
+              className="border-border text-navy hover:border-gold hover:text-gold-dark border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase"
             >
               {showAll ? "Show first 12" : "Show all"}
             </button>
@@ -419,7 +419,7 @@ function Field({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -447,7 +447,7 @@ function NumberField({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -464,7 +464,7 @@ function NumberField({
         className={`${inputClass} ${error ? "border-gold" : ""}`}
       />
       {error && (
-        <p id={errorId} className="mt-1 text-xs text-gold-dark" role="alert">
+        <p id={errorId} className="text-gold-dark mt-1 text-xs" role="alert">
           {error}
         </p>
       )}
@@ -490,7 +490,7 @@ function Stat({
         {label}
       </p>
       <p
-        className={`mt-1 font-display font-bold ${prominent ? "text-3xl" : "text-xl text-white"}`}
+        className={`font-display mt-1 font-bold ${prominent ? "text-3xl" : "text-xl text-white"}`}
       >
         {value}
       </p>

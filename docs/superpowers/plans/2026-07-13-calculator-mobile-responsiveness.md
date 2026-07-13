@@ -33,7 +33,7 @@
 export default function ResponsiveTable({ children, minWidth }: Props) {
   return (
     <div className="overflow-x-auto">
-      <p className="mb-2 text-xs text-slate sm:hidden">
+      <p className="text-slate mb-2 text-xs sm:hidden">
         Swipe to view all columns
       </p>
       <div style={{ minWidth }}>{children}</div>
@@ -80,7 +80,7 @@ Expected: exit code 0.
 - [ ] **Step 1: Apply mobile card padding and summary-grid breakpoints**
 
 ```tsx
-<section className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8">
+<section className="border-border rounded-sm border bg-white p-4 shadow-sm sm:p-6 md:p-8">
   <div className="mt-7 grid gap-4 sm:grid-cols-2">...</div>
 </section>
 ```
@@ -95,7 +95,7 @@ Expected: exit code 0.
 
 ```tsx
 <div className="min-w-0">
-  <p className="break-words text-xs text-white/60">Label</p>
+  <p className="text-xs wrap-break-word text-white/60">Label</p>
 </div>
 ```
 
@@ -118,7 +118,7 @@ Expected: all tests pass and exit code 0.
 - [ ] **Step 1: Tighten phone gutters and section spacing**
 
 ```tsx
-<div className="mx-auto max-w-site px-4 sm:px-6">
+<div className="max-w-site mx-auto px-4 sm:px-6">
   <section className="py-12 sm:py-16 md:py-20">...</section>
 </div>
 ```

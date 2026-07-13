@@ -65,13 +65,13 @@ export default function RetirementCalculator() {
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
       <form
-        className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8"
+        className="border-border rounded-sm border bg-white p-4 shadow-sm sm:p-6 md:p-8"
         noValidate
       >
-        <h2 className="font-display text-2xl font-bold text-navy">
+        <h2 className="font-display text-navy text-2xl font-bold">
           Your retirement plan
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate">
+        <p className="text-slate mt-2 text-sm leading-relaxed">
           Model savings through retirement in today’s dollars.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -136,7 +136,7 @@ export default function RetirementCalculator() {
         {error && (
           <p
             role="alert"
-            className="mt-5 rounded-sm border border-gold bg-gold/10 p-3 text-sm text-navy"
+            className="border-gold bg-gold/10 text-navy mt-5 rounded-sm border p-3 text-sm"
           >
             Enter an adult current age, a later retirement age, and a plan age
             after retirement. Amounts and rates cannot be negative.
@@ -144,13 +144,13 @@ export default function RetirementCalculator() {
         )}
       </form>
       <section
-        className="rounded-sm bg-navy p-4 text-white sm:p-6 md:p-8"
+        className="bg-navy rounded-sm p-4 text-white sm:p-6 md:p-8"
         aria-live="polite"
       >
-        <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+        <p className="text-gold text-xs font-semibold tracking-[.12em] uppercase">
           Your estimate
         </p>
-        <h2 className="mt-2 font-display text-2xl font-bold">
+        <h2 className="font-display mt-2 text-2xl font-bold">
           Retirement outlook
         </h2>
         {!error && (
@@ -187,24 +187,24 @@ export default function RetirementCalculator() {
         )}
       </section>
       {!error && (
-        <section className="space-y-8 rounded-sm border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
+        <section className="border-border space-y-8 rounded-sm border bg-white p-4 sm:p-6 md:p-8 lg:col-span-2">
           <div>
-            <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+            <p className="text-gold text-xs font-semibold tracking-[.12em] uppercase">
               Scenarios
             </p>
-            <h2 className="mt-2 font-display text-2xl font-bold text-navy">
+            <h2 className="font-display text-navy mt-2 text-2xl font-bold">
               How return assumptions affect the outcome
             </h2>
             <div className="mt-5 grid gap-4 md:grid-cols-3">
               {data.scenarios.map((s) => (
-                <div key={s.name} className="rounded-sm bg-cream p-5">
-                  <p className="text-xs font-semibold tracking-[.1em] uppercase text-slate">
+                <div key={s.name} className="bg-cream rounded-sm p-5">
+                  <p className="text-slate text-xs font-semibold tracking-widest uppercase">
                     {s.name} · {s.rate.toFixed(1)}%
                   </p>
-                  <p className="mt-2 font-display text-2xl font-bold text-navy">
+                  <p className="font-display text-navy mt-2 text-2xl font-bold">
                     {formatCurrency(s.balance)}
                   </p>
-                  <p className="mt-1 text-sm text-slate">
+                  <p className="text-slate mt-1 text-sm">
                     Balance at retirement
                   </p>
                 </div>
@@ -233,10 +233,10 @@ export default function RetirementCalculator() {
           />
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="font-display text-2xl font-bold text-navy">
+              <h2 className="font-display text-navy text-2xl font-bold">
                 Yearly projection
               </h2>
-              <p className="mt-1 text-sm text-slate">
+              <p className="text-slate mt-1 text-sm">
                 Annual balances in nominal dollars.
               </p>
             </div>
@@ -250,14 +250,14 @@ export default function RetirementCalculator() {
             />
           </div>
           <div className="overflow-x-auto" data-calculator-table>
-            <p className="mb-2 text-xs text-slate sm:hidden">
+            <p className="text-slate mb-2 text-xs sm:hidden">
               Swipe to view all columns
             </p>
-            <table className="w-full min-w-[620px] text-left text-sm">
+            <table className="w-full min-w-155 text-left text-sm">
               <caption className="sr-only">
                 Yearly retirement projection
               </caption>
-              <thead className="border-b border-border text-xs tracking-[.08em] uppercase text-slate">
+              <thead className="border-border text-slate border-b text-xs tracking-[.08em] uppercase">
                 <tr>
                   {["Age", "Phase", "Balance", "Contribution", "Income"].map(
                     (h) => (
@@ -270,18 +270,18 @@ export default function RetirementCalculator() {
               </thead>
               <tbody>
                 {rows.map((r) => (
-                  <tr key={r.age} className="border-b border-border/70">
-                    <th scope="row" className="px-3 py-3 text-navy">
+                  <tr key={r.age} className="border-border/70 border-b">
+                    <th scope="row" className="text-navy px-3 py-3">
                       {r.age}
                     </th>
-                    <td className="px-3 py-3 text-slate">{r.phase}</td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">{r.phase}</td>
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(r.balance)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(r.contribution)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(r.income)}
                     </td>
                   </tr>
@@ -293,7 +293,7 @@ export default function RetirementCalculator() {
             <button
               type="button"
               onClick={() => setShowAll((v) => !v)}
-              className="border border-border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase text-navy hover:border-gold"
+              className="border-border text-navy hover:border-gold border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase"
             >
               {showAll ? "Show first 12" : "Show all years"}
             </button>
@@ -386,7 +386,7 @@ function Input({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -422,7 +422,7 @@ function Stat({
         {label}
       </p>
       <p
-        className={`mt-1 font-display font-bold ${primary ? "text-3xl" : "text-xl text-white"}`}
+        className={`font-display mt-1 font-bold ${primary ? "text-3xl" : "text-xl text-white"}`}
       >
         {value}
       </p>

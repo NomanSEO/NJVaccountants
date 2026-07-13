@@ -103,13 +103,13 @@ export default function PersonalLoanCalculator() {
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)]">
       <form
-        className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8"
+        className="border-border rounded-sm border bg-white p-4 shadow-sm sm:p-6 md:p-8"
         noValidate
       >
-        <h2 className="font-display text-2xl font-bold text-navy">
+        <h2 className="font-display text-navy text-2xl font-bold">
           Loan details
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate">
+        <p className="text-slate mt-2 text-sm leading-relaxed">
           Estimate repayment costs and compare a second personal loan offer.
         </p>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
@@ -157,12 +157,12 @@ export default function PersonalLoanCalculator() {
             onChange={(value) => update("originationFee", value)}
           />
         </div>
-        <label className="mt-7 flex cursor-pointer items-center gap-3 border-t border-border pt-6 text-sm font-semibold text-navy">
+        <label className="border-border text-navy mt-7 flex cursor-pointer items-center gap-3 border-t pt-6 text-sm font-semibold">
           <input
             type="checkbox"
             checked={compare}
             onChange={(event) => setCompare(event.target.checked)}
-            className="h-4 w-4 accent-gold"
+            className="accent-gold h-4 w-4"
           />
           Compare a second offer
         </label>
@@ -195,18 +195,18 @@ export default function PersonalLoanCalculator() {
       </form>
 
       <section
-        className="rounded-sm bg-navy p-4 text-white sm:p-6 md:p-8"
+        className="bg-navy rounded-sm p-4 text-white sm:p-6 md:p-8"
         aria-live="polite"
         aria-labelledby="loan-results"
       >
-        <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+        <p className="text-gold text-xs font-semibold tracking-[.12em] uppercase">
           Your estimate
         </p>
-        <h2 id="loan-results" className="mt-2 font-display text-2xl font-bold">
+        <h2 id="loan-results" className="font-display mt-2 text-2xl font-bold">
           Personal loan repayment
         </h2>
         {!valid ? (
-          <p className="mt-7 rounded-sm border border-gold/50 bg-white/5 p-4 text-sm">
+          <p className="border-gold/50 mt-7 rounded-sm border bg-white/5 p-4 text-sm">
             Correct the highlighted fields to see your estimate.
           </p>
         ) : (
@@ -246,8 +246,8 @@ export default function PersonalLoanCalculator() {
       </section>
 
       {valid && compare && (
-        <section className="rounded-sm border border-border bg-white p-7 lg:col-span-2">
-          <h2 className="font-display text-2xl font-bold text-navy">
+        <section className="border-border rounded-sm border bg-white p-7 lg:col-span-2">
+          <h2 className="font-display text-navy text-2xl font-bold">
             Offer comparison
           </h2>
           <div className="mt-5 grid gap-4 md:grid-cols-2">
@@ -265,7 +265,7 @@ export default function PersonalLoanCalculator() {
         </section>
       )}
       {valid && (
-        <section className="space-y-8 rounded-sm border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
+        <section className="border-border space-y-8 rounded-sm border bg-white p-4 sm:p-6 md:p-8 lg:col-span-2">
           <ResultBarChart
             title="What you repay"
             items={[
@@ -297,10 +297,10 @@ export default function PersonalLoanCalculator() {
           />
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="font-display text-2xl font-bold text-navy">
+              <h2 className="font-display text-navy text-2xl font-bold">
                 Repayment schedule
               </h2>
-              <p className="mt-1 text-sm text-slate">
+              <p className="text-slate mt-1 text-sm">
                 See how each monthly payment reduces the balance.
               </p>
             </div>
@@ -314,14 +314,14 @@ export default function PersonalLoanCalculator() {
             />
           </div>
           <div className="overflow-x-auto" data-calculator-table>
-            <p className="mb-2 text-xs text-slate sm:hidden">
+            <p className="text-slate mb-2 text-xs sm:hidden">
               Swipe to view all columns
             </p>
-            <table className="w-full min-w-[650px] text-left text-sm">
+            <table className="w-full min-w-162.5 text-left text-sm">
               <caption className="sr-only">
                 Personal loan repayment schedule
               </caption>
-              <thead className="border-b border-border text-xs tracking-[.08em] uppercase text-slate">
+              <thead className="border-border text-slate border-b text-xs tracking-[.08em] uppercase">
                 <tr>
                   {["Month", "Payment", "Principal", "Interest", "Balance"].map(
                     (label) => (
@@ -338,20 +338,20 @@ export default function PersonalLoanCalculator() {
               </thead>
               <tbody>
                 {visible.map((row) => (
-                  <tr key={row.period} className="border-b border-border/70">
-                    <th scope="row" className="px-3 py-3 font-medium text-navy">
+                  <tr key={row.period} className="border-border/70 border-b">
+                    <th scope="row" className="text-navy px-3 py-3 font-medium">
                       {row.period}
                     </th>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.payment, values.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.principal, values.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.interest, values.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.endingBalance, values.currency)}
                     </td>
                   </tr>
@@ -363,7 +363,7 @@ export default function PersonalLoanCalculator() {
             <button
               type="button"
               onClick={() => setShowAll((current) => !current)}
-              className="border border-border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase text-navy hover:border-gold hover:text-gold-dark"
+              className="border-border text-navy hover:border-gold hover:text-gold-dark border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase"
             >
               {showAll ? "Show first 12" : "Show all"}
             </button>
@@ -387,7 +387,7 @@ function Field({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -415,7 +415,7 @@ function NumberField({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -432,7 +432,7 @@ function NumberField({
         className={`${fieldClass} ${error ? "border-gold" : ""}`}
       />
       {error && (
-        <p id={errorId} className="mt-1 text-xs text-gold-dark" role="alert">
+        <p id={errorId} className="text-gold-dark mt-1 text-xs" role="alert">
           {error}
         </p>
       )}
@@ -458,7 +458,7 @@ function Stat({
         {label}
       </p>
       <p
-        className={`mt-1 font-display font-bold ${prominent ? "text-3xl" : "text-xl text-white"}`}
+        className={`font-display mt-1 font-bold ${prominent ? "text-3xl" : "text-xl text-white"}`}
       >
         {value}
       </p>
@@ -475,8 +475,8 @@ function OfferCard({
   currency: CurrencyCode;
 }) {
   return (
-    <div className="rounded-sm bg-cream p-5">
-      <h3 className="font-display text-xl font-bold text-navy">{name}</h3>
+    <div className="bg-cream rounded-sm p-5">
+      <h3 className="font-display text-navy text-xl font-bold">{name}</h3>
       <dl className="mt-4 grid gap-3 text-sm">
         <Row
           label="Monthly payment"
@@ -498,7 +498,7 @@ function Row({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex justify-between gap-4">
       <dt className="text-slate">{label}</dt>
-      <dd className="font-semibold text-navy">{value}</dd>
+      <dd className="text-navy font-semibold">{value}</dd>
     </div>
   );
 }

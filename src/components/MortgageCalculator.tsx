@@ -118,13 +118,13 @@ export default function MortgageCalculator() {
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <form
-        className="rounded-sm border border-border bg-white p-4 shadow-sm sm:p-6 md:p-8"
+        className="border-border rounded-sm border bg-white p-4 shadow-sm sm:p-6 md:p-8"
         noValidate
       >
-        <h2 className="font-display text-2xl font-bold text-navy">
+        <h2 className="font-display text-navy text-2xl font-bold">
           Mortgage details
         </h2>
-        <p className="mt-2 text-sm leading-relaxed text-slate">
+        <p className="text-slate mt-2 text-sm leading-relaxed">
           Adjust the figures to get a repayment estimate in your preferred
           currency.
         </p>
@@ -206,8 +206,8 @@ export default function MortgageCalculator() {
             </>
           )}
         </div>
-        <fieldset className="mt-7 border-t border-border pt-6">
-          <legend className="px-0 text-xs font-semibold tracking-[.08em] uppercase text-slate">
+        <fieldset className="border-border mt-7 border-t pt-6">
+          <legend className="text-slate px-0 text-xs font-semibold tracking-[.08em] uppercase">
             Optional annual costs
           </legend>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
@@ -244,18 +244,18 @@ export default function MortgageCalculator() {
       </form>
 
       <section
-        className="rounded-sm bg-navy p-4 text-white sm:p-6 md:p-8"
+        className="bg-navy rounded-sm p-4 text-white sm:p-6 md:p-8"
         aria-live="polite"
         aria-labelledby="mortgage-results"
       >
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold tracking-[.12em] uppercase text-gold">
+            <p className="text-gold text-xs font-semibold tracking-[.12em] uppercase">
               Your estimate
             </p>
             <h2
               id="mortgage-results"
-              className="mt-2 font-display text-2xl font-bold"
+              className="font-display mt-2 text-2xl font-bold"
             >
               Mortgage payment
             </h2>
@@ -275,7 +275,7 @@ export default function MortgageCalculator() {
           </div>
         </div>
         {!isValid ? (
-          <p className="mt-7 rounded-sm border border-gold/50 bg-white/5 p-4 text-sm text-white">
+          <p className="border-gold/50 mt-7 rounded-sm border bg-white/5 p-4 text-sm text-white">
             Correct the highlighted fields to see your estimate.
           </p>
         ) : (
@@ -312,7 +312,7 @@ export default function MortgageCalculator() {
       </section>
 
       {isValid && (
-        <section className="space-y-8 rounded-sm border border-border bg-white p-4 sm:p-6 lg:col-span-2 md:p-8">
+        <section className="border-border space-y-8 rounded-sm border bg-white p-4 sm:p-6 md:p-8 lg:col-span-2">
           <ResultBarChart
             title="Principal vs. interest"
             items={[
@@ -336,10 +336,10 @@ export default function MortgageCalculator() {
           />
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="font-display text-2xl font-bold text-navy">
+              <h2 className="font-display text-navy text-2xl font-bold">
                 Amortization schedule
               </h2>
-              <p className="mt-1 text-sm text-slate">
+              <p className="text-slate mt-1 text-sm">
                 Payment breakdown across the loan term.
               </p>
             </div>
@@ -360,14 +360,14 @@ export default function MortgageCalculator() {
             />
           </div>
           <div className="overflow-x-auto" data-calculator-table>
-            <p className="mb-2 text-xs text-slate sm:hidden">
+            <p className="text-slate mb-2 text-xs sm:hidden">
               Swipe to view all columns
             </p>
-            <table className="w-full min-w-[700px] text-left text-sm">
+            <table className="w-full min-w-175 text-left text-sm">
               <caption className="sr-only">
                 Mortgage amortization schedule
               </caption>
-              <thead className="border-b border-border text-xs tracking-[.08em] uppercase text-slate">
+              <thead className="border-border text-slate border-b text-xs tracking-[.08em] uppercase">
                 <tr>
                   {[
                     "Month",
@@ -389,23 +389,23 @@ export default function MortgageCalculator() {
               </thead>
               <tbody>
                 {visibleSchedule.map((row) => (
-                  <tr key={row.month} className="border-b border-border/70">
-                    <th scope="row" className="px-3 py-3 font-medium text-navy">
+                  <tr key={row.month} className="border-border/70 border-b">
+                    <th scope="row" className="text-navy px-3 py-3 font-medium">
                       {row.month}
                     </th>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.payment, input.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.principal, input.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.interest, input.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.escrow, input.currency)}
                     </td>
-                    <td className="px-3 py-3 text-slate">
+                    <td className="text-slate px-3 py-3">
                       {formatCurrency(row.endingBalance, input.currency)}
                     </td>
                   </tr>
@@ -417,7 +417,7 @@ export default function MortgageCalculator() {
             <button
               type="button"
               onClick={() => setShowAll((current) => !current)}
-              className="border border-border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase text-navy hover:border-gold hover:text-gold-dark"
+              className="border-border text-navy hover:border-gold hover:text-gold-dark border px-4 py-2 text-xs font-semibold tracking-[.08em] uppercase"
             >
               {showAll ? "Show first 12" : "Show all"}
             </button>
@@ -441,7 +441,7 @@ function Field({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -469,7 +469,7 @@ function NumberField({
     <div>
       <label
         htmlFor={id}
-        className="mb-2 block text-xs font-semibold tracking-[.08em] uppercase text-slate"
+        className="text-slate mb-2 block text-xs font-semibold tracking-[.08em] uppercase"
       >
         {label}
       </label>
@@ -486,7 +486,7 @@ function NumberField({
         className={`${inputClass} ${error ? "border-gold" : ""}`}
       />
       {error && (
-        <p id={errorId} className="mt-1 text-xs text-gold-dark" role="alert">
+        <p id={errorId} className="text-gold-dark mt-1 text-xs" role="alert">
           {error}
         </p>
       )}
@@ -512,7 +512,7 @@ function Stat({
         {label}
       </p>
       <p
-        className={`mt-1 font-display font-bold ${prominent ? "text-3xl" : "text-xl text-white"}`}
+        className={`font-display mt-1 font-bold ${prominent ? "text-3xl" : "text-xl text-white"}`}
       >
         {value}
       </p>

@@ -16,7 +16,7 @@ export default function ResultBarChart({ title, items }: ResultBarChartProps) {
     <section aria-labelledby="result-bar-chart-title">
       <h3
         id="result-bar-chart-title"
-        className="font-display text-xl font-bold text-navy"
+        className="font-display text-navy text-xl font-bold"
       >
         {title}
       </h3>
@@ -29,17 +29,17 @@ export default function ResultBarChart({ title, items }: ResultBarChartProps) {
             <li key={item.name}>
               <div className="mb-1 flex items-center justify-between gap-4 text-sm">
                 <span className="text-slate">{item.name}</span>
-                <span className="font-semibold text-navy">
+                <span className="text-navy font-semibold">
                   {item.formattedValue}
                 </span>
               </div>
               <div
                 role="img"
                 aria-label={`${item.name}: ${item.formattedValue}`}
-                className="h-3 overflow-hidden bg-cream"
+                className="bg-cream h-3 overflow-hidden"
               >
                 <div
-                  className="h-full bg-gold"
+                  className="bg-gold h-full"
                   style={{ width: `${width}%` }}
                 />
               </div>

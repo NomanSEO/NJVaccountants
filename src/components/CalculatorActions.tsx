@@ -45,21 +45,21 @@ export default function CalculatorActions({
       <button
         type="button"
         onClick={() => window.print()}
-        className="min-h-11 w-full border border-border px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-navy transition-colors hover:border-gold hover:text-gold-dark sm:w-auto"
+        className="border-border text-navy hover:border-gold hover:text-gold-dark min-h-11 w-full border px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase transition-colors sm:w-auto"
       >
         Print
       </button>
       <button
         type="button"
         onClick={downloadCsv}
-        className="min-h-11 w-full border border-border px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-navy transition-colors hover:border-gold hover:text-gold-dark sm:w-auto"
+        className="border-border text-navy hover:border-gold hover:text-gold-dark min-h-11 w-full border px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase transition-colors sm:w-auto"
       >
         Download CSV
       </button>
       <button
         type="button"
         onClick={share}
-        className="min-h-11 w-full border border-border px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase text-navy transition-colors hover:border-gold hover:text-gold-dark sm:w-auto"
+        className="border-border text-navy hover:border-gold hover:text-gold-dark min-h-11 w-full border px-4 py-2 text-xs font-semibold tracking-[0.08em] uppercase transition-colors sm:w-auto"
       >
         Share
       </button>

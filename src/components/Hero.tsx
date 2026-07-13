@@ -11,58 +11,58 @@ export default async function Hero() {
   return (
     <section
       id="home"
-      className="min-h-screen bg-navy flex items-center relative overflow-hidden pt-[70px]"
+      className="bg-navy relative flex min-h-screen items-center overflow-hidden pt-17.5"
       aria-label="Hero"
     >
       {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-navy via-navy-light to-navy-deep" />
+      <div className="from-navy via-navy-light to-navy-deep absolute inset-0 bg-linear-to-br" />
       <div className="hero-pattern absolute inset-0" />
-      <div className="absolute right-0 top-0 bottom-0 w-[42%] bg-gold/[0.04] border-l border-gold/[0.12]" />
+      <div className="bg-gold/4 border-gold/12 absolute top-0 right-0 bottom-0 w-[42%] border-l" />
 
-      <div className="max-w-site mx-auto px-6 relative z-10 w-full">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center py-20">
+      <div className="max-w-site relative z-10 mx-auto w-full px-6">
+        <div className="grid grid-cols-1 items-center gap-16 py-20 md:grid-cols-2">
           {/* Left */}
           <div className="fade-up">
-            <div className="inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-6">
-              <span className="block w-6 h-0.5 bg-gold" />
+            <div className="text-gold mb-6 inline-flex items-center gap-2.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-0.5 w-6" />
               Est. 2020 · Trusted by 50+ Clients
             </div>
 
-            <h1 className="font-display text-[clamp(2.5rem,5vw,3.75rem)] font-bold text-white leading-[1.1] mb-6">
+            <h1 className="font-display mb-6 text-[clamp(2.5rem,5vw,3.75rem)] leading-[1.1] font-bold text-white">
               {titleParts[0]}
               {s.heroTitleHighlight && (
-                <em className="not-italic text-gold">{s.heroTitleHighlight}</em>
+                <em className="text-gold not-italic">{s.heroTitleHighlight}</em>
               )}
               {titleParts[1]}
             </h1>
 
-            <p className="text-[1.0625rem] text-white/70 leading-[1.75] mb-10 max-w-[480px]">
+            <p className="mb-10 max-w-120 text-[1.0625rem] leading-[1.75] text-white/70">
               {s.heroDesc}
             </p>
 
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex flex-wrap gap-4">
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 bg-gold text-navy px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light hover:-translate-y-px transition-all"
+                className="bg-gold text-navy hover:bg-gold-light inline-flex items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider uppercase no-underline transition-all hover:-translate-y-px"
               >
                 Book a Free Consultation ›
               </a>
               <a
                 href="#services"
-                className="inline-flex items-center gap-2 bg-transparent text-white px-[31px] py-[13px] rounded-sm border border-white/50 font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:border-gold hover:text-gold transition-all"
+                className="hover:border-gold hover:text-gold inline-flex items-center gap-2 rounded-sm border border-white/50 bg-transparent px-7.75 py-3.25 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-all"
               >
                 Our Services
               </a>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-6 mt-13 pt-10 border-t border-white/10">
+            <div className="mt-13 grid grid-cols-2 gap-6 border-t border-white/10 pt-10">
               {s.heroStats.map((stat) => (
                 <div key={stat.label}>
-                  <div className="font-display text-[2.25rem] font-bold text-gold">
+                  <div className="font-display text-gold text-[2.25rem] font-bold">
                     {stat.num}
                   </div>
-                  <div className="text-[0.8125rem] text-white/55 mt-1">
+                  <div className="mt-1 text-[0.8125rem] text-white/55">
                     {stat.label}
                   </div>
                 </div>
@@ -71,20 +71,20 @@ export default async function Hero() {
           </div>
 
           {/* Right — decorative financial card */}
-          <div className="hidden md:flex items-center justify-center fade-up fade-up-delay-2">
-            <div className="relative w-full max-w-[380px]">
-              <div className="absolute -top-3.5 -right-3.5 w-[90%] h-full bg-gold/[0.08] border border-gold/[0.15] rounded-lg" />
-              <div className="relative z-10 bg-white/[0.06] border border-gold/20 rounded-lg p-7 backdrop-blur-[12px]">
-                <div className="text-[0.7rem] tracking-[0.1em] uppercase text-gold mb-3">
+          <div className="fade-up fade-up-delay-2 hidden items-center justify-center md:flex">
+            <div className="relative w-full max-w-95">
+              <div className="bg-gold/8 border-gold/15 absolute -top-3.5 -right-3.5 h-full w-[90%] rounded-lg border" />
+              <div className="border-gold/20 relative z-10 rounded-lg border bg-white/6 p-7 backdrop-blur-md">
+                <div className="text-gold mb-3 text-[0.7rem] tracking-widest uppercase">
                   Q3 Financial Overview
                 </div>
                 <div className="font-display text-[2rem] font-bold text-white">
                   $2,847,000
                 </div>
-                <div className="text-[0.8125rem] text-green-400 mt-1.5">
+                <div className="mt-1.5 text-[0.8125rem] text-green-400">
                   ↑ 18.4% vs prior year
                 </div>
-                <div className="flex justify-between mt-5 pt-4 border-t border-white/10">
+                <div className="mt-5 flex justify-between border-t border-white/10 pt-4">
                   {[
                     { label: "Tax Savings", val: "$384,200" },
                     { label: "Compliance", val: "100%" },
@@ -94,20 +94,20 @@ export default async function Hero() {
                       <div className="text-[0.75rem] text-white/50">
                         {item.label}
                       </div>
-                      <div className="text-[0.875rem] font-semibold text-white mt-0.5">
+                      <div className="mt-0.5 text-[0.875rem] font-semibold text-white">
                         {item.val}
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className="h-1 bg-white/10 rounded mt-5 overflow-hidden">
-                  <div className="h-full bg-gold rounded w-[72%]" />
+                <div className="mt-5 h-1 overflow-hidden rounded bg-white/10">
+                  <div className="bg-gold h-full w-[72%] rounded" />
                 </div>
-                <div className="flex justify-between mt-1.5">
+                <div className="mt-1.5 flex justify-between">
                   <span className="text-[0.7rem] text-white/40">
                     Budget used
                   </span>
-                  <span className="text-[0.7rem] text-gold">72% on track</span>
+                  <span className="text-gold text-[0.7rem]">72% on track</span>
                 </div>
               </div>
             </div>

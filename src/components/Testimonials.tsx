@@ -7,48 +7,48 @@ export default async function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-24 bg-navy"
+      className="bg-navy py-24"
       aria-label="Client testimonials"
     >
       <div className="max-w-site mx-auto px-6">
-        <header className="text-center mb-14">
-          <div className="flex items-center justify-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-            <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+        <header className="mb-14 text-center">
+          <div className="text-gold mb-5 flex items-center justify-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+            <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
             Client Voices
           </div>
-          <h2 className="font-display text-[clamp(2rem,3.5vw,2.75rem)] font-bold text-cream leading-tight mb-5">
-            What Our <em className="not-italic text-gold">Clients</em> Say
+          <h2 className="font-display text-cream mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-tight font-bold">
+            What Our <em className="text-gold not-italic">Clients</em> Say
           </h2>
-          <p className="text-[1.0625rem] text-cream max-w-[560px] leading-[1.7] mx-auto">
+          <p className="text-cream mx-auto max-w-140 text-[1.0625rem] leading-[1.7]">
             We measure success by the relationships we build and the outcomes we
             deliver.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {items.map((t) => (
             <article
               key={t._id}
-              className="bg-navy-light rounded-sm border border-border/20 p-9 relative hover:shadow-[0_12px_40px_rgba(11,31,58,0.07)] transition-shadow"
+              className="bg-navy-light border-border/20 relative rounded-sm border p-9 transition-shadow hover:shadow-[0_12px_40px_rgba(11,31,58,0.07)]"
             >
-              <div className="font-display text-[4rem] text-gold leading-none mb-4 opacity-50">
+              <div className="font-display text-gold mb-4 text-[4rem] leading-none opacity-50">
                 &ldquo;
               </div>
-              <div className="text-[0.875rem] text-gold tracking-[2px] mb-4">
+              <div className="text-gold mb-4 text-[0.875rem] tracking-[2px]">
                 ★★★★★
               </div>
-              <p className="text-[0.9375rem] text-cream leading-[1.75] mb-7 italic">
+              <p className="text-cream mb-7 text-[0.9375rem] leading-[1.75] italic">
                 {t.quote}
               </p>
-              <div className="flex items-center gap-3.5 border-t border-border/20 pt-5">
-                <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gold to-navy flex items-center justify-center font-display text-base font-bold text-white shrink-0">
+              <div className="border-border/20 flex items-center gap-3.5 border-t pt-5">
+                <div className="from-gold to-navy font-display flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-linear-to-br text-base font-bold text-white">
                   {t.initials}
                 </div>
                 <div>
-                  <div className="font-semibold text-[0.9rem] text-cream">
+                  <div className="text-cream text-[0.9rem] font-semibold">
                     {t.authorName}
                   </div>
-                  <div className="text-[0.8rem] text-cream/70">
+                  <div className="text-cream/70 text-[0.8rem]">
                     {t.authorRole}
                   </div>
                 </div>

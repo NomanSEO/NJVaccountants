@@ -33,28 +33,28 @@ export default function SalaryTaxCalculator() {
   const hasInput = numericValue != null && numericValue > 0;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-2">
       {/* ── Input panel ── */}
-      <div className="bg-white border border-border rounded-sm p-4 sm:p-6 md:p-8 shadow-[0_8px_30px_rgba(11,31,58,0.05)]">
-        <h2 className="font-display text-[1.375rem] font-bold text-navy mb-1.5">
+      <div className="border-border rounded-sm border bg-white p-4 shadow-[0_8px_30px_rgba(11,31,58,0.05)] sm:p-6 md:p-8">
+        <h2 className="font-display text-navy mb-1.5 text-[1.375rem] font-bold">
           Your Salary
         </h2>
-        <p className="text-sm text-slate mb-6 leading-relaxed">
+        <p className="text-slate mb-6 text-sm leading-relaxed">
           Enter your taxable salary income to estimate your income tax for tax
           year 2026–2027.
         </p>
 
         {/* Period toggle */}
-        <div className="inline-flex p-1 bg-cream border border-border rounded-sm mb-5">
+        <div className="bg-cream border-border mb-5 inline-flex rounded-sm border p-1">
           {(["monthly", "annual"] as Period[]).map((p) => (
             <button
               key={p}
               type="button"
               onClick={() => setPeriod(p)}
-              className={`px-5 py-2 text-[0.8125rem] font-semibold tracking-[0.04em] uppercase rounded-sm transition-colors ${
+              className={`rounded-sm px-5 py-2 text-[0.8125rem] font-semibold tracking-[0.04em] uppercase transition-colors ${
                 period === p
                   ? "bg-navy text-white"
-                  : "bg-transparent text-slate hover:text-navy"
+                  : "text-slate hover:text-navy bg-transparent"
               }`}
             >
               {p}
@@ -65,12 +65,12 @@ export default function SalaryTaxCalculator() {
         {/* Amount field */}
         <label
           htmlFor="salary"
-          className="block text-xs font-semibold tracking-[0.08em] uppercase text-slate mb-2"
+          className="text-slate mb-2 block text-xs font-semibold tracking-[0.08em] uppercase"
         >
           {period === "monthly" ? "Monthly" : "Annual"} Taxable Salary
         </label>
         <div className="relative">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-slate font-semibold pointer-events-none">
+          <span className="text-slate pointer-events-none absolute top-1/2 left-4 -translate-y-1/2 font-semibold">
             Rs.
           </span>
           <input
@@ -79,24 +79,24 @@ export default function SalaryTaxCalculator() {
             placeholder="0"
             value={rawValue}
             onChange={(e) => setRawValue(e.target.value)}
-            className="w-full pl-12 pr-4 py-3.5 text-lg font-semibold text-navy bg-cream border border-border rounded-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/20 transition-all"
+            className="text-navy bg-cream border-border focus:border-gold focus:ring-gold/20 w-full rounded-sm border py-3.5 pr-4 pl-12 text-lg font-semibold transition-all outline-none focus:ring-2"
           />
         </div>
 
         {period === "monthly" && hasInput && (
-          <p className="text-[0.8125rem] text-slate-light mt-3">
+          <p className="text-slate-light mt-3 text-[0.8125rem]">
             Annual taxable income:{" "}
             <strong className="text-navy">{fmt(annualIncome)}</strong>
           </p>
         )}
 
-        <p className="text-xs text-slate-light mt-6 leading-relaxed border-t border-border pt-4">
+        <p className="text-slate-light border-border mt-6 border-t pt-4 text-xs leading-relaxed">
           This is an estimate based on the published salary tax slabs for tax
           year 2026–2027 and assumes the full amount is taxable salary income.
           For tailored advice,{" "}
           <Link
             href="/#contact"
-            className="text-gold font-semibold hover:text-gold-dark"
+            className="text-gold hover:text-gold-dark font-semibold"
           >
             speak to a partner
           </Link>
@@ -105,31 +105,31 @@ export default function SalaryTaxCalculator() {
       </div>
 
       {/* ── Results panel ── */}
-      <div className="bg-navy rounded-sm p-4 sm:p-6 md:p-8 text-white relative overflow-hidden">
+      <div className="bg-navy relative overflow-hidden rounded-sm p-4 text-white sm:p-6 md:p-8">
         <div className="hero-pattern" />
         <div className="relative">
-          <div className="flex items-center gap-3 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-6">
-            <span className="block w-[3px] h-[18px] bg-gold shrink-0" />
+          <div className="text-gold mb-6 flex items-center gap-3 text-xs font-semibold tracking-[0.12em] uppercase">
+            <span className="bg-gold block h-4.5 w-0.75 shrink-0" />
             Your Estimate
           </div>
 
           {/* Headline numbers */}
-          <div className="grid grid-cols-1 gap-4 mb-7 sm:grid-cols-2">
+          <div className="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50 mb-1">
+              <div className="mb-1 text-[0.7rem] tracking-[0.08em] text-white/50 uppercase">
                 Tax / {period === "monthly" ? "Month" : "Year"}
               </div>
-              <div className="font-display text-[1.75rem] font-bold text-gold leading-tight">
+              <div className="font-display text-gold text-[1.75rem] leading-tight font-bold">
                 {fmt(
                   period === "monthly" ? result.monthlyTax : result.annualTax,
                 )}
               </div>
             </div>
             <div>
-              <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50 mb-1">
+              <div className="mb-1 text-[0.7rem] tracking-[0.08em] text-white/50 uppercase">
                 Take-home / {period === "monthly" ? "Month" : "Year"}
               </div>
-              <div className="font-display text-[1.75rem] font-bold text-white leading-tight">
+              <div className="font-display text-[1.75rem] leading-tight font-bold text-white">
                 {fmt(
                   period === "monthly"
                     ? result.monthlyTakeHome
@@ -140,7 +140,7 @@ export default function SalaryTaxCalculator() {
           </div>
 
           {/* Secondary stats */}
-          <div className="grid grid-cols-1 gap-px bg-white/10 rounded-sm overflow-hidden mb-7 sm:grid-cols-2">
+          <div className="mb-7 grid grid-cols-1 gap-px overflow-hidden rounded-sm bg-white/10 sm:grid-cols-2">
             <Stat label="Annual Tax" value={fmt(result.annualTax)} />
             <Stat label="Annual Take-home" value={fmt(result.annualTakeHome)} />
             <Stat label="Effective Rate" value={pct(result.effectiveRate)} />
@@ -148,11 +148,11 @@ export default function SalaryTaxCalculator() {
           </div>
 
           {/* Slab breakdown */}
-          <div className="text-[0.7rem] tracking-[0.08em] uppercase text-white/50 mb-3">
+          <div className="mb-3 text-[0.7rem] tracking-[0.08em] text-white/50 uppercase">
             Slab-wise Breakdown
           </div>
           {result.breakdown.length === 0 ? (
-            <p className="text-sm text-white/60 leading-relaxed">
+            <p className="text-sm leading-relaxed text-white/60">
               No tax payable — taxable income is within the tax-free threshold
               of Rs. 600,000.
             </p>
@@ -161,7 +161,7 @@ export default function SalaryTaxCalculator() {
               {result.breakdown.map((b) => (
                 <div
                   key={b.label}
-                  className="flex items-center justify-between text-sm border-b border-white/10 pb-2.5 last:border-0"
+                  className="flex items-center justify-between border-b border-white/10 pb-2.5 text-sm last:border-0"
                 >
                   <div>
                     <div className="text-white/85">{b.label}</div>
@@ -169,7 +169,7 @@ export default function SalaryTaxCalculator() {
                       {+b.ratePercent.toFixed(2)}% on {fmt(b.taxableInSlab)}
                     </div>
                   </div>
-                  <div className="font-semibold text-gold shrink-0 ml-4">
+                  <div className="text-gold ml-4 shrink-0 font-semibold">
                     {fmt(b.taxInSlab)}
                   </div>
                 </div>
@@ -185,7 +185,7 @@ export default function SalaryTaxCalculator() {
 function Stat({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-navy p-4">
-      <div className="text-[0.65rem] tracking-[0.08em] uppercase text-white/45 mb-1">
+      <div className="mb-1 text-[0.65rem] tracking-[0.08em] text-white/45 uppercase">
         {label}
       </div>
       <div className="font-semibold text-white">{value}</div>

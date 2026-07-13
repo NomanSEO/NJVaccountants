@@ -22,22 +22,22 @@ export default async function BlogPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-[70px] bg-navy">
+        <section className="bg-navy pt-17.5">
           <div className="max-w-site mx-auto px-6 py-20">
             <a
               href="/"
-              className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
+              className="text-gold/70 hover:text-gold mb-8 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors"
             >
               ← Back to Home
             </a>
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-              <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+            <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
               Insights & Analysis
             </div>
-            <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-white leading-tight mb-5">
-              From Our <em className="not-italic text-gold">Expert</em> Team
+            <h1 className="font-display mb-5 text-[clamp(2.5rem,5vw,3.5rem)] leading-tight font-bold text-white">
+              From Our <em className="text-gold not-italic">Expert</em> Team
             </h1>
-            <p className="text-[1.0625rem] text-white/65 leading-[1.75] max-w-[560px]">
+            <p className="max-w-140 text-[1.0625rem] leading-[1.75] text-white/65">
               Timely, practical perspectives on accounting, tax, regulation, and
               business strategy — written by our senior professionals.
             </p>
@@ -45,23 +45,23 @@ export default async function BlogPage() {
         </section>
 
         {/* Posts grid */}
-        <section className="py-20 bg-cream">
+        <section className="bg-cream py-20">
           <div className="max-w-site mx-auto px-6">
             {posts.length === 0 ? (
-              <div className="text-center py-24 text-slate">
+              <div className="text-slate py-24 text-center">
                 No posts published yet.
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+              <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post, i) => (
                   <a
                     key={post._id}
                     href={`/blog/${post.slug?.current ?? "#"}`}
-                    className="group border border-border rounded-sm overflow-hidden hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)] hover:-translate-y-0.5 transition-all duration-300 bg-white no-underline flex flex-col"
+                    className="group border-border flex flex-col overflow-hidden rounded-sm border bg-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
                   >
                     {/* Card image */}
                     <div
-                      className="relative overflow-hidden shrink-0"
+                      className="relative shrink-0 overflow-hidden"
                       style={{ height: "200px" }}
                     >
                       {post.headerImage?.asset ? (
@@ -70,22 +70,22 @@ export default async function BlogPage() {
                             src={urlFor(post.headerImage).width(600).url()}
                             alt={post.headerImage.alt ?? post.title}
                             fill
-                            className="object-contain bg-cream"
+                            className="bg-cream object-contain"
                             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                           />
-                          <div className="absolute inset-0 bg-navy/40" />
+                          <div className="bg-navy/40 absolute inset-0" />
                           <div className="absolute bottom-4 left-4">
-                            <span className="inline-block bg-gold text-navy px-2.5 py-1 rounded-sm text-[0.7rem] font-bold tracking-[0.08em] uppercase">
+                            <span className="bg-gold text-navy inline-block rounded-sm px-2.5 py-1 text-[0.7rem] font-bold tracking-[0.08em] uppercase">
                               {post.category}
                             </span>
                           </div>
                         </>
                       ) : (
-                        <div className="bg-navy w-full h-full flex items-center justify-center relative">
-                          <span className="font-display text-5xl text-white opacity-15 absolute">
+                        <div className="bg-navy relative flex h-full w-full items-center justify-center">
+                          <span className="font-display absolute text-5xl text-white opacity-15">
                             {SYMBOLS[i % SYMBOLS.length]}
                           </span>
-                          <span className="relative z-10 inline-block bg-gold text-navy px-2.5 py-1 rounded-sm text-[0.7rem] font-bold tracking-[0.08em] uppercase">
+                          <span className="bg-gold text-navy relative z-10 inline-block rounded-sm px-2.5 py-1 text-[0.7rem] font-bold tracking-[0.08em] uppercase">
                             {post.category}
                           </span>
                         </div>
@@ -93,8 +93,8 @@ export default async function BlogPage() {
                     </div>
 
                     {/* Card body */}
-                    <div className="p-6 flex flex-col flex-1">
-                      <div className="text-[0.75rem] text-slate-light mb-2.5 flex gap-3 flex-wrap">
+                    <div className="flex flex-1 flex-col p-6">
+                      <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
                         <span>{post.author?.name}</span>
                         <span>·</span>
                         <span>
@@ -114,13 +114,13 @@ export default async function BlogPage() {
                           </>
                         )}
                       </div>
-                      <h2 className="font-display text-[1.125rem] font-bold text-navy leading-[1.3] mb-2.5 group-hover:text-gold transition-colors">
+                      <h2 className="font-display text-navy group-hover:text-gold mb-2.5 text-[1.125rem] leading-[1.3] font-bold transition-colors">
                         {post.title}
                       </h2>
-                      <p className="text-[0.875rem] text-slate leading-[1.6] mb-4 flex-1">
+                      <p className="text-slate mb-4 flex-1 text-[0.875rem] leading-[1.6]">
                         {post.excerpt}
                       </p>
-                      <span className="text-[0.8125rem] font-semibold text-navy tracking-[0.04em] flex items-center gap-1.5 group-hover:text-gold transition-colors mt-auto">
+                      <span className="text-navy group-hover:text-gold mt-auto flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] transition-colors">
                         Read Article &rsaquo;
                       </span>
                     </div>
@@ -133,18 +133,18 @@ export default async function BlogPage() {
 
         {/* CTA */}
         <div className="bg-gold py-16">
-          <div className="max-w-site mx-auto px-6 flex items-center justify-between gap-8 flex-wrap">
+          <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
-              <div className="font-display text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-navy leading-[1.3]">
+              <div className="font-display text-navy text-[clamp(1.25rem,2.5vw,1.75rem)] leading-[1.3] font-bold">
                 Ready to put these insights into action?
               </div>
-              <div className="text-[0.9375rem] text-navy/70 mt-2">
+              <div className="text-navy/70 mt-2 text-[0.9375rem]">
                 Book a free consultation with one of our senior partners.
               </div>
             </div>
             <a
               href="/#contact"
-              className="inline-flex items-center gap-2 bg-navy text-white px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-navy-light transition-colors shrink-0"
+              className="bg-navy hover:bg-navy-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-colors"
             >
               Speak to a Partner &rsaquo;
             </a>

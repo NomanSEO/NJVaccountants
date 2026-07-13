@@ -22,22 +22,22 @@ export default function SalaryTaxPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-[70px] bg-navy">
+        <section className="bg-navy pt-17.5">
           <div className="max-w-site mx-auto px-6 py-16">
             <a
               href="/calculators"
-              className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
+              className="text-gold/70 hover:text-gold mb-8 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors"
             >
               ← All Calculators
             </a>
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-              <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+            <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
               Tax Year 2026–2027
             </div>
-            <h1 className="font-display text-[clamp(2.25rem,5vw,3.25rem)] font-bold text-white leading-tight mb-5">
-              Salary Tax <em className="not-italic text-gold">Calculator</em>
+            <h1 className="font-display mb-5 text-[clamp(2.25rem,5vw,3.25rem)] leading-tight font-bold text-white">
+              Salary Tax <em className="text-gold not-italic">Calculator</em>
             </h1>
-            <p className="text-[1.0625rem] text-white/65 leading-[1.75] max-w-[620px]">
+            <p className="max-w-155 text-[1.0625rem] leading-[1.75] text-white/65">
               Estimate the income tax payable on your salary for tax year
               2026–2027. Enter your monthly or annual taxable salary to see your
               tax, take-home pay, and a full slab-wise breakdown.
@@ -46,30 +46,30 @@ export default function SalaryTaxPage() {
         </section>
 
         {/* Calculator */}
-        <section className="py-16 bg-cream">
+        <section className="bg-cream py-16">
           <div className="max-w-site mx-auto px-6">
             <SalaryTaxCalculator />
           </div>
         </section>
 
         {/* Slab reference table */}
-        <section className="py-16 bg-white">
+        <section className="bg-white py-16">
           <div className="max-w-site mx-auto px-6">
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-4">
-              <span className="block w-[3px] h-[18px] bg-gold shrink-0" />
+            <div className="text-gold mb-4 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-4.5 w-0.75 shrink-0" />
               Reference
             </div>
-            <h2 className="font-display text-[clamp(1.5rem,3vw,2rem)] font-bold text-navy mb-7">
+            <h2 className="font-display text-navy mb-7 text-[clamp(1.5rem,3vw,2rem)] font-bold">
               Salary Tax Slabs 2026–2027
             </h2>
             <div
-              className="overflow-x-auto border border-border rounded-sm"
+              className="border-border overflow-x-auto rounded-sm border"
               data-calculator-table
             >
-              <p className="px-3 pt-3 text-xs text-slate sm:hidden">
+              <p className="text-slate px-3 pt-3 text-xs sm:hidden">
                 Swipe to view all columns
               </p>
-              <table className="w-full text-left border-collapse min-w-[560px]">
+              <table className="w-full min-w-140 border-collapse text-left">
                 <thead>
                   <tr className="bg-navy text-white">
                     <th className="px-5 py-3.5 text-[0.75rem] font-semibold tracking-[0.06em] uppercase">
@@ -89,13 +89,13 @@ export default function SalaryTaxPage() {
                       key={slab.over}
                       className={i % 2 === 0 ? "bg-white" : "bg-cream"}
                     >
-                      <td className="px-5 py-3.5 text-sm text-navy font-medium">
+                      <td className="text-navy px-5 py-3.5 text-sm font-medium">
                         {slab.label}
                       </td>
-                      <td className="px-5 py-3.5 text-sm text-slate">
+                      <td className="text-slate px-5 py-3.5 text-sm">
                         {slab.rate === 0 ? "0%" : `${ratePct(slab.rate)}%`}
                       </td>
-                      <td className="px-5 py-3.5 text-sm text-slate">
+                      <td className="text-slate px-5 py-3.5 text-sm">
                         {slab.rate === 0
                           ? "No tax"
                           : slab.baseTax === 0
@@ -107,7 +107,7 @@ export default function SalaryTaxPage() {
                 </tbody>
               </table>
             </div>
-            <p className="text-xs text-slate-light mt-4 leading-relaxed max-w-[700px]">
+            <p className="text-slate-light mt-4 max-w-175 text-xs leading-relaxed">
               Figures are for tax year 2026–2027 and apply to taxable salary
               income. This calculator provides an estimate only and does not
               account for tax credits, rebates, surcharges, or other
@@ -137,25 +137,25 @@ export default function SalaryTaxPage() {
 */}
 
         <section
-          className="py-20 bg-white"
+          className="bg-white py-20"
           aria-label="Salary tax calculator guide"
         >
           <div className="max-w-site mx-auto px-6">
-            <div className="max-w-[820px] mx-auto">
+            <div className="mx-auto max-w-205">
               {/* Intro — primary keyword in first 100 words */}
               <div className="mb-14">
-                <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-                  <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+                <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+                  <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
                   Salary Tax Guide
                 </div>
-                <h2 className="font-display text-[clamp(1.75rem,3vw,2.25rem)] font-bold text-navy leading-tight mb-5">
+                <h2 className="font-display text-navy mb-5 text-[clamp(1.75rem,3vw,2.25rem)] leading-tight font-bold">
                   How This{" "}
-                  <em className="not-italic text-gold">
+                  <em className="text-gold not-italic">
                     Salary Tax Calculator
                   </em>{" "}
                   Works
                 </h2>
-                <p className="text-[1.0625rem] text-slate leading-[1.8] mb-4">
+                <p className="text-slate mb-4 text-[1.0625rem] leading-[1.8]">
                   Our{" "}
                   <strong className="text-navy">
                     salary tax calculator Pakistan 2026-27
@@ -168,7 +168,7 @@ export default function SalaryTaxPage() {
                   take-home pay — all in a few seconds, with no sign-up
                   required.
                 </p>
-                <p className="text-[1.0625rem] text-slate leading-[1.8]">
+                <p className="text-slate text-[1.0625rem] leading-[1.8]">
                   Whether you&apos;re a salaried employee planning your monthly
                   budget, an HR or payroll professional calculating withholding
                   tax for staff, or simply want to know how much income tax on
@@ -179,10 +179,10 @@ export default function SalaryTaxPage() {
 
               {/* Tax laws section */}
               <div className="mb-14">
-                <h3 className="font-display text-[1.5rem] font-bold text-navy mb-4">
+                <h3 className="font-display text-navy mb-4 text-[1.5rem] font-bold">
                   Salary Tax Laws in Pakistan — What You Need to Know
                 </h3>
-                <p className="text-[1rem] text-slate leading-[1.8] mb-4">
+                <p className="text-slate mb-4 text-[1rem] leading-[1.8]">
                   Income tax on salary in Pakistan is governed by the{" "}
                   <strong className="text-navy">
                     Income Tax Ordinance, 2001
@@ -193,7 +193,7 @@ export default function SalaryTaxPage() {
                   allowances, bonuses, and most benefits-in-kind — as taxable
                   income for the relevant tax year (1 July to 30 June).
                 </p>
-                <p className="text-[1rem] text-slate leading-[1.8] mb-4">
+                <p className="text-slate mb-4 text-[1rem] leading-[1.8]">
                   Pakistan uses a{" "}
                   <strong className="text-navy">
                     progressive salary tax slab
@@ -206,7 +206,7 @@ export default function SalaryTaxPage() {
                   why your payslip already reflects tax deductions before you
                   receive your net pay.
                 </p>
-                <p className="text-[1rem] text-slate leading-[1.8]">
+                <p className="text-slate text-[1rem] leading-[1.8]">
                   Key points every salaried taxpayer should know:
                 </p>
                 <ul className="mt-4 space-y-3">
@@ -218,9 +218,9 @@ export default function SalaryTaxPage() {
                   ].map((point, i) => (
                     <li
                       key={i}
-                      className="flex items-start gap-3 text-[0.9375rem] text-slate leading-[1.6]"
+                      className="text-slate flex items-start gap-3 text-[0.9375rem] leading-[1.6]"
                     >
-                      <span className="text-gold font-bold text-lg leading-none mt-0.5">
+                      <span className="text-gold mt-0.5 text-lg leading-none font-bold">
                         ›
                       </span>
                       <span>{point}</span>
@@ -231,10 +231,10 @@ export default function SalaryTaxPage() {
 
               {/* Benefits section */}
               <div className="mb-14">
-                <h3 className="font-display text-[1.5rem] font-bold text-navy mb-4">
+                <h3 className="font-display text-navy mb-4 text-[1.5rem] font-bold">
                   Benefits of Using an Online Salary Tax Calculator
                 </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
                   {[
                     {
                       title: "Instant, Accurate Results",
@@ -255,12 +255,12 @@ export default function SalaryTaxPage() {
                   ].map((b, i) => (
                     <div
                       key={i}
-                      className="border border-border rounded-sm p-6 bg-cream/40"
+                      className="border-border bg-cream/40 rounded-sm border p-6"
                     >
-                      <h4 className="font-display text-[1.0625rem] font-bold text-navy mb-2">
+                      <h4 className="font-display text-navy mb-2 text-[1.0625rem] font-bold">
                         {b.title}
                       </h4>
-                      <p className="text-[0.875rem] text-slate leading-[1.65]">
+                      <p className="text-slate text-[0.875rem] leading-[1.65]">
                         {b.text}
                       </p>
                     </div>
@@ -270,7 +270,7 @@ export default function SalaryTaxPage() {
 
               {/* FAQ section — great for featured snippets / People Also Ask */}
               <div className="mb-14">
-                <h3 className="font-display text-[1.5rem] font-bold text-navy mb-6">
+                <h3 className="font-display text-navy mb-6 text-[1.5rem] font-bold">
                   Frequently Asked Questions
                 </h3>
                 <div className="flex flex-col gap-5">
@@ -292,11 +292,11 @@ export default function SalaryTaxPage() {
                       a: "Taxable salary typically includes basic pay, cost-of-living allowances, bonuses, commissions, and the cash value of most perquisites and benefits-in-kind, with a few exemptions (such as limited medical allowances) available under the Income Tax Ordinance.",
                     },
                   ].map((item, i) => (
-                    <div key={i} className="border-b border-border pb-5">
-                      <h4 className="font-display text-[1.0625rem] font-bold text-navy mb-2">
+                    <div key={i} className="border-border border-b pb-5">
+                      <h4 className="font-display text-navy mb-2 text-[1.0625rem] font-bold">
                         {item.q}
                       </h4>
-                      <p className="text-[0.9375rem] text-slate leading-[1.7]">
+                      <p className="text-slate text-[0.9375rem] leading-[1.7]">
                         {item.a}
                       </p>
                     </div>
@@ -305,11 +305,11 @@ export default function SalaryTaxPage() {
               </div>
 
               {/* CTA */}
-              <div className="bg-navy rounded-sm p-8 md:p-10 text-center">
-                <h3 className="font-display text-[1.375rem] font-bold text-white mb-3">
+              <div className="bg-navy rounded-sm p-8 text-center md:p-10">
+                <h3 className="font-display mb-3 text-[1.375rem] font-bold text-white">
                   Need Help With Your Tax Filing or Planning?
                 </h3>
-                <p className="text-[0.9375rem] text-white/70 leading-[1.7] max-w-[500px] mx-auto mb-7">
+                <p className="mx-auto mb-7 max-w-125 text-[0.9375rem] leading-[1.7] text-white/70">
                   This salary tax calculator gives you a quick estimate — but
                   every income situation is different. Our tax specialists at
                   NJV Accountants can review your salary structure, help you
@@ -318,7 +318,7 @@ export default function SalaryTaxPage() {
                 </p>
                 <Link
                   href="/#contact"
-                  className="inline-flex items-center gap-2 bg-gold text-navy px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light hover:-translate-y-px transition-all"
+                  className="bg-gold text-navy hover:bg-gold-light inline-flex items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider uppercase no-underline transition-all hover:-translate-y-px"
                 >
                   Talk to a Tax Specialist ›
                 </Link>
@@ -328,18 +328,18 @@ export default function SalaryTaxPage() {
         </section>
         {/* CTA */}
         <div className="bg-gold py-16">
-          <div className="max-w-site mx-auto px-6 flex items-center justify-between gap-8 flex-wrap">
+          <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
-              <div className="font-display text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-navy leading-[1.3]">
+              <div className="font-display text-navy text-[clamp(1.25rem,2.5vw,1.75rem)] leading-[1.3] font-bold">
                 Need help optimising your tax position?
               </div>
-              <div className="text-[0.9375rem] text-navy/70 mt-2">
+              <div className="text-navy/70 mt-2 text-[0.9375rem]">
                 Our partners can help you plan ahead and stay compliant.
               </div>
             </div>
             <Link
               href="/#contact"
-              className="inline-flex items-center gap-2 bg-navy text-white px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-navy-light transition-colors shrink-0"
+              className="bg-navy hover:bg-navy-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-colors"
             >
               Speak to a Partner &rsaquo;
             </Link>

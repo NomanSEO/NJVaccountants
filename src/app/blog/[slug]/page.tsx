@@ -51,7 +51,7 @@ const portableTextComponents = {
                 {headerRow.cells.map((cell: string, i: number) => (
                   <th
                     key={i}
-                    className="bg-navy text-white text-left font-semibold px-4 py-3 border border-border"
+                    className="bg-navy border-border border px-4 py-3 text-left font-semibold text-white"
                   >
                     {cell}
                   </th>
@@ -64,7 +64,7 @@ const portableTextComponents = {
                   {row.cells.map((cell: string, j: number) => (
                     <td
                       key={j}
-                      className="px-4 py-3 border border-border text-slate align-top"
+                      className="border-border text-slate border px-4 py-3 align-top"
                     >
                       {cell}
                     </td>
@@ -88,12 +88,12 @@ const portableTextComponents = {
               src={urlFor(value).width(800).url()}
               alt={value.alt ?? ""}
               fill
-              className="object-contain bg-cream"
+              className="bg-cream object-contain"
               sizes="(max-width: 800px) 100vw, 800px"
             />
           </div>
           {value.caption && (
-            <figcaption className="text-[0.8125rem] text-slate-light text-center mt-3 italic">
+            <figcaption className="text-slate-light mt-3 text-center text-[0.8125rem] italic">
               {value.caption}
             </figcaption>
           )}
@@ -130,38 +130,38 @@ export default async function BlogPostPage({
       <Navbar />
       <main>
         {/* Article header — navy */}
-        <section className="pt-[70px] bg-navy">
-          <div className="max-w-[800px] mx-auto px-6 py-14">
+        <section className="bg-navy pt-17.5">
+          <div className="mx-auto max-w-200 px-6 py-14">
             <a
               href="/blog"
-              className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
+              className="text-gold/70 hover:text-gold mb-8 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors"
             >
               ← Back to Insights
             </a>
 
-            <div className="inline-block bg-gold text-navy px-3 py-1 rounded-sm text-[0.7rem] font-bold tracking-[0.08em] uppercase mb-6">
+            <div className="bg-gold text-navy mb-6 inline-block rounded-sm px-3 py-1 text-[0.7rem] font-bold tracking-[0.08em] uppercase">
               {post.category}
             </div>
 
-            <h1 className="font-display text-[clamp(1.75rem,4vw,3rem)] font-bold text-white leading-tight mb-6">
+            <h1 className="font-display mb-6 text-[clamp(1.75rem,4vw,3rem)] leading-tight font-bold text-white">
               {post.title}
             </h1>
 
             {post.excerpt && (
-              <p className="text-[1.0625rem] text-white/60 leading-[1.75] mb-8 max-w-[640px]">
+              <p className="mb-8 max-w-160 text-[1.0625rem] leading-[1.75] text-white/60">
                 {post.excerpt}
               </p>
             )}
 
-            <div className="flex items-center gap-4 flex-wrap">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center font-display font-bold text-navy text-sm shrink-0">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="from-gold to-gold-dark font-display text-navy flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br text-sm font-bold">
                 {authorInitials}
               </div>
               <div>
-                <div className="text-white font-semibold text-[0.9rem]">
+                <div className="text-[0.9rem] font-semibold text-white">
                   {post.author?.name}
                 </div>
-                <div className="text-white/50 text-[0.8rem] flex gap-2 flex-wrap">
+                <div className="flex flex-wrap gap-2 text-[0.8rem] text-white/50">
                   <span>
                     {new Date(post.publishedAt).toLocaleDateString("en-US", {
                       month: "long",
@@ -183,7 +183,7 @@ export default async function BlogPostPage({
 
         {/* Header image — full width, bleeds below the navy section */}
         {headerImageUrl && (
-          <div className="relative w-full bg-navy" style={{ height: "420px" }}>
+          <div className="bg-navy relative w-full" style={{ height: "420px" }}>
             <Image
               src={headerImageUrl}
               alt={post.headerImage?.alt ?? post.title}
@@ -192,18 +192,18 @@ export default async function BlogPostPage({
               className="object-contain"
               sizes="100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-navy/30 to-transparent" />
+            <div className="from-navy/30 absolute inset-0 bg-linear-to-b to-transparent" />
           </div>
         )}
 
         {/* Divider */}
         {!headerImageUrl && (
-          <div className="h-1 bg-gradient-to-r from-gold via-gold-light to-gold" />
+          <div className="from-gold via-gold-light to-gold h-1 bg-linear-to-r" />
         )}
 
         {/* Article body */}
         <section className="bg-white">
-          <div className="max-w-[800px] mx-auto px-6 py-16">
+          <div className="mx-auto max-w-200 px-6 py-16">
             {post.body && post.body.length > 0 ? (
               <div className="prose">
                 <PortableText
@@ -212,21 +212,21 @@ export default async function BlogPostPage({
                 />
               </div>
             ) : (
-              <p className="text-slate italic text-[1.0625rem]">
+              <p className="text-slate text-[1.0625rem] italic">
                 Full article content coming soon.
               </p>
             )}
 
-            <div className="mt-16 pt-8 border-t border-border flex items-center justify-between flex-wrap gap-4">
+            <div className="border-border mt-16 flex flex-wrap items-center justify-between gap-4 border-t pt-8">
               <a
                 href="/blog"
-                className="inline-flex items-center gap-2 text-navy font-semibold text-[0.8125rem] tracking-[0.04em] hover:text-gold transition-colors no-underline"
+                className="text-navy hover:text-gold inline-flex items-center gap-2 text-[0.8125rem] font-semibold tracking-[0.04em] no-underline transition-colors"
               >
                 ← Back to All Insights
               </a>
               <a
                 href="/#contact"
-                className="inline-flex items-center gap-2 bg-gold text-navy px-6 py-3 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light transition-colors"
+                className="bg-gold text-navy hover:bg-gold-light inline-flex items-center gap-2 rounded-sm px-6 py-3 text-sm font-semibold tracking-wider uppercase no-underline transition-colors"
               >
                 Book a Consultation &rsaquo;
               </a>
@@ -235,20 +235,20 @@ export default async function BlogPostPage({
         </section>
 
         {/* CTA */}
-        <div className="bg-navy py-16 border-t border-gold/20">
-          <div className="max-w-site mx-auto px-6 flex items-center justify-between gap-8 flex-wrap">
+        <div className="bg-navy border-gold/20 border-t py-16">
+          <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
-              <div className="font-display text-[clamp(1.25rem,2.5vw,1.75rem)] font-bold text-white leading-[1.3]">
+              <div className="font-display text-[clamp(1.25rem,2.5vw,1.75rem)] leading-[1.3] font-bold text-white">
                 Ready to put these insights into action?
               </div>
-              <div className="text-[0.9375rem] text-white/60 mt-2">
+              <div className="mt-2 text-[0.9375rem] text-white/60">
                 Our senior partners are available for a complimentary
                 consultation.
               </div>
             </div>
             <a
               href="/#contact"
-              className="inline-flex items-center gap-2 bg-gold text-navy px-8 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light transition-colors shrink-0"
+              className="bg-gold text-navy hover:bg-gold-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider uppercase no-underline transition-colors"
             >
               Speak to a Partner &rsaquo;
             </a>

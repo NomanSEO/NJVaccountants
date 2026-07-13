@@ -29,20 +29,20 @@ export default function Contact() {
     "w-full bg-white/[0.06] border border-white/[0.12] rounded-sm px-4 py-3 text-white font-body text-[0.9375rem] outline-none focus:border-gold transition-colors placeholder:text-white/30";
 
   return (
-    <section id="contact" className="py-24 bg-navy" aria-label="Contact us">
+    <section id="contact" className="bg-navy py-24" aria-label="Contact us">
       <div className="max-w-site mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+        <div className="grid grid-cols-1 gap-20 md:grid-cols-2">
           {/* Left */}
           <div>
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-              <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+            <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
               Get in Touch
             </div>
-            <h2 className="font-display text-[clamp(2rem,3.5vw,2.75rem)] font-bold text-white leading-tight mb-5">
+            <h2 className="font-display mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-tight font-bold text-white">
               Let&apos;s Start a{" "}
-              <em className="not-italic text-gold">Conversation</em>
+              <em className="text-gold not-italic">Conversation</em>
             </h2>
-            <p className="text-[1.0625rem] text-white/65 leading-[1.7] max-w-[560px]">
+            <p className="max-w-140 text-[1.0625rem] leading-[1.7] text-white/65">
               Whether you&apos;re exploring our services or facing an urgent
               financial challenge, our team is ready to help. First consultation
               is always complimentary.
@@ -65,15 +65,15 @@ export default function Contact() {
                   value: "Nomanj.ajs@gmail.com\nReplies within 1 business hour",
                 },
               ].map((item) => (
-                <div key={item.label} className="flex gap-4 items-start">
-                  <div className="w-10 h-10 bg-gold/10 border border-gold/20 rounded-sm flex items-center justify-center shrink-0 text-base">
+                <div key={item.label} className="flex items-start gap-4">
+                  <div className="bg-gold/10 border-gold/20 flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border text-base">
                     {item.icon}
                   </div>
                   <div>
-                    <div className="text-[0.75rem] tracking-[0.08em] uppercase text-gold font-semibold mb-1">
+                    <div className="text-gold mb-1 text-[0.75rem] font-semibold tracking-[0.08em] uppercase">
                       {item.label}
                     </div>
-                    <div className="text-[0.9375rem] text-white/80 whitespace-pre-line">
+                    <div className="text-[0.9375rem] whitespace-pre-line text-white/80">
                       {item.value}
                     </div>
                   </div>
@@ -83,14 +83,14 @@ export default function Contact() {
           </div>
 
           {/* Right — form */}
-          <div className="bg-white/[0.04] border border-gold/[0.15] rounded-md p-10">
-            <h3 className="font-display text-[1.25rem] font-bold text-white mb-7">
+          <div className="border-gold/15 rounded-md border bg-white/4 p-10">
+            <h3 className="font-display mb-7 text-[1.25rem] font-bold text-white">
               Request a Consultation
             </h3>
-            <div className="grid grid-cols-2 gap-4 mb-5">
+            <div className="mb-5 grid grid-cols-2 gap-4">
               <div>
                 <label
-                  className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                  className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                   htmlFor="f-first"
                 >
                   First Name
@@ -107,7 +107,7 @@ export default function Contact() {
               </div>
               <div>
                 <label
-                  className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                  className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                   htmlFor="f-last"
                 >
                   Last Name
@@ -123,7 +123,7 @@ export default function Contact() {
             </div>
             <div className="mb-5">
               <label
-                className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                 htmlFor="f-email"
               >
                 Email Address
@@ -138,10 +138,10 @@ export default function Contact() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="grid grid-cols-2 gap-4 mb-5">
+            <div className="mb-5 grid grid-cols-2 gap-4">
               <div>
                 <label
-                  className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                  className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                   htmlFor="f-company"
                 >
                   Company Name
@@ -156,7 +156,7 @@ export default function Contact() {
               </div>
               <div>
                 <label
-                  className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                  className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                   htmlFor="f-phone"
                 >
                   Phone Number
@@ -172,14 +172,14 @@ export default function Contact() {
             </div>
             <div className="mb-5">
               <label
-                className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                 htmlFor="f-service"
               >
                 Service Area
               </label>
               <select
                 id="f-service"
-                className={`${inputCls} appearance-none cursor-pointer [&>option]:bg-navy`}
+                className={`${inputCls} [&>option]:bg-navy cursor-pointer appearance-none`}
               >
                 <option value="">Select a service…</option>
                 {SERVICES.map((s) => (
@@ -189,7 +189,7 @@ export default function Contact() {
             </div>
             <div className="mb-5">
               <label
-                className="block text-[0.75rem] font-semibold tracking-[0.08em] uppercase text-white/60 mb-2"
+                className="mb-2 block text-[0.75rem] font-semibold tracking-[0.08em] text-white/60 uppercase"
                 htmlFor="f-message"
               >
                 Tell Us About Your Needs
@@ -198,24 +198,24 @@ export default function Contact() {
                 id="f-message"
                 rows={4}
                 placeholder="Briefly describe your situation…"
-                className={`${inputCls} resize-y min-h-[120px]`}
+                className={`${inputCls} min-h-30 resize-y`}
               />
             </div>
 
             {submitted ? (
-              <div className="w-full py-3.5 bg-navy text-gold text-center text-sm font-semibold rounded-sm border border-gold/30">
+              <div className="bg-navy text-gold border-gold/30 w-full rounded-sm border py-3.5 text-center text-sm font-semibold">
                 ✓ Enquiry Received — We&apos;ll be in touch within 4 hours
               </div>
             ) : (
               <button
                 type="button"
                 onClick={handleSubmit}
-                className="w-full inline-flex items-center justify-center gap-2 bg-gold text-navy py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase cursor-pointer border-0 hover:bg-gold-light transition-colors"
+                className="bg-gold text-navy hover:bg-gold-light inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm border-0 py-3.5 text-sm font-semibold tracking-wider uppercase transition-colors"
               >
                 Submit Enquiry ›
               </button>
             )}
-            <p className="text-[0.75rem] text-white/35 mt-4 text-center">
+            <p className="mt-4 text-center text-[0.75rem] text-white/35">
               Your information is handled in accordance with our Privacy Policy.
               We never share or sell client data.
             </p>

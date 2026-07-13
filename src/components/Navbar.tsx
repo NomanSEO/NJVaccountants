@@ -29,9 +29,9 @@ export default function Navbar() {
       <nav
         role="navigation"
         aria-label="Main navigation"
-        className={`fixed top-0 w-full z-[1000] bg-navy/[0.97] backdrop-blur-[8px] border-b border-gold/[0.15] transition-shadow duration-300${scrolled ? " shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
+        className={`bg-navy/97 border-gold/15 fixed top-0 z-1000 w-full border-b backdrop-blur-sm transition-shadow duration-300${scrolled ? "shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
       >
-        <div className="max-w-site mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 h-[70px]">
+        <div className="max-w-site mx-auto flex h-17.5 items-center justify-between gap-4 px-4 sm:px-6">
           <Link
             href="/#home"
             aria-label="NJV Accountants home"
@@ -42,14 +42,14 @@ export default function Navbar() {
 
           {/* Desktop links */}
           <ul
-            className="hidden lg:flex items-center gap-4 xl:gap-7 list-none m-0 p-0"
+            className="m-0 hidden list-none items-center gap-4 p-0 lg:flex xl:gap-7"
             role="list"
           >
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="whitespace-nowrap text-white/80 no-underline text-[0.8125rem] font-medium tracking-[0.04em] hover:text-gold transition-colors"
+                  className="hover:text-gold text-[0.8125rem] font-medium tracking-[0.04em] whitespace-nowrap text-white/80 no-underline transition-colors"
                 >
                   {link.label}
                 </Link>
@@ -59,20 +59,20 @@ export default function Navbar() {
 
           <Link
             href="/#contact"
-            className="hidden xl:inline-flex shrink-0 items-center gap-2 whitespace-nowrap bg-gold text-navy px-7 py-3.5 rounded-sm font-semibold text-sm tracking-[0.05em] uppercase no-underline hover:bg-gold-light hover:-translate-y-px transition-all"
+            className="bg-gold text-navy hover:bg-gold-light hidden shrink-0 items-center gap-2 rounded-sm px-7 py-3.5 text-sm font-semibold tracking-wider whitespace-nowrap uppercase no-underline transition-all hover:-translate-y-px xl:inline-flex"
           >
             Get a Consultation
           </Link>
 
           {/* Hamburger */}
           <button
-            className="lg:hidden flex flex-col gap-[5px] bg-transparent border-0 cursor-pointer p-1"
+            className="flex cursor-pointer flex-col gap-1.25 border-0 bg-transparent p-1 lg:hidden"
             aria-label="Open menu"
             onClick={() => setMenuOpen(true)}
           >
-            <span className="block w-6 h-0.5 bg-white" />
-            <span className="block w-6 h-0.5 bg-white" />
-            <span className="block w-6 h-0.5 bg-white" />
+            <span className="block h-0.5 w-6 bg-white" />
+            <span className="block h-0.5 w-6 bg-white" />
+            <span className="block h-0.5 w-6 bg-white" />
           </button>
         </div>
       </nav>

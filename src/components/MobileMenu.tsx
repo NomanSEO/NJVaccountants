@@ -12,12 +12,12 @@ export default function MobileMenu({ open, onClose, links }: Props) {
   if (!open) return null;
   return (
     <div
-      className="fixed inset-0 bg-navy z-[999] flex flex-col items-center justify-center gap-8"
+      className="bg-navy fixed inset-0 z-999 flex flex-col items-center justify-center gap-8"
       role="dialog"
       aria-label="Mobile navigation"
     >
       <button
-        className="absolute top-6 right-6 bg-transparent border-0 text-white text-3xl cursor-pointer"
+        className="absolute top-6 right-6 cursor-pointer border-0 bg-transparent text-3xl text-white"
         aria-label="Close menu"
         onClick={onClose}
       >
@@ -26,7 +26,7 @@ export default function MobileMenu({ open, onClose, links }: Props) {
       <Link
         href="/#home"
         onClick={onClose}
-        className="text-white font-display text-[1.75rem] font-bold no-underline hover:text-gold transition-colors"
+        className="font-display hover:text-gold text-[1.75rem] font-bold text-white no-underline transition-colors"
       >
         Home
       </Link>
@@ -35,7 +35,7 @@ export default function MobileMenu({ open, onClose, links }: Props) {
           key={link.href}
           href={link.href}
           onClick={onClose}
-          className="text-white font-display text-[1.75rem] font-bold no-underline hover:text-gold transition-colors"
+          className="font-display hover:text-gold text-[1.75rem] font-bold text-white no-underline transition-colors"
         >
           {link.label}
         </Link>

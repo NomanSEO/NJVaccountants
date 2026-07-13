@@ -116,22 +116,22 @@ export default function CalculatorsPage() {
       <Navbar />
       <main>
         {/* Hero */}
-        <section className="pt-[70px] bg-navy">
+        <section className="bg-navy pt-17.5">
           <div className="max-w-site mx-auto px-6 py-20">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-gold/70 text-sm font-semibold mb-8 hover:text-gold transition-colors no-underline"
+              className="text-gold/70 hover:text-gold mb-8 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors"
             >
               ← Back to Home
             </Link>
-            <div className="flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase text-gold mb-5">
-              <span className="block w-[3px] h-[22px] bg-gold shrink-0" />
+            <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
+              <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
               Tools & Calculators
             </div>
-            <h1 className="font-display text-[clamp(2.5rem,5vw,3.5rem)] font-bold text-white leading-tight mb-5">
-              Financial <em className="not-italic text-gold">Calculators</em>
+            <h1 className="font-display mb-5 text-[clamp(2.5rem,5vw,3.5rem)] leading-tight font-bold text-white">
+              Financial <em className="text-gold not-italic">Calculators</em>
             </h1>
-            <p className="text-[1.0625rem] text-white/65 leading-[1.75] max-w-[560px]">
+            <p className="max-w-140 text-[1.0625rem] leading-[1.75] text-white/65">
               Quick, practical tools to help you plan ahead — built and
               maintained by our advisory team.
             </p>
@@ -139,30 +139,30 @@ export default function CalculatorsPage() {
         </section>
 
         {/* Grid */}
-        <section className="py-20 bg-cream">
+        <section className="bg-cream py-20">
           <div className="max-w-site mx-auto px-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+            <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
               {CALCULATORS.map((calc) => (
                 <Link
                   key={calc.href}
                   href={calc.href}
-                  className="service-card group border border-border rounded-sm bg-white p-7 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)] hover:-translate-y-0.5 transition-all duration-300 no-underline flex flex-col"
+                  className="service-card group border-border flex flex-col rounded-sm border bg-white p-7 no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
                 >
-                  <div className="w-12 h-12 bg-navy rounded-sm flex items-center justify-center mb-5 shrink-0">
-                    <span className="font-display text-2xl text-gold">
+                  <div className="bg-navy mb-5 flex h-12 w-12 shrink-0 items-center justify-center rounded-sm">
+                    <span className="font-display text-gold text-2xl">
                       {calc.symbol}
                     </span>
                   </div>
-                  <div className="text-[0.7rem] font-semibold tracking-[0.1em] uppercase text-gold mb-2">
+                  <div className="text-gold mb-2 text-[0.7rem] font-semibold tracking-widest uppercase">
                     {calc.tag}
                   </div>
-                  <h2 className="font-display text-[1.25rem] font-bold text-navy leading-[1.3] mb-2.5 group-hover:text-gold transition-colors">
+                  <h2 className="font-display text-navy group-hover:text-gold mb-2.5 text-[1.25rem] leading-[1.3] font-bold transition-colors">
                     {calc.title}
                   </h2>
-                  <p className="text-[0.875rem] text-slate leading-[1.6] mb-5 flex-1">
+                  <p className="text-slate mb-5 flex-1 text-[0.875rem] leading-[1.6]">
                     {calc.description}
                   </p>
-                  <span className="text-[0.8125rem] font-semibold text-navy tracking-[0.04em] flex items-center gap-1.5 group-hover:text-gold transition-colors mt-auto">
+                  <span className="text-navy group-hover:text-gold mt-auto flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] transition-colors">
                     Open Calculator &rsaquo;
                   </span>
                 </Link>

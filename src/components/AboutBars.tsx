@@ -32,13 +32,13 @@ export default function AboutBars() {
     <div ref={ref} className="flex flex-col gap-3">
       {BARS.map((bar) => (
         <div key={bar.label}>
-          <div className="flex justify-between text-xs text-white/50 mb-1.5">
+          <div className="mb-1.5 flex justify-between text-xs text-white/50">
             <span>{bar.label}</span>
             <span className="text-gold">{bar.display}</span>
           </div>
-          <div className="h-1.5 bg-white/[0.08] rounded-full overflow-hidden">
+          <div className="h-1.5 overflow-hidden rounded-full bg-white/8">
             <div
-              className="h-full bg-gold rounded-full transition-[width] duration-[1200ms] ease-out"
+              className="bg-gold h-full rounded-full transition-[width] duration-1200 ease-out"
               style={{ width: "0%" }}
               data-width={`${bar.value}%`}
             />

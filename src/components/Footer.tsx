@@ -25,17 +25,17 @@ export default function Footer() {
   return (
     <footer className="bg-navy-dark pt-16 pb-8" aria-label="Site footer">
       <div className="max-w-site mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr_1fr] gap-12 mb-12">
+        <div className="mb-12 grid grid-cols-1 gap-12 md:grid-cols-[2fr_1fr_1fr_1fr]">
           {/* Brand */}
           <div>
-            <div className="mb-4 max-w-[260px]">
+            <div className="mb-4 max-w-65">
               <BrandLogo variant="full" />
             </div>
-            <p className="text-[0.875rem] text-white/45 leading-[1.65] max-w-[260px]">
+            <p className="max-w-65 text-[0.875rem] leading-[1.65] text-white/45">
               Independent accounting, tax, and advisory. Partnering with
               ambitious businesses since 2020.
             </p>
-            <div className="flex gap-3 mt-6">
+            <div className="mt-6 flex gap-3">
               {[
                 ["in", "LinkedIn"],
                 ["𝕏", "Twitter"],
@@ -46,7 +46,7 @@ export default function Footer() {
                   key={label}
                   href="#"
                   aria-label={label}
-                  className="w-9 h-9 bg-white/[0.06] border border-white/10 rounded-sm flex items-center justify-center text-[0.875rem] text-white/50 no-underline hover:border-gold hover:text-gold transition-all"
+                  className="hover:border-gold hover:text-gold flex h-9 w-9 items-center justify-center rounded-sm border border-white/10 bg-white/6 text-[0.875rem] text-white/50 no-underline transition-all"
                 >
                   {icon}
                 </a>
@@ -56,15 +56,15 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <div className="font-display text-[0.875rem] font-bold text-white mb-5 uppercase tracking-[0.06em]">
+            <div className="font-display mb-5 text-[0.875rem] font-bold tracking-[0.06em] text-white uppercase">
               Services
             </div>
-            <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
+            <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
               {SERVICES_LINKS.map((s) => (
                 <li key={s}>
                   <a
                     href="#services"
-                    className="text-white/45 no-underline text-[0.875rem] hover:text-gold transition-colors"
+                    className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
                     {s}
                   </a>
@@ -75,15 +75,15 @@ export default function Footer() {
 
           {/* Company */}
           <div>
-            <div className="font-display text-[0.875rem] font-bold text-white mb-5 uppercase tracking-[0.06em]">
+            <div className="font-display mb-5 text-[0.875rem] font-bold tracking-[0.06em] text-white uppercase">
               Company
             </div>
-            <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
+            <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
               {COMPANY_LINKS.map(([label, href]) => (
                 <li key={label}>
                   <a
                     href={href}
-                    className="text-white/45 no-underline text-[0.875rem] hover:text-gold transition-colors"
+                    className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
                     {label}
                   </a>
@@ -94,15 +94,15 @@ export default function Footer() {
 
           {/* Offices + Accreditations */}
           <div>
-            <div className="font-display text-[0.875rem] font-bold text-white mb-5 uppercase tracking-[0.06em]">
+            <div className="font-display mb-5 text-[0.875rem] font-bold tracking-[0.06em] text-white uppercase">
               Offices
             </div>
-            <ul className="list-none m-0 p-0 flex flex-col gap-2.5">
+            <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
               {OFFICES.map((o) => (
                 <li key={o}>
                   <a
                     href="#contact"
-                    className="text-white/45 no-underline text-[0.875rem] hover:text-gold transition-colors"
+                    className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
                     {o}
                   </a>
@@ -110,7 +110,7 @@ export default function Footer() {
               ))}
             </ul>
             <div className="mt-7">
-              <div className="font-display text-[0.875rem] font-bold text-white mb-3 uppercase tracking-[0.06em]">
+              <div className="font-display mb-3 text-[0.875rem] font-bold tracking-[0.06em] text-white uppercase">
                 Why Choose Us?
               </div>
               <div className="flex flex-col gap-1.5">
@@ -128,7 +128,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/[0.07] pt-7 flex flex-col md:flex-row justify-between items-center gap-3 flex-wrap">
+        <div className="flex flex-col flex-wrap items-center justify-between gap-3 border-t border-white/[0.07] pt-7 md:flex-row">
           <div className="text-[0.8125rem] text-white/30">
             © 2026 NJV Accountants. All rights reserved.
           </div>
@@ -142,7 +142,7 @@ export default function Footer() {
               <a
                 key={l}
                 href="https://www.linkedin.com/company/njv-accountants"
-                className="text-[0.8125rem] text-white/30 no-underline hover:text-gold transition-colors"
+                className="hover:text-gold text-[0.8125rem] text-white/30 no-underline transition-colors"
               >
                 {l}
               </a>
