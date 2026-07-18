@@ -7,10 +7,10 @@ export const dynamic = "force-dynamic";
 export default async function LegacyBlogPostPage({
   params,
 }: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ language: string }>;
 }) {
-  const { slug } = await params;
-  const post = await getPost(slug);
+  const { language: legacySlug } = await params;
+  const post = await getPost(legacySlug);
   if (!post?.slug?.current) notFound();
   permanentRedirect(blogPath("en", post.slug.current));
 }
