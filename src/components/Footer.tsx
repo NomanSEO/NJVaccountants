@@ -1,23 +1,25 @@
 // src/components/Footer.tsx
 import BrandLogo from "./BrandLogo";
+import Link from "next/link";
 
 const SERVICES_LINKS = [
-  "Accounting & Bookkeeping",
-  "Taxation Services",
-  "Audit & Assurance",
-  "Business Advisory",
-  "M&A Due Diligence",
-  "Forensic Accounting",
-  "ESG Reporting",
+  ["Accounting & Bookkeeping", "/#services"],
+  ["Taxation Services", "/#services"],
+  ["Audit & Assurance", "/#services"],
+  [
+    "Business Valuation",
+    "/services/business-advisory/business-valuation",
+  ],
+  ["M&A Advisory", "/services/business-advisory/ma-advisory"],
+  ["Forensic Accounting", "/#services"],
 ];
 const COMPANY_LINKS = [
-  ["About Us", "#about"],
-  ["Our Team", "#team"],
-  ["Case Studies", "#case-studies"],
-  ["Insights", "#blog"],
-  ["Testimonials", "#testimonials"],
-  ["Careers", "#contact"],
-  ["Press & Media", "#contact"],
+  ["About Us", "/about"],
+  ["Our Team", "/#team"],
+  ["Case Studies", "/#case-studies"],
+  ["Insights", "/blog"],
+  ["Testimonials", "/#testimonials"],
+  ["Contact", "/#contact"],
 ];
 const OFFICES = ["Faisalabad,Lahore"];
 
@@ -60,14 +62,14 @@ export default function Footer() {
               Services
             </div>
             <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
-              {SERVICES_LINKS.map((s) => (
-                <li key={s}>
-                  <a
-                    href="#services"
+              {SERVICES_LINKS.map(([label, href]) => (
+                <li key={label}>
+                  <Link
+                    href={href}
                     className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
-                    {s}
-                  </a>
+                    {label}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -81,12 +83,12 @@ export default function Footer() {
             <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
               {COMPANY_LINKS.map(([label, href]) => (
                 <li key={label}>
-                  <a
+                  <Link
                     href={href}
                     className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
                     {label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -100,12 +102,12 @@ export default function Footer() {
             <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
               {OFFICES.map((o) => (
                 <li key={o}>
-                  <a
-                    href="#contact"
+                  <Link
+                    href="/#contact"
                     className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
                     {o}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

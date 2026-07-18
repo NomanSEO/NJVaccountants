@@ -1,15 +1,35 @@
 "use client";
-import { useState, useEffect } from "react";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import BrandLogo from "./BrandLogo";
 import MobileMenu from "./MobileMenu";
 
-const NAV_LINKS = [
-  { href: "/#services", label: "Services" },
-  { href: "/#about", label: "About" },
+export interface NavLinkItem {
+  href: string;
+  label: string;
+  children?: Array<{ href: string; label: string }>;
+}
+
+export const NAV_LINKS: NavLinkItem[] = [
+  {
+    href: "/#services",
+    label: "Services",
+    children: [
+      {
+        href: "/services/business-advisory/business-valuation",
+        label: "Business Valuation",
+      },
+      {
+        href: "/services/business-advisory/ma-advisory",
+        label: "M&A Advisory",
+      },
+    ],
+  },
+  { href: "/about", label: "About" },
   { href: "/#case-studies", label: "Case Studies" },
   { href: "/#team", label: "Our Team" },
-  { href: "/#blog", label: "Insights" },
+  { href: "/blog", label: "Insights" },
   { href: "/calculators", label: "Calculators" },
   { href: "/#contact", label: "Contact" },
 ];
@@ -17,6 +37,8 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const servicesRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -24,12 +46,33 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!servicesOpen) return;
+    const onPointerDown = (event: PointerEvent) => {
+      if (!servicesRef.current?.contains(event.target as Node)) {
+        setServicesOpen(false);
+      }
+    };
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setServicesOpen(false);
+        servicesRef.current?.querySelector("button")?.focus();
+      }
+    };
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [servicesOpen]);
+
   return (
     <>
       <nav
         role="navigation"
         aria-label="Main navigation"
-        className={`bg-navy/97 border-gold/15 fixed top-0 z-1000 w-full border-b backdrop-blur-sm transition-shadow duration-300${scrolled ? "shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
+        className={`bg-navy/97 border-gold/15 fixed top-0 z-1000 w-full border-b backdrop-blur-sm transition-shadow duration-300${scrolled ? " shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
       >
         <div className="max-w-site mx-auto flex h-17.5 items-center justify-between gap-4 px-4 sm:px-6">
           <Link
@@ -40,21 +83,84 @@ export default function Navbar() {
             <BrandLogo priority />
           </Link>
 
-          {/* Desktop links */}
           <ul
             className="m-0 hidden list-none items-center gap-4 p-0 lg:flex xl:gap-7"
             role="list"
           >
-            {NAV_LINKS.map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="hover:text-gold text-[0.8125rem] font-medium tracking-[0.04em] whitespace-nowrap text-white/80 no-underline transition-colors"
+            {NAV_LINKS.map((link) =>
+              link.children ? (
+                <li
+                  key={link.label}
+                  ref={servicesRef}
+                  className="relative"
+                  onMouseEnter={() => setServicesOpen(true)}
+                  onMouseLeave={() => setServicesOpen(false)}
+                  onFocusCapture={() => setServicesOpen(true)}
+                  onBlurCapture={(event) => {
+                    if (
+                      !event.currentTarget.contains(
+                        event.relatedTarget as Node | null,
+                      )
+                    ) {
+                      setServicesOpen(false);
+                    }
+                  }}
                 >
-                  {link.label}
-                </Link>
-              </li>
-            ))}
+                  <button
+                    type="button"
+                    aria-haspopup="menu"
+                    aria-expanded={servicesOpen}
+                    aria-controls="services-dropdown"
+                    onClick={() => setServicesOpen((value) => !value)}
+                    className="hover:text-gold flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 text-[0.8125rem] font-medium tracking-[0.04em] whitespace-nowrap text-white/80 transition-colors"
+                  >
+                    {link.label}
+                    <span aria-hidden="true" className="text-[0.65rem]">
+                      ▾
+                    </span>
+                  </button>
+                  {servicesOpen ? (
+                    <div
+                      id="services-dropdown"
+                      role="menu"
+                      className="border-gold/15 absolute top-full left-1/2 mt-5 w-72 -translate-x-1/2 rounded-sm border bg-navy-dark p-3 shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
+                    >
+                      <div className="text-gold px-3 py-2 text-[0.7rem] font-semibold tracking-widest uppercase">
+                        Business Advisory
+                      </div>
+                      {link.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          role="menuitem"
+                          onClick={() => setServicesOpen(false)}
+                          className="hover:bg-gold/10 hover:text-gold block rounded-sm px-3 py-3 text-sm font-medium text-white/75 no-underline transition-colors"
+                        >
+                          {child.label}
+                        </Link>
+                      ))}
+                      <Link
+                        href={link.href}
+                        role="menuitem"
+                        onClick={() => setServicesOpen(false)}
+                        className="border-gold/10 text-gold mt-2 block border-t px-3 pt-3 text-xs font-semibold no-underline"
+                      >
+                        View all services →
+                      </Link>
+                    </div>
+                  ) : null}
+                </li>
+              ) : (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-gold text-[0.8125rem] font-medium tracking-[0.04em] whitespace-nowrap text-white/80 no-underline transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
 
           <Link
@@ -64,10 +170,10 @@ export default function Navbar() {
             Get a Consultation
           </Link>
 
-          {/* Hamburger */}
           <button
             className="flex cursor-pointer flex-col gap-1.25 border-0 bg-transparent p-1 lg:hidden"
             aria-label="Open menu"
+            aria-expanded={menuOpen}
             onClick={() => setMenuOpen(true)}
           >
             <span className="block h-0.5 w-6 bg-white" />
