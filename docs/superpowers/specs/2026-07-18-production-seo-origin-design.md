@@ -4,6 +4,12 @@
 
 Use `https://www.njvaccountants.com` as the sole production origin for generated SEO URLs.
 
+## Confirmed Production Defect
+
+The live endpoint at `https://www.njvaccountants.com/sitemap.xml` returns HTTP 200 with valid XML and an `application/xml` content type, but its 18 `<loc>` entries and blog alternate links use `https://njvaccountants.pk`. The `.pk` host does not resolve. The live `robots.txt` also advertises the `.pk` host and sitemap. All 18 sitemap paths return HTTP 200 when evaluated against `https://www.njvaccountants.com`, so the defect is the shared production origin rather than the route list or XML structure.
+
+The browser console exception from `cosmetic-filtering.js` is unrelated. That file is absent from both the application repository and the deployed HTML and is injected by browser content-filtering software.
+
 ## Scope
 
 - Change the centralized `SITE_URL` value to `https://www.njvaccountants.com`.
