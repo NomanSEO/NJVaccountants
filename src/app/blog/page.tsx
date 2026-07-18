@@ -1,8 +1,10 @@
 import Image from "next/image";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { getAllPosts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
+import { blogPath } from "@/lib/seo";
 
 export const revalidate = 600;
 
@@ -24,12 +26,12 @@ export default async function BlogPage() {
         {/* Hero */}
         <section className="bg-navy pt-17.5">
           <div className="max-w-site mx-auto px-6 py-20">
-            <a
+            <Link
               href="/"
               className="text-gold/70 hover:text-gold mb-8 inline-flex items-center gap-2 text-sm font-semibold no-underline transition-colors"
             >
               ← Back to Home
-            </a>
+            </Link>
             <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
               <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
               Insights & Analysis
@@ -54,9 +56,9 @@ export default async function BlogPage() {
             ) : (
               <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post, i) => (
-                  <a
+                  <Link
                     key={post._id}
-                    href={`/blog/${post.slug?.current ?? "#"}`}
+                    href={blogPath(post.languageCode, post.slug.current)}
                     className="group border-border flex flex-col overflow-hidden rounded-sm border bg-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
                   >
                     {/* Card image */}
@@ -96,6 +98,9 @@ export default async function BlogPage() {
                     <div className="flex flex-1 flex-col p-6">
                       <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
                         <span>{post.author?.name}</span>
+                        <span className="text-gold uppercase">
+                          {post.languageCode}
+                        </span>
                         <span>·</span>
                         <span>
                           {new Date(post.publishedAt).toLocaleDateString(
@@ -124,7 +129,7 @@ export default async function BlogPage() {
                         Read Article &rsaquo;
                       </span>
                     </div>
-                  </a>
+                  </Link>
                 ))}
               </div>
             )}
@@ -142,12 +147,12 @@ export default async function BlogPage() {
                 Book a free consultation with one of our senior partners.
               </div>
             </div>
-            <a
+            <Link
               href="/#contact"
               className="bg-navy hover:bg-navy-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-colors"
             >
               Speak to a Partner &rsaquo;
-            </a>
+            </Link>
           </div>
         </div>
       </main>

@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getPosts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
+import { blogPath } from "@/lib/seo";
 
 const SYMBOLS = ["§", "₤", "↗"];
 
@@ -36,8 +38,8 @@ export default async function Blog() {
                 key={post._id}
                 className="border-border group overflow-hidden rounded-sm border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
               >
-                <a
-                  href={`/blog/${post.slug?.current ?? "#"}`}
+                <Link
+                  href={blogPath(post.languageCode, post.slug.current)}
                   className="block no-underline"
                 >
                   {/* Card image */}
@@ -109,19 +111,19 @@ export default async function Blog() {
                       Read {i === 0 ? "Full Article" : "Article"} &rsaquo;
                     </span>
                   </div>
-                </a>
+                </Link>
               </article>
             );
           })}
         </div>
 
         <div className="mt-12 text-center">
-          <a
+          <Link
             href="/blog"
             className="bg-gold text-navy hover:bg-gold-light inline-flex items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider uppercase no-underline transition-all hover:-translate-y-px"
           >
             View All Insights &rsaquo;
-          </a>
+          </Link>
         </div>
       </div>
     </section>
