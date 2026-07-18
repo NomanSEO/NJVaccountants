@@ -48,7 +48,7 @@ The existing **Get a Consultation** CTA remains separate.
 - Extend each navigation item with optional children and optional dropdown heading/footer metadata.
 - Replace the Services-specific boolean with `openDropdown: string | null`, keyed by top-level label.
 - Render every desktop dropdown through one shared JSX path.
-- Reuse the existing `top-full ... pt-5` hover bridge so each visible menu remains 20px below its trigger while the pointer path stays interactive.
+- Reuse the existing `absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5` hover bridge so each visible menu remains 20px below its trigger while the pointer path stays interactive.
 - Only one desktop dropdown can be open at a time.
 - Preserve hover opening, click toggle, outside-pointer closure, Escape closure with trigger focus restoration, blur departure, and real links for destinations.
 
