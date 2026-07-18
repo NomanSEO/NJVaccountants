@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getPosts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
 import { blogPath } from "@/lib/seo";
+import AuthorPopover from "@/components/AuthorPopover";
 
 const SYMBOLS = ["§", "₤", "↗"];
 
@@ -38,10 +39,7 @@ export default async function Blog() {
                 key={post._id}
                 className="border-border group overflow-hidden rounded-sm border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
               >
-                <Link
-                  href={blogPath(post.languageCode, post.slug.current)}
-                  className="block no-underline"
-                >
+                <div className="block">
                   {/* Card image */}
                   <div
                     className="relative overflow-hidden"
@@ -82,9 +80,19 @@ export default async function Blog() {
                   </div>
 
                   {/* Card body */}
-                  <div className="p-6">
-                    <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
-                      <span>{post.author.name}</span>
+                    <div className="p-6">
+                      <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
+                      <AuthorPopover
+                        author={post.author}
+                        imageUrl={
+                          post.author.image?.asset
+                            ? urlFor(post.author.image)
+                                .width(160)
+                                .height(160)
+                                .url()
+                            : null
+                        }
+                      />
                       <span>·</span>
                       <span>
                         {new Date(post.publishedAt).toLocaleDateString(
@@ -102,16 +110,24 @@ export default async function Blog() {
                     <h3
                       className={`font-display text-navy group-hover:text-gold mb-2.5 leading-[1.3] font-bold transition-colors ${i === 0 ? "text-[1.375rem]" : "text-[1.125rem]"}`}
                     >
-                      {post.title}
+                      <Link
+                        href={blogPath(post.languageCode, post.slug.current)}
+                        className="text-inherit no-underline"
+                      >
+                        {post.title}
+                      </Link>
                     </h3>
                     <p className="text-slate mb-4 text-[0.875rem] leading-[1.6]">
                       {post.excerpt}
                     </p>
-                    <span className="text-navy group-hover:text-gold flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] no-underline transition-colors">
+                    <Link
+                      href={blogPath(post.languageCode, post.slug.current)}
+                      className="text-navy group-hover:text-gold flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] no-underline transition-colors"
+                    >
                       Read {i === 0 ? "Full Article" : "Article"} &rsaquo;
-                    </span>
+                    </Link>
                   </div>
-                </Link>
+                </div>
               </article>
             );
           })}

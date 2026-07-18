@@ -1,4 +1,8 @@
 import { getTeamMembers } from "@/sanity/lib/queries";
+import Image from "next/image";
+import Link from "next/link";
+import { urlFor } from "@/sanity/lib/sanity";
+import { authorPath } from "@/lib/seo";
 
 export default async function Team() {
   const members = await getTeamMembers();
@@ -33,13 +37,32 @@ export default async function Team() {
                 }}
               >
                 <div className="from-navy/60 absolute right-0 bottom-0 left-0 h-[40%] bg-linear-to-t to-transparent" />
-                <span className="font-display text-5xl font-bold text-white/20">
-                  {m.initials}
-                </span>
+                {m.image?.asset ? (
+                  <Image
+                    src={urlFor(m.image).width(600).height(600).url()}
+                    alt={m.image.alt ?? m.name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
+                ) : (
+                  <span className="font-display text-5xl font-bold text-white/20">
+                    {m.initials}
+                  </span>
+                )}
               </div>
               <div className="p-5">
                 <div className="font-display text-navy text-[1.0625rem] font-bold">
-                  {m.name}
+                  {m.slug?.current ? (
+                    <Link
+                      href={authorPath(m.slug.current)}
+                      className="hover:text-gold text-inherit no-underline"
+                    >
+                      {m.name}
+                    </Link>
+                  ) : (
+                    m.name
+                  )}
                 </div>
                 <div className="text-gold mt-0.5 mb-2 text-[0.8125rem] font-semibold">
                   {m.role}
@@ -50,12 +73,14 @@ export default async function Team() {
                 <div className="text-slate-light text-[0.7rem] tracking-[0.06em] uppercase">
                   {m.credentials}
                 </div>
-                <a
-                  href="#contact"
+                <Link
+                  href={
+                    m.slug?.current ? authorPath(m.slug.current) : "/#contact"
+                  }
                   className="text-gold hover:text-gold-light mt-4 inline-block text-sm font-semibold transition-colors"
                 >
-                  Work With {m.name} →
-                </a>
+                  {m.slug?.current ? "View Profile" : `Work With ${m.name}`} →
+                </Link>
               </div>
             </article>
           ))}

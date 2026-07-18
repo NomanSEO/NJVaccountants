@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import { getAllPosts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
 import { blogPath } from "@/lib/seo";
+import AuthorPopover from "@/components/AuthorPopover";
 
 export const revalidate = 600;
 
@@ -56,15 +57,16 @@ export default async function BlogPage() {
             ) : (
               <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
                 {posts.map((post, i) => (
-                  <Link
+                  <article
                     key={post._id}
-                    href={blogPath(post.languageCode, post.slug.current)}
                     className="group border-border flex flex-col overflow-hidden rounded-sm border bg-white no-underline transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_40px_rgba(11,31,58,0.08)]"
                   >
                     {/* Card image */}
-                    <div
+                    <Link
+                      href={blogPath(post.languageCode, post.slug.current)}
                       className="relative shrink-0 overflow-hidden"
                       style={{ height: "200px" }}
+                      aria-label={`Read ${post.title}`}
                     >
                       {post.headerImage?.asset ? (
                         <>
@@ -92,12 +94,24 @@ export default async function BlogPage() {
                           </span>
                         </div>
                       )}
-                    </div>
+                    </Link>
 
                     {/* Card body */}
                     <div className="flex flex-1 flex-col p-6">
                       <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
-                        <span>{post.author?.name}</span>
+                        {post.author ? (
+                          <AuthorPopover
+                            author={post.author}
+                            imageUrl={
+                              post.author.image?.asset
+                                ? urlFor(post.author.image)
+                                    .width(160)
+                                    .height(160)
+                                    .url()
+                                : null
+                            }
+                          />
+                        ) : null}
                         <span className="text-gold uppercase">
                           {post.languageCode}
                         </span>
@@ -120,16 +134,24 @@ export default async function BlogPage() {
                         )}
                       </div>
                       <h2 className="font-display text-navy group-hover:text-gold mb-2.5 text-[1.125rem] leading-[1.3] font-bold transition-colors">
-                        {post.title}
+                        <Link
+                          href={blogPath(post.languageCode, post.slug.current)}
+                          className="text-inherit no-underline"
+                        >
+                          {post.title}
+                        </Link>
                       </h2>
                       <p className="text-slate mb-4 flex-1 text-[0.875rem] leading-[1.6]">
                         {post.excerpt}
                       </p>
-                      <span className="text-navy group-hover:text-gold mt-auto flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] transition-colors">
+                      <Link
+                        href={blogPath(post.languageCode, post.slug.current)}
+                        className="text-navy group-hover:text-gold mt-auto flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] no-underline transition-colors"
+                      >
                         Read Article &rsaquo;
-                      </span>
+                      </Link>
                     </div>
-                  </Link>
+                  </article>
                 ))}
               </div>
             )}

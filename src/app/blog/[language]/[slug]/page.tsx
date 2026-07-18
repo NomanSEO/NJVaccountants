@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import MarkdownArticleBody from "@/components/MarkdownArticleBody";
 import ArticleTableOfContents from "@/components/ArticleTableOfContents";
 import JsonLd from "@/components/JsonLd";
+import AuthorPopover from "@/components/AuthorPopover";
 import { getBlogContentSource } from "@/lib/blogContent";
 import {
   extractMarkdownHeadings,
@@ -258,12 +259,15 @@ export default async function LocalizedBlogPostPage({
               )}
               <div>
                 {authorSlug ? (
-                  <Link
-                    href={authorPath(authorSlug)}
-                    className="hover:text-gold font-semibold text-white transition-colors"
-                  >
-                    {post.author.name}
-                  </Link>
+                  <AuthorPopover
+                    author={post.author}
+                    imageUrl={
+                      post.author.image?.asset
+                        ? urlFor(post.author.image).width(160).height(160).url()
+                        : null
+                    }
+                    variant="dark"
+                  />
                 ) : (
                   <span className="font-semibold text-white">
                     {post.author?.name}
