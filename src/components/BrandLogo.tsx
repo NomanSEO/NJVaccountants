@@ -14,11 +14,11 @@ export default function BrandLogo({
   if (variant === "full") {
     return (
       <Image
-        src="/njv-logo-dark.png"
+        src="/njv-logo-dark-transparent.png"
         alt="NJV Accountants"
         width={1040}
         height={684}
-        className={`bg-navy block h-auto w-full rounded-sm object-contain ${className}`}
+        className={`block h-auto w-full object-contain ${className}`}
         priority={priority}
       />
     );

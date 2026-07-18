@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { NAV_LINKS } from "@/components/Navbar";
@@ -118,6 +118,25 @@ describe("main navigation", () => {
     );
     expect(brandLogoSource).not.toContain(
       'className="bg-navy flex h-10 w-12',
+    );
+  });
+
+  it("uses a transparent full logo asset without a painted footer background", () => {
+    const brandLogoSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/BrandLogo.tsx"),
+      "utf8",
+    );
+    const transparentLogoPath = path.resolve(
+      process.cwd(),
+      "public/njv-logo-dark-transparent.png",
+    );
+
+    expect(existsSync(transparentLogoPath)).toBe(true);
+    expect(brandLogoSource).toContain(
+      'src="/njv-logo-dark-transparent.png"',
+    );
+    expect(brandLogoSource).not.toContain(
+      'className={`bg-navy block h-auto w-full rounded-sm object-contain',
     );
   });
 
