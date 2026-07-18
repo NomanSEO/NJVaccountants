@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata = {
   title: "Calculators | NJV Accountants",
@@ -113,6 +114,7 @@ const CALCULATORS = [
 export default function CalculatorsPage() {
   return (
     <>
+      <PageJsonLd path="/calculators" />
       <Navbar />
       <main>
         {/* Hero */}

@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import PersonalLoanCalculator from "@/components/PersonalLoanCalculator";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata = {
   title: "Personal Loan Calculator | NJV Accountants",
@@ -12,6 +13,7 @@ export const metadata = {
 export default function PersonalLoanCalculatorPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/personal-loan" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

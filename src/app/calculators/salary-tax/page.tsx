@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import SalaryTaxCalculator from "@/components/SalaryTaxCalculator";
 import { SALARY_TAX_SLABS_2026_27 } from "@/lib/salaryTax";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata = {
   title: "Salary Tax Calculator Pakistan 2026–2027 | NJV Accountants",
@@ -19,6 +20,7 @@ const ratePct = (rate: number) => +(rate * 100).toFixed(2);
 export default function SalaryTaxPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/salary-tax" />
       <Navbar />
       <main>
         {/* Hero */}

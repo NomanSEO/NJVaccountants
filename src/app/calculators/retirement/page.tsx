@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import RetirementCalculator from "@/components/RetirementCalculator";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata = {
   title: "Retirement Calculator | NJV Accountants",
@@ -12,6 +13,7 @@ export const metadata = {
 export default function RetirementCalculatorPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/retirement" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

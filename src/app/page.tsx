@@ -15,12 +15,14 @@ import Footer from "@/components/Footer";
 import HeroSkeleton from "@/components/skeletons/HeroSkeleton";
 import SectionSkeleton from "@/components/skeletons/SectionSkeleton";
 import CardGridSkeleton from "@/components/skeletons/CardGridSkeleton";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const revalidate = 600;
 
 export default function Page() {
   return (
     <>
+      <PageJsonLd path="/" />
       <Navbar />
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import RothIraCalculator from "@/components/RothIraCalculator";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata: Metadata = {
   title: "Roth IRA Calculator 2026 | NJV Accountants",
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function RothIraCalculatorPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/roth-ira" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

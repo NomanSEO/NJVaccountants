@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import InvestmentCalculator from "@/components/InvestmentCalculator";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata = {
   title: "Investment Calculator | NJV Accountants",
@@ -11,6 +12,7 @@ export const metadata = {
 export default function InvestmentCalculatorPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/investment" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

@@ -2,6 +2,7 @@ import CDCalculator from "@/components/CDCalculator";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata = {
   title: "CD Calculator | NJV Accountants",
@@ -11,6 +12,7 @@ export const metadata = {
 export default function CDCalculatorPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/cd" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

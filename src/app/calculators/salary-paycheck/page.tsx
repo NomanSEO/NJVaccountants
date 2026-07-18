@@ -2,6 +2,7 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SalaryPaycheckCalculator from "@/components/SalaryPaycheckCalculator";
 import Link from "next/link";
+import PageJsonLd from "@/components/PageJsonLd";
 export const metadata = {
   title: "Salary Paycheck Calculator 2026 | NJV Accountants",
   description:
@@ -10,6 +11,7 @@ export const metadata = {
 export default function SalaryPaycheckPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/salary-paycheck" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

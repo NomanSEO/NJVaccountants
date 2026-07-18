@@ -4,6 +4,7 @@ import FederalTaxCalculator from "@/components/FederalTaxCalculator";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { FEDERAL_TAX_RULES_2026, type FilingStatus } from "@/lib/federalTax";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const metadata: Metadata = {
   title: "Federal Income Tax Calculator 2026 | NJV Accountants",
@@ -23,6 +24,7 @@ const money = (amount: number) => `$${amount.toLocaleString("en-US")}`;
 export default function FederalTaxPage() {
   return (
     <>
+      <PageJsonLd path="/calculators/federal-tax" />
       <Navbar />
       <main>
         <section className="bg-navy pt-17.5">

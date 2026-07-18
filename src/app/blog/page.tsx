@@ -6,6 +6,7 @@ import { getAllPosts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
 import { blogPath } from "@/lib/seo";
 import AuthorPopover from "@/components/AuthorPopover";
+import PageJsonLd from "@/components/PageJsonLd";
 
 export const revalidate = 600;
 
@@ -22,6 +23,7 @@ export default async function BlogPage() {
 
   return (
     <>
+      <PageJsonLd path="/blog" />
       <Navbar />
       <main>
         {/* Hero */}
