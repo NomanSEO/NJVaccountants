@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import {
   handleContactSubmission,
+  contactMessageForStatus,
   validateContactPayload,
   type ContactConfig,
 } from "@/lib/contact";
@@ -127,5 +128,13 @@ describe("handleContactSubmission", () => {
     });
     expect(failed).toEqual({ status: "delivery_error" });
     expect(thrown).toEqual({ status: "delivery_error" });
+  });
+});
+
+describe("contactMessageForStatus", () => {
+  it("provides specific accessible messages for CAPTCHA and unavailable states", () => {
+    expect(contactMessageForStatus("captcha_error")).toContain("reCAPTCHA");
+    expect(contactMessageForStatus("unavailable")).toContain("temporarily unavailable");
+    expect(contactMessageForStatus("delivery_error")).not.toContain("Mailjet");
   });
 });

@@ -29,6 +29,27 @@ export type ContactResult =
   | { status: "unavailable" }
   | { status: "delivery_error" };
 
+export type ContactStatus = ContactResult["status"] | "idle" | "submitting";
+
+export function contactMessageForStatus(status: ContactStatus): string {
+  switch (status) {
+    case "success":
+      return "Enquiry sent successfully. We will be in touch soon.";
+    case "validation_error":
+      return "Check the highlighted fields and try again.";
+    case "captcha_error":
+      return "The reCAPTCHA check could not be verified. Please complete it again.";
+    case "unavailable":
+      return "Online enquiries are temporarily unavailable. Please contact us on WhatsApp or by phone.";
+    case "delivery_error":
+      return "We could not send your enquiry right now. Please try again or use WhatsApp.";
+    case "submitting":
+      return "Sending your enquiry…";
+    case "idle":
+      return "";
+  }
+}
+
 export interface ContactDependencies {
   verifyCaptcha: (
     token: string,
