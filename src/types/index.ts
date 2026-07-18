@@ -34,7 +34,40 @@ export interface TeamMember {
   gradientFrom: string;
   gradientTo: string;
   order: number;
+  slug?: { current: string };
+  shortBio?: string;
+  fullBio?: PortableTextBlock[];
+  image?: SanityImage;
+  email?: string;
+  linkedIn?: string;
+  expertise?: string[];
+  education?: string[];
+  experience?: AuthorExperience[];
+  achievements?: string[];
+  yearsExperience?: number;
+  schemaMarkup?: string;
 }
+
+export interface AuthorExperience {
+  _key?: string;
+  title?: string;
+  organization?: string;
+  period?: string;
+  description?: string;
+}
+
+export interface AuthorSummary {
+  _id: string;
+  name: string;
+  role?: string;
+  bio?: string;
+  shortBio?: string;
+  credentials?: string;
+  slug?: { current: string };
+  image?: SanityImage;
+}
+
+export type AuthorProfile = TeamMember;
 
 export interface Testimonial {
   _id: string;
@@ -68,19 +101,64 @@ export interface SanityImage {
   caption?: string;
 }
 
+export interface PortableTextBlock {
+  _type: string;
+  _key?: string;
+  [key: string]: unknown;
+}
+
 export interface Post {
   _id: string;
+  _updatedAt?: string;
   title: string;
   slug: { current: string };
   excerpt: string;
   category: string;
-  author: { name: string };
+  author: AuthorSummary;
   publishedAt: string;
+  updatedAt?: string;
   readTime: number;
   headerImage?: SanityImage;
+  languageCode: string;
+  languageName?: string;
+  translationRootId?: string;
+  schemaMarkup?: string;
 }
 
 export interface PostFull extends Post {
   markdown?: string;
-  body: any[];
+  body: PortableTextBlock[];
+}
+
+export interface PostTranslation {
+  _id: string;
+  _updatedAt?: string;
+  title: string;
+  slug: { current: string };
+  languageCode: string;
+  languageName?: string;
+}
+
+export interface SitemapAuthor {
+  _id: string;
+  _updatedAt?: string;
+  slug?: { current: string };
+}
+
+export interface PageSeo {
+  _id: string;
+  path: string;
+  label?: string;
+  schemaMarkup?: string;
+}
+
+export interface ContentPage {
+  _id: string;
+  path: string;
+  title: string;
+  eyebrow?: string;
+  intro: string;
+  body: PortableTextBlock[];
+  ctaTitle?: string;
+  ctaText?: string;
 }

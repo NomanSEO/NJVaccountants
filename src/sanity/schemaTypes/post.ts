@@ -1,5 +1,6 @@
 // sanity/schemaTypes/post.ts
 import { defineType, defineField, defineArrayMember } from "sanity";
+import { schemaMarkupField } from "./schemaMarkup";
 
 export const post = defineType({
   name: "post",
@@ -16,6 +17,24 @@ export const post = defineType({
     defineField({ name: "excerpt", type: "text", title: "Excerpt", rows: 2 }),
     defineField({ name: "category", type: "string", title: "Category" }),
     defineField({
+      name: "language",
+      type: "reference",
+      title: "Language",
+      to: [{ type: "language" }],
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "translationOf",
+      type: "reference",
+      title: "English Original",
+      description:
+        "For translated posts, select the original English article. Leave empty on the English article.",
+      to: [{ type: "post" }],
+      options: {
+        filter: '!defined(translationOf) && coalesce(language->code, "en") == "en"',
+      },
+    }),
+    defineField({
       name: "author",
       type: "reference",
       title: "Author",
@@ -25,6 +44,11 @@ export const post = defineType({
       name: "publishedAt",
       type: "datetime",
       title: "Published At",
+    }),
+    defineField({
+      name: "updatedAt",
+      type: "datetime",
+      title: "Updated At",
     }),
     defineField({
       name: "readTime",
@@ -63,5 +87,6 @@ export const post = defineType({
         defineArrayMember({ type: "table", title: "Table" }),
       ],
     }),
+    schemaMarkupField,
   ],
 });
