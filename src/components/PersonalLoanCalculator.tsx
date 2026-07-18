@@ -21,6 +21,24 @@ const fieldClass =
   "w-full rounded-sm border border-border bg-cream px-3 py-2.5 text-navy outline-none transition focus:border-gold focus:ring-2 focus:ring-gold/20";
 const number = (value: string) => Number(value) || 0;
 
+function makeLoanInput(
+  values: typeof initial,
+  rate: string,
+  term: string,
+  fee: string,
+): LoanScheduleInput {
+  return {
+    currency: values.currency,
+    principal: number(values.principal),
+    annualRate: number(rate) / 100,
+    termMonths: number(term) * 12,
+    financedFees: number(fee),
+    loanType: "repayment",
+    deferredMonths: 0,
+    balloonAmount: 0,
+  };
+}
+
 export default function PersonalLoanCalculator() {
   const [values, setValues] = useState(initial);
   const [compare, setCompare] = useState(false);
@@ -64,31 +82,28 @@ export default function PersonalLoanCalculator() {
     return next;
   }, [values, offer, compare]);
 
-  const makeInput = (
-    rate: string,
-    term: string,
-    fee: string,
-  ): LoanScheduleInput => ({
-    currency: values.currency,
-    principal: number(values.principal),
-    annualRate: number(rate) / 100,
-    termMonths: number(term) * 12,
-    financedFees: number(fee),
-    loanType: "repayment",
-    deferredMonths: 0,
-    balloonAmount: 0,
-  });
   const input = useMemo(
-    () => makeInput(values.annualRate, values.termYears, values.originationFee),
+    () =>
+      makeLoanInput(
+        values,
+        values.annualRate,
+        values.termYears,
+        values.originationFee,
+      ),
     [values],
   );
   const result = useMemo(() => calculateLoanSchedule(input), [input]);
   const comparison = useMemo(
     () =>
       calculateLoanSchedule(
-        makeInput(offer.annualRate, offer.termYears, offer.originationFee),
+        makeLoanInput(
+          values,
+          offer.annualRate,
+          offer.termYears,
+          offer.originationFee,
+        ),
       ),
-    [values.currency, values.principal, offer],
+    [values, offer],
   );
   const valid = Object.keys(errors).length === 0;
   const visible = showAll ? result.schedule : result.schedule.slice(0, 12);

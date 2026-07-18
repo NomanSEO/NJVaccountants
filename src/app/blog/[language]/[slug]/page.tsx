@@ -24,7 +24,6 @@ import {
 } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
 import {
-  absoluteUrl,
   authorPath,
   blogPath,
   buildBlogAlternates,

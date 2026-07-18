@@ -4,6 +4,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import PublicIntegrations from "@/components/PublicIntegrations";
+import { SITE_URL } from "@/config/site";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -20,6 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "NJV Accountants | Accounting, Tax & Audit Services",
   description:
     "NJV Accountants — trusted accounting, taxation, advisory, and audit services for businesses and individuals. Decades of expertise, measurable results.",
