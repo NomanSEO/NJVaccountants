@@ -68,4 +68,16 @@ describe("main navigation", () => {
       'className="bg-navy flex h-10 w-12',
     );
   });
+
+  it("bridges the visual gap between Services and its dropdown", () => {
+    const navbarSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/Navbar.tsx"),
+      "utf8",
+    );
+
+    expect(navbarSource).toContain(
+      'className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5"',
+    );
+    expect(navbarSource).not.toContain("top-full left-1/2 mt-5");
+  });
 });

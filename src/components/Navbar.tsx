@@ -119,33 +119,35 @@ export default function Navbar() {
                     </span>
                   </button>
                   {servicesOpen ? (
-                    <div
-                      id="services-dropdown"
-                      role="menu"
-                      className="border-gold/15 absolute top-full left-1/2 mt-5 w-72 -translate-x-1/2 rounded-sm border bg-navy-dark p-3 shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
-                    >
-                      <div className="text-gold px-3 py-2 text-[0.7rem] font-semibold tracking-widest uppercase">
-                        Business Advisory
-                      </div>
-                      {link.children.map((child) => (
+                    <div className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5">
+                      <div
+                        id="services-dropdown"
+                        role="menu"
+                        className="border-gold/15 rounded-sm border bg-navy-dark p-3 shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
+                      >
+                        <div className="text-gold px-3 py-2 text-[0.7rem] font-semibold tracking-widest uppercase">
+                          Business Advisory
+                        </div>
+                        {link.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            role="menuitem"
+                            onClick={() => setServicesOpen(false)}
+                            className="hover:bg-gold/10 hover:text-gold block rounded-sm px-3 py-3 text-sm font-medium text-white/75 no-underline transition-colors"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
                         <Link
-                          key={child.href}
-                          href={child.href}
+                          href={link.href}
                           role="menuitem"
                           onClick={() => setServicesOpen(false)}
-                          className="hover:bg-gold/10 hover:text-gold block rounded-sm px-3 py-3 text-sm font-medium text-white/75 no-underline transition-colors"
+                          className="border-gold/10 text-gold mt-2 block border-t px-3 pt-3 text-xs font-semibold no-underline"
                         >
-                          {child.label}
+                          View all services →
                         </Link>
-                      ))}
-                      <Link
-                        href={link.href}
-                        role="menuitem"
-                        onClick={() => setServicesOpen(false)}
-                        className="border-gold/10 text-gold mt-2 block border-t px-3 pt-3 text-xs font-semibold no-underline"
-                      >
-                        View all services →
-                      </Link>
+                      </div>
                     </div>
                   ) : null}
                 </li>
