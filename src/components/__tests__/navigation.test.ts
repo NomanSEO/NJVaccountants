@@ -47,4 +47,25 @@ describe("main navigation", () => {
 
     expect(mobileMenuSource).toContain("z-1001");
   });
+
+  it("uses a solid navy navbar and a transparent compact logo asset", () => {
+    const navbarSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/Navbar.tsx"),
+      "utf8",
+    );
+    const brandLogoSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/BrandLogo.tsx"),
+      "utf8",
+    );
+
+    expect(navbarSource).toContain("bg-navy border-gold/15");
+    expect(navbarSource).not.toContain("bg-navy/97");
+    expect(navbarSource).not.toContain("backdrop-blur");
+    expect(brandLogoSource).toContain(
+      'src="/njv-logo-mark-transparent.png"',
+    );
+    expect(brandLogoSource).not.toContain(
+      'className="bg-navy flex h-10 w-12',
+    );
+  });
 });

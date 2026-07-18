@@ -26,9 +26,9 @@ export default function BrandLogo({
 
   return (
     <span className={`inline-flex items-center gap-2.5 ${className}`}>
-      <span className="bg-navy flex h-10 w-12 shrink-0 items-center justify-center overflow-hidden rounded-sm sm:h-11 sm:w-14">
+      <span className="flex h-10 w-12 shrink-0 items-center justify-center overflow-hidden sm:h-11 sm:w-14">
         <Image
-          src="/njv-logo-mark-dark.png"
+          src="/njv-logo-mark-transparent.png"
           alt=""
           width={640}
           height={455}

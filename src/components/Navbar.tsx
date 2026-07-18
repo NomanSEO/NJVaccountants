@@ -72,7 +72,7 @@ export default function Navbar() {
       <nav
         role="navigation"
         aria-label="Main navigation"
-        className={`bg-navy/97 border-gold/15 fixed top-0 z-1000 w-full border-b backdrop-blur-sm transition-shadow duration-300${scrolled ? " shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
+        className={`bg-navy border-gold/15 fixed top-0 z-1000 w-full border-b transition-shadow duration-300${scrolled ? " shadow-[0_4px_24px_rgba(0,0,0,0.3)]" : ""}`}
       >
         <div className="max-w-site mx-auto flex h-17.5 items-center justify-between gap-4 px-4 sm:px-6">
           <Link
