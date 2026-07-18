@@ -39,6 +39,14 @@ export const post = defineType({
       fields: [defineField({ name: "alt", type: "string", title: "Alt Text" })],
     }),
     defineField({
+      name: "markdown",
+      title: "Markdown Content",
+      description:
+        "GitHub-flavored Markdown. When populated, this takes precedence over Body Content on the site.",
+      type: "text",
+      rows: 20,
+    }),
+    defineField({
       name: "body",
       title: "Body Content",
       type: "array",

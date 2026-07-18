@@ -4,6 +4,8 @@ import { PortableText } from "next-sanity";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MarkdownArticleBody from "@/components/MarkdownArticleBody";
+import { getBlogContentSource } from "@/lib/blogContent";
 import { getPost, getAllPosts } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
 
@@ -112,6 +114,8 @@ export default async function BlogPostPage({
   const post = await getPost(slug);
   if (!post) notFound();
 
+  const contentSource = getBlogContentSource(post.markdown, post.body);
+
   const authorInitials = post.author?.name
     ? post.author.name
         .split(" ")
@@ -204,7 +208,9 @@ export default async function BlogPostPage({
         {/* Article body */}
         <section className="bg-white">
           <div className="mx-auto max-w-200 px-6 py-16">
-            {post.body && post.body.length > 0 ? (
+            {contentSource === "markdown" ? (
+              <MarkdownArticleBody markdown={post.markdown!} />
+            ) : contentSource === "portableText" ? (
               <div className="prose">
                 <PortableText
                   value={post.body}

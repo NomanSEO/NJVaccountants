@@ -32,7 +32,7 @@ export default function SalaryPaycheckPage() {
           </div>
         </section>
         <section className="bg-white py-16">
-          <div className="max-w-site mx-auto max-w-3xl px-6">
+          <div className="mx-auto max-w-3xl px-6">
             <h2 className="font-display text-navy text-3xl font-bold">
               How this Salary Paycheck Calculator works
             </h2>

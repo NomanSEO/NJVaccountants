@@ -81,5 +81,6 @@ export interface Post {
 }
 
 export interface PostFull extends Post {
+  markdown?: string;
   body: any[];
 }

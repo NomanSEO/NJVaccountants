@@ -186,6 +186,60 @@
 .prose blockquote p {
   margin-bottom: 0;
 }
+.prose table {
+  width: 100%;
+  margin: 2.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.prose th,
+.prose td {
+  border: 1px solid #e2d9c8;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose th {
+  background: #0b1f3a;
+  color: #fff;
+  font-weight: 600;
+}
+.prose tr:nth-child(even) {
+  background: #f8f6f1;
+}
+.prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 2.5rem 0;
+  border-radius: 0.125rem;
+}
+.prose code {
+  border-radius: 0.125rem;
+  background: #f8f6f1;
+  padding: 0.125rem 0.35rem;
+  font-size: 0.9em;
+}
+.prose pre {
+  overflow-x: auto;
+  margin: 2rem 0;
+  padding: 1rem;
+  background: #0b1f3a;
+  color: #fff;
+}
+.prose pre code {
+  padding: 0;
+  background: transparent;
+  color: inherit;
+}
+.prose input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+.prose hr {
+  margin: 2.5rem 0;
+  border: 0;
+  border-top: 1px solid #e2d9c8;
+}
 
 /* Calculator layouts stay dense enough for phones without changing desktop containers. */
 @media (max-width: 639px) {
