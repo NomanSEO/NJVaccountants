@@ -31,6 +31,44 @@ export type ContactResult =
 
 export type ContactStatus = ContactResult["status"] | "idle" | "submitting";
 
+export type JsonRequestBodyResult =
+  | { ok: true; value: unknown }
+  | { ok: false; reason: "invalid_json" | "too_large" };
+
+export async function readJsonRequestBody(
+  request: Request,
+  maximumBytes: number,
+): Promise<JsonRequestBodyResult> {
+  const reader = request.body?.getReader();
+  if (!reader) return { ok: false, reason: "invalid_json" };
+
+  const chunks: Uint8Array[] = [];
+  let byteLength = 0;
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    byteLength += value.byteLength;
+    if (byteLength > maximumBytes) {
+      await reader.cancel();
+      return { ok: false, reason: "too_large" };
+    }
+    chunks.push(value);
+  }
+
+  const bytes = new Uint8Array(byteLength);
+  let offset = 0;
+  for (const chunk of chunks) {
+    bytes.set(chunk, offset);
+    offset += chunk.byteLength;
+  }
+
+  try {
+    return { ok: true, value: JSON.parse(new TextDecoder().decode(bytes)) };
+  } catch {
+    return { ok: false, reason: "invalid_json" };
+  }
+}
+
 export function contactMessageForStatus(status: ContactStatus): string {
   switch (status) {
     case "success":

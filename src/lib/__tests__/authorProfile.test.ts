@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { getAuthorSectionVisibility } from "@/lib/authorProfile";
 
@@ -32,5 +34,17 @@ describe("getAuthorSectionVisibility", () => {
       experience: false,
       achievements: false,
     });
+  });
+
+  it("requires a profile slug in the author editing schema", () => {
+    const schemaSource = readFileSync(
+      path.resolve(process.cwd(), "src/sanity/schemaTypes/teamMember.ts"),
+      "utf8",
+    );
+    const slugField = schemaSource.match(
+      /name:\s*"slug"[\s\S]*?options:\s*\{\s*source:\s*"name",\s*maxLength:\s*96\s*\}[\s\S]*?\}\),/,
+    )?.[0];
+
+    expect(slugField).toContain("Rule.required()");
   });
 });

@@ -3,6 +3,7 @@ import { CONTACT_RECIPIENT } from "@/config/site";
 import {
   buildContactEmail,
   handleContactSubmission,
+  readJsonRequestBody,
   type ContactConfig,
   type ContactData,
   type ContactResult,
@@ -117,17 +118,21 @@ export async function POST(request: Request) {
     );
   }
 
-  let payload: unknown;
-  try {
-    payload = await request.json();
-  } catch {
+  const parsedBody = await readJsonRequestBody(request, MAX_REQUEST_BYTES);
+  if (!parsedBody.ok && parsedBody.reason === "too_large") {
+    return NextResponse.json(
+      { status: "validation_error", message: "Request is too large." },
+      { status: 413 },
+    );
+  }
+  if (!parsedBody.ok) {
     return NextResponse.json(
       { status: "validation_error", message: "Invalid JSON request." },
       { status: 400 },
     );
   }
 
-  const result = await handleContactSubmission(payload, configuration(), {
+  const result = await handleContactSubmission(parsedBody.value, configuration(), {
     verifyCaptcha,
     sendMail: sendMailjet,
   });

@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   handleContactSubmission,
   contactMessageForStatus,
+  readJsonRequestBody,
   validateContactPayload,
   type ContactConfig,
 } from "@/lib/contact";
@@ -25,6 +26,42 @@ const config: ContactConfig = {
   recaptchaSecret: "captcha-secret",
   recipientEmail: "usamaashraf82@live.com",
 };
+
+describe("readJsonRequestBody", () => {
+  it("enforces the byte limit while reading a request without Content-Length", async () => {
+    const request = new Request("https://njvaccountants.pk/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: "x".repeat(2048) }),
+    });
+
+    expect(request.headers.has("content-length")).toBe(false);
+    await expect(readJsonRequestBody(request, 1024)).resolves.toEqual({
+      ok: false,
+      reason: "too_large",
+    });
+  });
+
+  it("parses valid JSON and reports malformed JSON", async () => {
+    const valid = new Request("https://njvaccountants.pk/api/contact", {
+      method: "POST",
+      body: '{"firstName":"Usama"}',
+    });
+    const invalid = new Request("https://njvaccountants.pk/api/contact", {
+      method: "POST",
+      body: "{invalid",
+    });
+
+    await expect(readJsonRequestBody(valid, 1024)).resolves.toEqual({
+      ok: true,
+      value: { firstName: "Usama" },
+    });
+    await expect(readJsonRequestBody(invalid, 1024)).resolves.toEqual({
+      ok: false,
+      reason: "invalid_json",
+    });
+  });
+});
 
 describe("validateContactPayload", () => {
   it("normalizes a valid payload", () => {

@@ -20,7 +20,7 @@ export default function MobileMenu({ open, onClose, links }: Props) {
   if (!open) return null;
   return (
     <div
-      className="bg-navy fixed inset-0 z-999 overflow-y-auto px-6 py-24"
+      className="bg-navy fixed inset-0 z-1001 overflow-y-auto px-6 py-24"
       role="dialog"
       aria-modal="true"
       aria-label="Mobile navigation"

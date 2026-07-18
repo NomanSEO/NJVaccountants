@@ -13,6 +13,7 @@ export const teamMember = defineType({
       title: "Profile Slug",
       type: "slug",
       options: { source: "name", maxLength: 96 },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({ name: "role", type: "string", title: "Role / Title" }),
     defineField({ name: "bio", type: "text", title: "Bio", rows: 3 }),

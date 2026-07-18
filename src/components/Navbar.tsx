@@ -95,7 +95,6 @@ export default function Navbar() {
                   className="relative"
                   onMouseEnter={() => setServicesOpen(true)}
                   onMouseLeave={() => setServicesOpen(false)}
-                  onFocusCapture={() => setServicesOpen(true)}
                   onBlurCapture={(event) => {
                     if (
                       !event.currentTarget.contains(

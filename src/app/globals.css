@@ -215,6 +215,7 @@
   border-radius: 0.125rem;
 }
 .prose code {
+  overflow-wrap: anywhere;
   border-radius: 0.125rem;
   background: #f8f6f1;
   padding: 0.125rem 0.35rem;
