@@ -4,38 +4,77 @@ import { describe, expect, it } from "vitest";
 import { NAV_LINKS } from "@/components/Navbar";
 
 describe("main navigation", () => {
-  it("exposes both Business Advisory routes under Services", () => {
-    const services = NAV_LINKS.find((link) => link.label === "Services");
-    expect(services?.children).toEqual([
-      {
-        href: "/services/business-advisory/business-valuation",
-        label: "Business Valuation",
-      },
-      {
-        href: "/services/business-advisory/ma-advisory",
-        label: "M&A Advisory",
-      },
+  it("uses four compact top-level navigation items", () => {
+    expect(NAV_LINKS.map(({ label }) => label)).toEqual([
+      "Services",
+      "About",
+      "Calculators",
+      "Blogs",
     ]);
   });
 
-  it("uses full paths for standalone About and Insights pages", () => {
-    expect(NAV_LINKS).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ href: "/about", label: "About" }),
-        expect.objectContaining({ href: "/blog", label: "Insights" }),
-      ]),
-    );
+  it("groups the approved destinations under each dropdown", () => {
+    expect(NAV_LINKS.find(({ label }) => label === "Services")).toMatchObject({
+      href: "/#services",
+      dropdownLabel: "Professional Services",
+      footerLabel: "View All Services",
+      children: [
+        { href: "/#services", label: "Accounting & Bookkeeping" },
+        { href: "/#services", label: "Taxation Services" },
+        { href: "/#services", label: "Audit & Assurance" },
+        {
+          href: "/services/business-advisory/business-valuation",
+          label: "Business Valuation",
+        },
+        {
+          href: "/services/business-advisory/ma-advisory",
+          label: "M&A Advisory",
+        },
+      ],
+    });
+
+    expect(NAV_LINKS.find(({ label }) => label === "About")).toMatchObject({
+      dropdownLabel: "Company",
+      children: [
+        { href: "/about", label: "About Us" },
+        { href: "/#case-studies", label: "Case Studies" },
+        { href: "/#team", label: "Our Team" },
+        { href: "/#contact", label: "Contact" },
+      ],
+    });
+
+    expect(
+      NAV_LINKS.find(({ label }) => label === "Calculators"),
+    ).toMatchObject({
+      href: "/calculators",
+      dropdownLabel: "Featured Calculators",
+      footerLabel: "View All Calculators",
+      children: [
+        { href: "/calculators/salary-tax", label: "Salary Tax Calculator" },
+        { href: "/calculators/mortgage", label: "Mortgage Calculator" },
+        { href: "/calculators/investment", label: "Investment Calculator" },
+      ],
+    });
+
+    expect(NAV_LINKS.find(({ label }) => label === "Blogs")).toEqual({
+      href: "/blog",
+      label: "Blogs",
+    });
   });
 
-  it("does not open Services on focus before the activation click toggles it", () => {
+  it("uses generic single-open dropdown state", () => {
     const navbarSource = readFileSync(
       path.resolve(process.cwd(), "src/components/Navbar.tsx"),
       "utf8",
     );
 
+    expect(navbarSource).toContain(
+      "const [openDropdown, setOpenDropdown] = useState<string | null>(null)",
+    );
+    expect(navbarSource).not.toContain("servicesOpen");
     expect(navbarSource).not.toContain("onFocusCapture");
     expect(navbarSource).toContain(
-      "onClick={() => setServicesOpen((value) => !value)}",
+      'className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5"',
     );
   });
 

@@ -8,6 +8,8 @@ import MobileMenu from "./MobileMenu";
 export interface NavLinkItem {
   href: string;
   label: string;
+  dropdownLabel?: string;
+  footerLabel?: string;
   children?: Array<{ href: string; label: string }>;
 }
 
@@ -15,7 +17,12 @@ export const NAV_LINKS: NavLinkItem[] = [
   {
     href: "/#services",
     label: "Services",
+    dropdownLabel: "Professional Services",
+    footerLabel: "View All Services",
     children: [
+      { href: "/#services", label: "Accounting & Bookkeeping" },
+      { href: "/#services", label: "Taxation Services" },
+      { href: "/#services", label: "Audit & Assurance" },
       {
         href: "/services/business-advisory/business-valuation",
         label: "Business Valuation",
@@ -26,19 +33,37 @@ export const NAV_LINKS: NavLinkItem[] = [
       },
     ],
   },
-  { href: "/about", label: "About" },
-  { href: "/#case-studies", label: "Case Studies" },
-  { href: "/#team", label: "Our Team" },
-  { href: "/blog", label: "Insights" },
-  { href: "/calculators", label: "Calculators" },
-  { href: "/#contact", label: "Contact" },
+  {
+    href: "/about",
+    label: "About",
+    dropdownLabel: "Company",
+    children: [
+      { href: "/about", label: "About Us" },
+      { href: "/#case-studies", label: "Case Studies" },
+      { href: "/#team", label: "Our Team" },
+      { href: "/#contact", label: "Contact" },
+    ],
+  },
+  {
+    href: "/calculators",
+    label: "Calculators",
+    dropdownLabel: "Featured Calculators",
+    footerLabel: "View All Calculators",
+    children: [
+      { href: "/calculators/salary-tax", label: "Salary Tax Calculator" },
+      { href: "/calculators/mortgage", label: "Mortgage Calculator" },
+      { href: "/calculators/investment", label: "Investment Calculator" },
+    ],
+  },
+  { href: "/blog", label: "Blogs" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
-  const servicesRef = useRef<HTMLLIElement>(null);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const navListRef = useRef<HTMLUListElement>(null);
+  const triggerRefs = useRef(new Map<string, HTMLButtonElement>());
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -47,16 +72,17 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (!servicesOpen) return;
+    if (!openDropdown) return;
     const onPointerDown = (event: PointerEvent) => {
-      if (!servicesRef.current?.contains(event.target as Node)) {
-        setServicesOpen(false);
+      if (!navListRef.current?.contains(event.target as Node)) {
+        setOpenDropdown(null);
       }
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        setServicesOpen(false);
-        servicesRef.current?.querySelector("button")?.focus();
+        const activeLabel = openDropdown;
+        setOpenDropdown(null);
+        triggerRefs.current.get(activeLabel)?.focus();
       }
     };
     document.addEventListener("pointerdown", onPointerDown);
@@ -65,7 +91,7 @@ export default function Navbar() {
       document.removeEventListener("pointerdown", onPointerDown);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [servicesOpen]);
+  }, [openDropdown]);
 
   return (
     <>
@@ -83,34 +109,45 @@ export default function Navbar() {
             <BrandLogo priority />
           </Link>
 
-          <ul
-            className="m-0 hidden list-none items-center gap-4 p-0 lg:flex xl:gap-7"
-            role="list"
-          >
+           <ul
+             ref={navListRef}
+             className="m-0 hidden list-none items-center gap-6 p-0 lg:flex xl:gap-8"
+             role="list"
+           >
             {NAV_LINKS.map((link) =>
               link.children ? (
-                <li
-                  key={link.label}
-                  ref={servicesRef}
-                  className="relative"
-                  onMouseEnter={() => setServicesOpen(true)}
-                  onMouseLeave={() => setServicesOpen(false)}
-                  onBlurCapture={(event) => {
+                 <li
+                   key={link.label}
+                   className="relative"
+                   onMouseEnter={() => setOpenDropdown(link.label)}
+                   onMouseLeave={() => setOpenDropdown(null)}
+                   onBlurCapture={(event) => {
                     if (
                       !event.currentTarget.contains(
                         event.relatedTarget as Node | null,
                       )
                     ) {
-                      setServicesOpen(false);
-                    }
-                  }}
-                >
-                  <button
-                    type="button"
-                    aria-haspopup="menu"
-                    aria-expanded={servicesOpen}
-                    aria-controls="services-dropdown"
-                    onClick={() => setServicesOpen((value) => !value)}
+                       setOpenDropdown(null);
+                     }
+                   }}
+                 >
+                   <button
+                     ref={(element) => {
+                       if (element) {
+                         triggerRefs.current.set(link.label, element);
+                       } else {
+                         triggerRefs.current.delete(link.label);
+                       }
+                     }}
+                     type="button"
+                     aria-haspopup="menu"
+                     aria-expanded={openDropdown === link.label}
+                     aria-controls={`nav-${link.label.toLowerCase()}-dropdown`}
+                     onClick={() =>
+                       setOpenDropdown((current) =>
+                         current === link.label ? null : link.label,
+                       )
+                     }
                     className="hover:text-gold flex cursor-pointer items-center gap-1 border-0 bg-transparent p-0 text-[0.8125rem] font-medium tracking-[0.04em] whitespace-nowrap text-white/80 transition-colors"
                   >
                     {link.label}
@@ -118,35 +155,37 @@ export default function Navbar() {
                       ▾
                     </span>
                   </button>
-                  {servicesOpen ? (
-                    <div className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5">
-                      <div
-                        id="services-dropdown"
-                        role="menu"
+                   {openDropdown === link.label ? (
+                     <div className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5">
+                       <div
+                         id={`nav-${link.label.toLowerCase()}-dropdown`}
+                         role="menu"
                         className="border-gold/15 rounded-sm border bg-navy-dark p-3 shadow-[0_18px_50px_rgba(0,0,0,0.35)]"
                       >
                         <div className="text-gold px-3 py-2 text-[0.7rem] font-semibold tracking-widest uppercase">
-                          Business Advisory
-                        </div>
-                        {link.children.map((child) => (
-                          <Link
-                            key={child.href}
-                            href={child.href}
-                            role="menuitem"
-                            onClick={() => setServicesOpen(false)}
+                           {link.dropdownLabel}
+                         </div>
+                         {link.children.map((child) => (
+                           <Link
+                             key={`${child.href}-${child.label}`}
+                             href={child.href}
+                             role="menuitem"
+                             onClick={() => setOpenDropdown(null)}
                             className="hover:bg-gold/10 hover:text-gold block rounded-sm px-3 py-3 text-sm font-medium text-white/75 no-underline transition-colors"
                           >
                             {child.label}
                           </Link>
                         ))}
-                        <Link
-                          href={link.href}
-                          role="menuitem"
-                          onClick={() => setServicesOpen(false)}
-                          className="border-gold/10 text-gold mt-2 block border-t px-3 pt-3 text-xs font-semibold no-underline"
-                        >
-                          View all services →
-                        </Link>
+                         {link.footerLabel ? (
+                           <Link
+                             href={link.href}
+                             role="menuitem"
+                             onClick={() => setOpenDropdown(null)}
+                             className="border-gold/10 text-gold mt-2 block border-t px-3 pt-3 text-xs font-semibold no-underline"
+                           >
+                             {link.footerLabel} →
+                           </Link>
+                         ) : null}
                       </div>
                     </div>
                   ) : null}
