@@ -87,6 +87,19 @@ describe("main navigation", () => {
     expect(mobileMenuSource).toContain("z-1001");
   });
 
+  it("uses generic single-open mobile accordion state", () => {
+    const mobileMenuSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/MobileMenu.tsx"),
+      "utf8",
+    );
+
+    expect(mobileMenuSource).toContain(
+      "const [expandedLabel, setExpandedLabel] = useState<string | null>(null)",
+    );
+    expect(mobileMenuSource).not.toContain("servicesExpanded");
+    expect(mobileMenuSource).toContain("expandedLabel === link.label");
+  });
+
   it("uses a solid navy navbar and a transparent compact logo asset", () => {
     const navbarSource = readFileSync(
       path.resolve(process.cwd(), "src/components/Navbar.tsx"),

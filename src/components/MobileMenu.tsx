@@ -11,9 +11,9 @@ interface Props {
 }
 
 export default function MobileMenu({ open, onClose, links }: Props) {
-  const [servicesExpanded, setServicesExpanded] = useState(false);
+  const [expandedLabel, setExpandedLabel] = useState<string | null>(null);
   const handleClose = () => {
-    setServicesExpanded(false);
+    setExpandedLabel(null);
     onClose();
   };
 
@@ -45,24 +45,31 @@ export default function MobileMenu({ open, onClose, links }: Props) {
             <div key={link.label} className="border-gold/15 border-b pb-5">
               <button
                 type="button"
-                aria-expanded={servicesExpanded}
-                aria-controls="mobile-services"
-                onClick={() => setServicesExpanded((value) => !value)}
+                aria-expanded={expandedLabel === link.label}
+                aria-controls={`mobile-${link.label.toLowerCase()}`}
+                onClick={() =>
+                  setExpandedLabel((current) =>
+                    current === link.label ? null : link.label,
+                  )
+                }
                 className="font-display flex w-full cursor-pointer items-center justify-between border-0 bg-transparent text-left text-2xl font-bold text-white"
               >
                 {link.label}
                 <span aria-hidden="true" className="text-gold text-base">
-                  {servicesExpanded ? "−" : "+"}
+                  {expandedLabel === link.label ? "−" : "+"}
                 </span>
               </button>
-              {servicesExpanded ? (
-                <div id="mobile-services" className="mt-5 space-y-4 pl-4">
+              {expandedLabel === link.label ? (
+                <div
+                  id={`mobile-${link.label.toLowerCase()}`}
+                  className="mt-5 space-y-4 pl-4"
+                >
                   <div className="text-gold text-xs font-semibold tracking-widest uppercase">
-                    Business Advisory
+                    {link.dropdownLabel}
                   </div>
                   {link.children.map((child) => (
                     <Link
-                      key={child.href}
+                      key={`${child.href}-${child.label}`}
                       href={child.href}
                       onClick={handleClose}
                       className="block text-lg font-semibold text-white/75 no-underline"
@@ -70,13 +77,15 @@ export default function MobileMenu({ open, onClose, links }: Props) {
                       {child.label}
                     </Link>
                   ))}
-                  <Link
-                    href={link.href}
-                    onClick={handleClose}
-                    className="text-gold block text-sm font-semibold no-underline"
-                  >
-                    View all services →
-                  </Link>
+                  {link.footerLabel ? (
+                    <Link
+                      href={link.href}
+                      onClick={handleClose}
+                      className="text-gold block text-sm font-semibold no-underline"
+                    >
+                      {link.footerLabel} →
+                    </Link>
+                  ) : null}
                 </div>
               ) : null}
             </div>
