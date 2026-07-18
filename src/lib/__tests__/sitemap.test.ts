@@ -44,9 +44,9 @@ describe("buildSitemapEntries", () => {
       new Date("2026-07-01T00:00:00.000Z"),
     );
     expect(english?.alternates?.languages).toMatchObject({
-      en: "https://njvaccountants.pk/blog/en/business-value",
-      es: "https://njvaccountants.pk/blog/es/valor-del-negocio",
-      "x-default": "https://njvaccountants.pk/blog/en/business-value",
+      en: "https://www.njvaccountants.com/blog/en/business-value",
+      es: "https://www.njvaccountants.com/blog/es/valor-del-negocio",
+      "x-default": "https://www.njvaccountants.com/blog/en/business-value",
     });
     expect(entries.some((entry) => entry.url.endsWith("/authors/noman-javed"))).toBe(
       true,

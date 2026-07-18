@@ -10,7 +10,7 @@
 
 ## Global Constraints
 
-- Canonical production origin is exactly `https://njvaccountants.pk`.
+- Canonical production origin is exactly `https://www.njvaccountants.com`.
 - Blog localization only; localized routes are `/blog/{languageCode}/{slug}` and legacy `/blog/{slug}` permanently redirects to English.
 - English is the default language and `x-default` target.
 - Translation copy is entered manually in Sanity.
@@ -74,7 +74,7 @@ expect(blogPath("es", "articulo")).toBe("/blog/es/articulo");
 expect(isLanguageCode("es-MX")).toBe(true);
 expect(isLanguageCode("../es")).toBe(false);
 expect(buildBlogAlternates(translations, spanish).languages["x-default"])
-  .toBe("https://njvaccountants.pk/blog/en/article");
+  .toBe("https://www.njvaccountants.com/blog/en/article");
 ```
 
 - [ ] **Step 2: Run the SEO test and confirm imports fail**

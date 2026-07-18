@@ -1,4 +1,4 @@
-export const SITE_URL = "https://njvaccountants.pk";
+export const SITE_URL = "https://www.njvaccountants.com";
 export const GOOGLE_ANALYTICS_ID = "G-3S4R07WLX1";
 export const WHATSAPP_PHONE = "923225401701";
 export const CONTACT_RECIPIENT = "usamaashraf82@live.com";

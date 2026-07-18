@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: "Trusted accounting, taxation, advisory, and audit services.",
     images: ["/njv-logo-dark.png"],
     type: "website",
-    url: "https://njvaccountants.pk",
+    url: SITE_URL,
   },
 };
 

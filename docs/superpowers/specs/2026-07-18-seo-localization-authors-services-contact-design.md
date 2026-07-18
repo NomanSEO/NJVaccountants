@@ -21,7 +21,7 @@ Use a hybrid architecture:
 
 ## Canonical Site URL
 
-Use `https://njvaccountants.pk` as the canonical production origin. Centralize it in a site configuration module so sitemap, canonical metadata, hreflang alternatives, Open Graph URLs, and JSON-LD all use the same origin.
+Use `https://www.njvaccountants.com` as the canonical production origin. Centralize it in a site configuration module so sitemap, canonical metadata, hreflang alternatives, Open Graph URLs, and JSON-LD all use the same origin.
 
 ## Blog Localization
 
@@ -95,7 +95,7 @@ The sitemap excludes:
 
 The sitemap is dynamically generated on request from the published perspective so a newly published Sanity page is visible on the next sitemap request without a production rebuild. Individual sitemap entries use Sanity update dates when available and conservative change-frequency and priority hints.
 
-Create a programmatic `robots.txt` that permits public crawling, blocks Studio and API paths, and references `https://njvaccountants.pk/sitemap.xml`.
+Create a programmatic `robots.txt` that permits public crawling, blocks Studio and API paths, and references `https://www.njvaccountants.com/sitemap.xml`.
 
 ## Schema Markup Authoring
 

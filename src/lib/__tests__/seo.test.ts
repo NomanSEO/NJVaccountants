@@ -14,7 +14,7 @@ describe("SEO URL helpers", () => {
       "/blog/es-MX/impuestos%202026",
     );
     expect(authorPath("noman-javed")).toBe("/authors/noman-javed");
-    expect(absoluteUrl("/about")).toBe("https://njvaccountants.pk/about");
+    expect(absoluteUrl("/about")).toBe("https://www.njvaccountants.com/about");
   });
 
   it("accepts canonical BCP-47-like language codes and rejects path input", () => {
@@ -34,12 +34,12 @@ describe("SEO URL helpers", () => {
     const result = buildBlogAlternates(translations, translations[1]);
 
     expect(result.canonical).toBe(
-      "https://njvaccountants.pk/blog/es/valor-del-negocio",
+      "https://www.njvaccountants.com/blog/es/valor-del-negocio",
     );
     expect(result.languages).toEqual({
-      en: "https://njvaccountants.pk/blog/en/business-value",
-      es: "https://njvaccountants.pk/blog/es/valor-del-negocio",
-      "x-default": "https://njvaccountants.pk/blog/en/business-value",
+      en: "https://www.njvaccountants.com/blog/en/business-value",
+      es: "https://www.njvaccountants.com/blog/es/valor-del-negocio",
+      "x-default": "https://www.njvaccountants.com/blog/en/business-value",
     });
   });
 
@@ -54,7 +54,7 @@ describe("SEO URL helpers", () => {
     );
 
     expect(result.languages).toEqual({
-      es: "https://njvaccountants.pk/blog/es/articulo",
+      es: "https://www.njvaccountants.com/blog/es/articulo",
     });
   });
 });
