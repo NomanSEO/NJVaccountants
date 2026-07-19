@@ -1,3 +1,5 @@
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
   absoluteUrl,
@@ -10,6 +12,15 @@ import {
 } from "@/lib/seo";
 
 describe("SEO URL helpers", () => {
+  it("declares the intentional smooth-scroll behavior for route transitions", () => {
+    const layout = readFileSync(
+      path.resolve(process.cwd(), "src/app/layout.tsx"),
+      "utf8",
+    );
+
+    expect(layout).toContain('data-scroll-behavior="smooth"');
+  });
+
   it("builds canonical localized blog and author paths", () => {
     expect(blogPath("es", "articulo")).toBe("/blog/es/articulo");
     expect(blogPath("es-MX", "impuestos 2026")).toBe(
