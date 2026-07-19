@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { NavLinkItem } from "./Navbar";
+import type { NavLinkItem } from "./navigation";
 
 interface Props {
   open: boolean;

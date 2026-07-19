@@ -1,18 +1,10 @@
 // src/components/Footer.tsx
 import BrandLogo from "./BrandLogo";
 import Link from "next/link";
+import { serviceSlug } from "@/lib/contentSlugs";
+import { servicePath } from "@/lib/seo";
+import { getServices } from "@/sanity/lib/queries";
 
-const SERVICES_LINKS = [
-  ["Accounting & Bookkeeping", "/services"],
-  ["Taxation Services", "/services"],
-  ["Audit & Assurance", "/services"],
-  [
-    "Business Valuation",
-    "/services/business-advisory/business-valuation",
-  ],
-  ["M&A Advisory", "/services/business-advisory/ma-advisory"],
-  ["Forensic Accounting", "/services"],
-];
 const COMPANY_LINKS = [
   ["About Us", "/about"],
   ["Our Team", "/team"],
@@ -23,7 +15,8 @@ const COMPANY_LINKS = [
 ];
 const OFFICES = ["Faisalabad,Lahore"];
 
-export default function Footer() {
+export default async function Footer() {
+  const services = await getServices();
   return (
     <footer className="bg-navy-dark pt-16 pb-8" aria-label="Site footer">
       <div className="max-w-site mx-auto px-6">
@@ -62,13 +55,13 @@ export default function Footer() {
               Services
             </div>
             <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
-              {SERVICES_LINKS.map(([label, href]) => (
-                <li key={label}>
+              {services.map((service) => (
+                <li key={service._id}>
                   <Link
-                    href={href}
+                    href={servicePath(serviceSlug(service))}
                     className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
-                    {label}
+                    {service.title}
                   </Link>
                 </li>
               ))}

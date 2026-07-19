@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { NAV_LINKS } from "@/components/Navbar";
+import { NAV_LINKS, navLinksWithServices } from "@/components/navigation";
 
 describe("main navigation", () => {
   it("uses four compact top-level navigation items", () => {
@@ -78,9 +78,27 @@ describe("main navigation", () => {
     });
   });
 
+  it("uses Sanity services for every Services dropdown link", () => {
+    const links = navLinksWithServices([
+      {
+        _id: "service-1",
+        title: "Payroll Services",
+        slug: { current: "payroll-services" },
+        icon: "",
+        description: "",
+        bullets: [],
+        order: 1,
+      },
+    ]);
+
+    expect(links.find(({ label }) => label === "Services")?.children).toEqual([
+      { href: "/services/payroll-services", label: "Payroll Services" },
+    ]);
+  });
+
   it("uses generic single-open dropdown state", () => {
     const navbarSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/Navbar.tsx"),
+      path.resolve(process.cwd(), "src/components/NavbarClient.tsx"),
       "utf8",
     );
 
@@ -118,7 +136,7 @@ describe("main navigation", () => {
 
   it("uses a solid navy navbar and a transparent compact logo asset", () => {
     const navbarSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/Navbar.tsx"),
+      path.resolve(process.cwd(), "src/components/NavbarClient.tsx"),
       "utf8",
     );
     const brandLogoSource = readFileSync(
@@ -158,7 +176,7 @@ describe("main navigation", () => {
 
   it("bridges the visual gap between Services and its dropdown", () => {
     const navbarSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/Navbar.tsx"),
+      path.resolve(process.cwd(), "src/components/NavbarClient.tsx"),
       "utf8",
     );
 
