@@ -3,23 +3,23 @@ import BrandLogo from "./BrandLogo";
 import Link from "next/link";
 
 const SERVICES_LINKS = [
-  ["Accounting & Bookkeeping", "/#services"],
-  ["Taxation Services", "/#services"],
-  ["Audit & Assurance", "/#services"],
+  ["Accounting & Bookkeeping", "/services"],
+  ["Taxation Services", "/services"],
+  ["Audit & Assurance", "/services"],
   [
     "Business Valuation",
     "/services/business-advisory/business-valuation",
   ],
   ["M&A Advisory", "/services/business-advisory/ma-advisory"],
-  ["Forensic Accounting", "/#services"],
+  ["Forensic Accounting", "/services"],
 ];
 const COMPANY_LINKS = [
   ["About Us", "/about"],
-  ["Our Team", "/#team"],
-  ["Case Studies", "/#case-studies"],
-  ["Insights", "/blog"],
+  ["Our Team", "/team"],
+  ["Case Studies", "/case-studies"],
+  ["Blogs", "/blog"],
   ["Testimonials", "/#testimonials"],
-  ["Contact", "/#contact"],
+  ["Contact", "/contact"],
 ];
 const OFFICES = ["Faisalabad,Lahore"];
 
@@ -103,7 +103,7 @@ export default function Footer() {
               {OFFICES.map((o) => (
                 <li key={o}>
                   <Link
-                    href="/#contact"
+                    href="/contact"
                     className="hover:text-gold text-[0.875rem] text-white/45 no-underline transition-colors"
                   >
                     {o}

@@ -15,14 +15,14 @@ export interface NavLinkItem {
 
 export const NAV_LINKS: NavLinkItem[] = [
   {
-    href: "/#services",
+    href: "/services",
     label: "Services",
     dropdownLabel: "Professional Services",
     footerLabel: "View All Services",
     children: [
-      { href: "/#services", label: "Accounting & Bookkeeping" },
-      { href: "/#services", label: "Taxation Services" },
-      { href: "/#services", label: "Audit & Assurance" },
+      { href: "/services", label: "Accounting & Bookkeeping" },
+      { href: "/services", label: "Taxation Services" },
+      { href: "/services", label: "Audit & Assurance" },
       {
         href: "/services/business-advisory/business-valuation",
         label: "Business Valuation",
@@ -39,9 +39,9 @@ export const NAV_LINKS: NavLinkItem[] = [
     dropdownLabel: "Company",
     children: [
       { href: "/about", label: "About Us" },
-      { href: "/#case-studies", label: "Case Studies" },
-      { href: "/#team", label: "Our Team" },
-      { href: "/#contact", label: "Contact" },
+      { href: "/case-studies", label: "Case Studies" },
+      { href: "/team", label: "Our Team" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {
@@ -204,7 +204,7 @@ export default function Navbar() {
           </ul>
 
           <Link
-            href="/#contact"
+            href="/contact"
             className="bg-gold text-navy hover:bg-gold-light hidden shrink-0 items-center gap-2 rounded-sm px-7 py-3.5 text-sm font-semibold tracking-wider whitespace-nowrap uppercase no-underline transition-all hover:-translate-y-px xl:inline-flex"
           >
             Get a Consultation

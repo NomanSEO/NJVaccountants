@@ -14,13 +14,13 @@ export default async function Blog() {
     <section
       id="blog"
       className="bg-white py-24"
-      aria-label="Insights and blog"
+      aria-label="Blogs"
     >
       <div className="max-w-site mx-auto px-6">
         <header className="mb-14">
           <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
             <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
-            Insights & Analysis
+            Blogs
           </div>
           <h2 className="font-display text-navy mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-tight font-bold">
             From Our <em className="text-gold not-italic">Expert</em> Team
@@ -138,7 +138,7 @@ export default async function Blog() {
             href="/blog"
             className="bg-gold text-navy hover:bg-gold-light inline-flex items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider uppercase no-underline transition-all hover:-translate-y-px"
           >
-            View All Insights &rsaquo;
+            View All Blogs &rsaquo;
           </Link>
         </div>
       </div>

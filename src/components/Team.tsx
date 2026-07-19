@@ -75,7 +75,7 @@ export default async function Team() {
                 </div>
                 <Link
                   href={
-                    m.slug?.current ? authorPath(m.slug.current) : "/#contact"
+                    m.slug?.current ? authorPath(m.slug.current) : "/contact"
                   }
                   className="text-gold hover:text-gold-light mt-4 inline-block text-sm font-semibold transition-colors"
                 >

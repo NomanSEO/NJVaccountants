@@ -1,6 +1,8 @@
 // src/components/Services.tsx
 import { getServices } from "@/sanity/lib/queries";
 import Link from "next/link";
+import { servicePath } from "@/lib/seo";
+import { serviceSlug } from "@/lib/contentSlugs";
 
 export default async function Services() {
   const services = await getServices();
@@ -53,7 +55,7 @@ export default async function Services() {
                 ))}
               </ul>
               <Link
-                href="/#contact"
+                href={servicePath(serviceSlug(svc))}
                 className="text-navy hover:text-gold mt-6 inline-flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] no-underline transition-colors"
               >
                 Explore {svc.title} ›

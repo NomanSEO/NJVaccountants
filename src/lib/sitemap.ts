@@ -7,6 +7,7 @@ import {
   buildBlogAlternates,
   isLanguageCode,
 } from "@/lib/seo";
+import { caseStudySlug, serviceSlug } from "@/lib/contentSlugs";
 
 export interface SitemapPostInput {
   _id: string;
@@ -22,9 +23,25 @@ export interface SitemapAuthorInput {
   slug?: { current?: string };
 }
 
+export interface SitemapServiceInput {
+  _id: string;
+  _updatedAt?: string;
+  slug?: { current?: string };
+  title: string;
+}
+
+export interface SitemapCaseStudyInput {
+  _id: string;
+  _updatedAt?: string;
+  slug?: { current?: string };
+  company: string;
+}
+
 export interface SitemapInput {
   posts: SitemapPostInput[];
   authors: SitemapAuthorInput[];
+  services?: SitemapServiceInput[];
+  caseStudies?: SitemapCaseStudyInput[];
 }
 
 function validDate(value?: string): Date | undefined {
@@ -45,6 +62,8 @@ function staticEntry(path: string): MetadataRoute.Sitemap[number] {
 export function buildSitemapEntries({
   posts,
   authors,
+  services = [],
+  caseStudies = [],
 }: SitemapInput): MetadataRoute.Sitemap {
   const entries = new Map<string, MetadataRoute.Sitemap[number]>();
   for (const route of PUBLIC_ROUTES) {
@@ -94,6 +113,30 @@ export function buildSitemapEntries({
       lastModified: validDate(author._updatedAt),
       changeFrequency: "monthly",
       priority: 0.6,
+    });
+  }
+
+  for (const service of services) {
+    const slug = serviceSlug(service);
+    if (!slug) continue;
+    const url = absoluteUrl(`/services/${encodeURIComponent(slug)}`);
+    entries.set(url, {
+      url,
+      lastModified: validDate(service._updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    });
+  }
+
+  for (const caseStudy of caseStudies) {
+    const slug = caseStudySlug(caseStudy);
+    if (!slug) continue;
+    const url = absoluteUrl(`/case-studies/${encodeURIComponent(slug)}`);
+    entries.set(url, {
+      url,
+      lastModified: validDate(caseStudy._updatedAt),
+      changeFrequency: "monthly",
+      priority: 0.7,
     });
   }
 

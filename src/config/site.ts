@@ -12,6 +12,10 @@ export function whatsappUrl(
 export const PUBLIC_ROUTES = [
   "/",
   "/about",
+  "/services",
+  "/case-studies",
+  "/team",
+  "/contact",
   "/blog",
   "/calculators",
   "/calculators/car-loan",

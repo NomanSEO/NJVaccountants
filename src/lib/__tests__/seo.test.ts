@@ -4,7 +4,9 @@ import {
   authorPath,
   blogPath,
   buildBlogAlternates,
+  caseStudyPath,
   isLanguageCode,
+  servicePath,
 } from "@/lib/seo";
 
 describe("SEO URL helpers", () => {
@@ -14,7 +16,18 @@ describe("SEO URL helpers", () => {
       "/blog/es-MX/impuestos%202026",
     );
     expect(authorPath("noman-javed")).toBe("/authors/noman-javed");
+    expect(servicePath("taxation-services")).toBe("/services/taxation-services");
+    expect(caseStudyPath("acme-industries")).toBe(
+      "/case-studies/acme-industries",
+    );
     expect(absoluteUrl("/about")).toBe("https://www.njvaccountants.com/about");
+  });
+
+  it("rejects empty service and case-study slugs", () => {
+    expect(() => servicePath(" ")).toThrow("A service slug is required.");
+    expect(() => caseStudyPath("")).toThrow(
+      "A case study slug is required.",
+    );
   });
 
   it("accepts canonical BCP-47-like language codes and rejects path input", () => {

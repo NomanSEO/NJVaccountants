@@ -17,6 +17,8 @@ export interface SiteSettings {
 
 export interface Service {
   _id: string;
+  _updatedAt?: string;
+  slug?: { current: string };
   title: string;
   icon: string;
   description: string;
@@ -85,6 +87,8 @@ export interface CaseResult {
 
 export interface CaseStudy {
   _id: string;
+  _updatedAt?: string;
+  slug?: { current: string };
   company: string;
   industry: string;
   tag: string;

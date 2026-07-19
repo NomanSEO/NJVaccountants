@@ -3,6 +3,12 @@ import { PUBLIC_ROUTES } from "@/config/site";
 import { buildSitemapEntries } from "@/lib/sitemap";
 
 describe("buildSitemapEntries", () => {
+  it("includes each dedicated marketing page", () => {
+    expect(PUBLIC_ROUTES).toEqual(
+      expect.arrayContaining(["/services", "/case-studies", "/team", "/contact"]),
+    );
+  });
+
   it("includes every registered public route", () => {
     const entries = buildSitemapEntries({ posts: [], authors: [] });
     const urls = entries.map((entry) => new URL(entry.url).pathname);
@@ -51,6 +57,37 @@ describe("buildSitemapEntries", () => {
     expect(entries.some((entry) => entry.url.endsWith("/authors/noman-javed"))).toBe(
       true,
     );
+  });
+
+  it("adds individual service and case-study pages", () => {
+    const entries = buildSitemapEntries({
+      posts: [],
+      authors: [],
+      services: [
+        {
+          _id: "service-1",
+          _updatedAt: "2026-07-03T00:00:00.000Z",
+          title: "Taxation Services",
+          slug: { current: "tax-services" },
+        },
+      ],
+      caseStudies: [
+        {
+          _id: "case-1",
+          _updatedAt: "2026-07-04T00:00:00.000Z",
+          company: "Acme Industries",
+          slug: { current: "acme-industries" },
+        },
+      ],
+    });
+
+    expect(entries.find((entry) => entry.url.endsWith("/services/tax-services")))
+      .toMatchObject({
+        lastModified: new Date("2026-07-03T00:00:00.000Z"),
+      });
+    expect(
+      entries.find((entry) => entry.url.endsWith("/case-studies/acme-industries")),
+    ).toMatchObject({ lastModified: new Date("2026-07-04T00:00:00.000Z") });
   });
 
   it("excludes malformed dynamic entries and deduplicates URLs", () => {

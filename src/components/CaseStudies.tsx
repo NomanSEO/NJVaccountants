@@ -1,5 +1,8 @@
 // src/components/CaseStudies.tsx
 import { getCaseStudies } from "@/sanity/lib/queries";
+import Link from "next/link";
+import { caseStudyPath } from "@/lib/seo";
+import { caseStudySlug } from "@/lib/contentSlugs";
 
 export default async function CaseStudies() {
   const cases = await getCaseStudies();
@@ -63,18 +66,24 @@ export default async function CaseStudies() {
                     </div>
                   ))}
                 </div>
+                <Link
+                  href={caseStudyPath(caseStudySlug(c))}
+                  className="text-navy hover:text-gold mt-6 inline-flex text-sm font-semibold transition-colors"
+                >
+                  Read case study ›
+                </Link>
               </div>
             </article>
           ))}
         </div>
 
         <div className="mt-12 text-center">
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className="bg-gold text-navy hover:bg-gold-light inline-block rounded px-8 py-4 font-semibold transition-colors"
           >
             Schedule a Consultation
-          </a>
+          </Link>
         </div>
       </div>
     </section>

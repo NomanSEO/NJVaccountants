@@ -224,7 +224,7 @@ export default async function LocalizedBlogPostPage({
               </Link>
               <span className="mx-2 text-white/30">/</span>
               <Link href="/blog" className="text-gold/70 hover:text-gold">
-                Insights
+                Blogs
               </Link>
               <span className="mx-2 text-white/30">/</span>
               <span className="text-white/50">{post.category}</span>
@@ -374,7 +374,7 @@ export default async function LocalizedBlogPostPage({
             {relatedPosts.length ? (
               <section className="mt-14">
                 <h2 className="font-display text-navy mb-6 text-2xl font-bold">
-                  Related insights
+                  Related blogs
                 </h2>
                 <div className="grid gap-5 md:grid-cols-3">
                   {relatedPosts.map((related) => (
@@ -401,7 +401,7 @@ export default async function LocalizedBlogPostPage({
           <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
               <h2 className="font-display text-2xl font-bold text-white">
-                Put these insights into action
+                Put these ideas into action
               </h2>
               <p className="mt-2 text-white/60">
                 Discuss your priorities with an NJV Accountants professional.

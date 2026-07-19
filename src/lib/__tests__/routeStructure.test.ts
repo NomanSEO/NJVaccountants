@@ -11,4 +11,23 @@ describe("App Router dynamic segment structure", () => {
       existsSync(path.join(blogRoot, "[language]", "[slug]", "page.tsx")),
     ).toBe(true);
   });
+
+  it("provides dedicated full-page routes for the core marketing sections", () => {
+    const appRoot = path.resolve(process.cwd(), "src/app");
+
+    for (const route of ["services", "case-studies", "team", "contact"]) {
+      expect(existsSync(path.join(appRoot, route, "page.tsx"))).toBe(true);
+    }
+  });
+
+  it("provides dynamic detail routes for services and case studies", () => {
+    const appRoot = path.resolve(process.cwd(), "src/app");
+
+    expect(
+      existsSync(path.join(appRoot, "services", "[slug]", "page.tsx")),
+    ).toBe(true);
+    expect(
+      existsSync(path.join(appRoot, "case-studies", "[slug]", "page.tsx")),
+    ).toBe(true);
+  });
 });

@@ -13,6 +13,7 @@ import type {
   TeamMember,
   Testimonial,
 } from "@/types";
+import { caseStudySlug, serviceSlug } from "@/lib/contentSlugs";
 
 const AUTHOR_SUMMARY_PROJECTION = `{
   _id,
@@ -75,6 +76,19 @@ export async function getServices(): Promise<Service[]> {
   return client.fetch(`*[_type == "service"] | order(order asc)`);
 }
 
+export async function getService(slug: string): Promise<Service | null> {
+  const services = await getServices();
+  return services.find((service) => serviceSlug(service) === slug) ?? null;
+}
+
+export async function getAllServicesForSitemap(): Promise<
+  Array<Pick<Service, "_id" | "_updatedAt" | "slug" | "title">>
+> {
+  return publishedClient.fetch(
+    `*[_type == "service"] { _id, _updatedAt, slug, title }`,
+  );
+}
+
 export async function getTeamMembers(): Promise<TeamMember[]> {
   return client.fetch(`*[_type == "teamMember"] | order(order asc) {
     ...,
@@ -91,6 +105,21 @@ export async function getTestimonials(): Promise<Testimonial[]> {
 
 export async function getCaseStudies(): Promise<CaseStudy[]> {
   return client.fetch(`*[_type == "caseStudy"] | order(order asc)`);
+}
+
+export async function getCaseStudy(slug: string): Promise<CaseStudy | null> {
+  const caseStudies = await getCaseStudies();
+  return (
+    caseStudies.find((caseStudy) => caseStudySlug(caseStudy) === slug) ?? null
+  );
+}
+
+export async function getAllCaseStudiesForSitemap(): Promise<
+  Array<Pick<CaseStudy, "_id" | "_updatedAt" | "slug" | "company">>
+> {
+  return publishedClient.fetch(
+    `*[_type == "caseStudy"] { _id, _updatedAt, slug, company }`,
+  );
 }
 
 export async function getPosts(): Promise<Post[]> {

@@ -170,7 +170,7 @@ export default async function AuthorPage({
             {posts.length ? (
               <section className="border-border mt-18 border-t pt-14">
                 <h2 className="font-display text-navy mb-7 text-3xl font-bold">
-                  Latest insights from {author.name.split(" ")[0]}
+                  Latest blogs from {author.name.split(" ")[0]}
                 </h2>
                 <div className="grid gap-6 md:grid-cols-3">
                   {posts.slice(0, 6).map((post) => (

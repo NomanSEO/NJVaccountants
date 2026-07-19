@@ -7,6 +7,13 @@ export const service = defineType({
   type: "document",
   fields: [
     defineField({ name: "title", type: "string", title: "Title" }),
+    defineField({
+      name: "slug",
+      title: "Page Slug",
+      type: "slug",
+      options: { source: "title", maxLength: 96 },
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({ name: "icon", type: "string", title: "Icon (emoji)" }),
     defineField({
       name: "description",

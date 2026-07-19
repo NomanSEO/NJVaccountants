@@ -13,15 +13,31 @@ describe("main navigation", () => {
     ]);
   });
 
+  it("uses Blogs rather than Insights in the site navigation and blog entry points", () => {
+    const footerSource = readFileSync(
+      path.resolve(process.cwd(), "src/components/Footer.tsx"),
+      "utf8",
+    );
+    const blogSource = readFileSync(
+      path.resolve(process.cwd(), "src/app/blog/page.tsx"),
+      "utf8",
+    );
+
+    expect(footerSource).toContain('["Blogs", "/blog"]');
+    expect(footerSource).not.toContain('["Insights", "/blog"]');
+    expect(blogSource).toContain("title: \"Blogs | NJV Accountants\"");
+    expect(blogSource).not.toContain("Insights & Analysis");
+  });
+
   it("groups the approved destinations under each dropdown", () => {
     expect(NAV_LINKS.find(({ label }) => label === "Services")).toMatchObject({
-      href: "/#services",
+      href: "/services",
       dropdownLabel: "Professional Services",
       footerLabel: "View All Services",
       children: [
-        { href: "/#services", label: "Accounting & Bookkeeping" },
-        { href: "/#services", label: "Taxation Services" },
-        { href: "/#services", label: "Audit & Assurance" },
+        { href: "/services", label: "Accounting & Bookkeeping" },
+        { href: "/services", label: "Taxation Services" },
+        { href: "/services", label: "Audit & Assurance" },
         {
           href: "/services/business-advisory/business-valuation",
           label: "Business Valuation",
@@ -37,9 +53,9 @@ describe("main navigation", () => {
       dropdownLabel: "Company",
       children: [
         { href: "/about", label: "About Us" },
-        { href: "/#case-studies", label: "Case Studies" },
-        { href: "/#team", label: "Our Team" },
-        { href: "/#contact", label: "Contact" },
+        { href: "/case-studies", label: "Case Studies" },
+        { href: "/team", label: "Our Team" },
+        { href: "/contact", label: "Contact" },
       ],
     });
 

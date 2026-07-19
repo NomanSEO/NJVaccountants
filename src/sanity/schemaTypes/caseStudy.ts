@@ -7,6 +7,13 @@ export const caseStudy = defineType({
   type: "document",
   fields: [
     defineField({ name: "company", type: "string", title: "Company Name" }),
+    defineField({
+      name: "slug",
+      title: "Page Slug",
+      type: "slug",
+      options: { source: "company", maxLength: 96 },
+      validation: (Rule) => Rule.required(),
+    }),
     defineField({ name: "industry", type: "string", title: "Industry & Size" }),
     defineField({
       name: "tag",

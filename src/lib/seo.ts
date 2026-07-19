@@ -45,6 +45,16 @@ export function authorPath(slug: string): string {
   return `/authors/${encodeSegment(slug)}`;
 }
 
+export function servicePath(slug: string): string {
+  if (!slug.trim()) throw new Error("A service slug is required.");
+  return `/services/${encodeSegment(slug)}`;
+}
+
+export function caseStudyPath(slug: string): string {
+  if (!slug.trim()) throw new Error("A case study slug is required.");
+  return `/case-studies/${encodeSegment(slug)}`;
+}
+
 export function absoluteUrl(path: string): string {
   return new URL(path, `${SITE_URL}/`).toString();
 }

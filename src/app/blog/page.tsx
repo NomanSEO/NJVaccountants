@@ -11,7 +11,7 @@ import PageJsonLd from "@/components/PageJsonLd";
 export const revalidate = 600;
 
 export const metadata = {
-  title: "Insights & Analysis | NJV Accountants",
+  title: "Blogs | NJV Accountants",
   description:
     "Timely, practical perspectives on accounting, tax, regulation, and business strategy from our senior professionals.",
 };
@@ -37,7 +37,7 @@ export default async function BlogPage() {
             </Link>
             <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
               <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
-              Insights & Analysis
+              Blogs
             </div>
             <h1 className="font-display mb-5 text-[clamp(2.5rem,5vw,3.5rem)] leading-tight font-bold text-white">
               From Our <em className="text-gold not-italic">Expert</em> Team
@@ -165,14 +165,14 @@ export default async function BlogPage() {
           <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
               <div className="font-display text-navy text-[clamp(1.25rem,2.5vw,1.75rem)] leading-[1.3] font-bold">
-                Ready to put these insights into action?
+                 Ready to put these ideas into action?
               </div>
               <div className="text-navy/70 mt-2 text-[0.9375rem]">
                 Book a free consultation with one of our senior partners.
               </div>
             </div>
             <Link
-              href="/#contact"
+               href="/contact"
               className="bg-navy hover:bg-navy-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-colors"
             >
               Speak to a Partner &rsaquo;
