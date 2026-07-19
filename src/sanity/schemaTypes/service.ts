@@ -28,6 +28,23 @@ export const service = defineType({
       of: [defineArrayMember({ type: "string" })],
     }),
     defineField({ name: "order", type: "number", title: "Sort Order" }),
+    defineField({
+      name: "body",
+      title: "Body Content",
+      type: "array",
+      of: [
+        defineArrayMember({ type: "block" }),
+        defineArrayMember({
+          type: "image",
+          options: { hotspot: true },
+          fields: [
+            defineField({ name: "alt", type: "string", title: "Alt Text" }),
+            defineField({ name: "caption", type: "string", title: "Caption" }),
+          ],
+        }),
+        defineArrayMember({ type: "table", title: "Table" }),
+      ],
+    }),
   ],
   orderings: [
     {

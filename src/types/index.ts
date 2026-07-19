@@ -24,6 +24,7 @@ export interface Service {
   description: string;
   bullets: string[];
   order: number;
+  body?: PortableTextBlock[];
 }
 
 export interface TeamMember {
@@ -95,6 +96,7 @@ export interface CaseStudy {
   challenge: string;
   results: CaseResult[];
   order: number;
+  body?: PortableTextBlock[];
 }
 
 export interface SanityImage {

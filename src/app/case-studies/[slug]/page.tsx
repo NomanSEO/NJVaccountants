@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ContentPageBody from "@/components/ContentPageBody";
 import DirectoryPageShell from "@/components/DirectoryPageShell";
 import { caseStudySlug } from "@/lib/contentSlugs";
 import { absoluteUrl, caseStudyPath } from "@/lib/seo";
@@ -44,38 +45,46 @@ export default async function CaseStudyDetailPage({
       title={`${caseStudy.company}: a client success story`}
       intro={caseStudy.industry}
     >
-      <section className="bg-white py-20">
-        <div className="max-w-site mx-auto grid gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]">
-          <div>
-            <span className="text-gold text-xs font-semibold tracking-widest uppercase">
-              The challenge
-            </span>
-            <h2 className="font-display text-navy mt-3 text-3xl font-bold">
-              Building a practical path forward
-            </h2>
-            <p className="text-slate mt-6 text-lg leading-8">
-              {caseStudy.challenge}
-            </p>
+      {caseStudy.body?.length ? (
+        <section className="bg-white py-20">
+          <div className="max-w-site mx-auto px-6">
+            <ContentPageBody body={caseStudy.body} />
           </div>
-          <div className="bg-navy rounded-sm p-8">
-            <span className="text-gold text-xs font-semibold tracking-widest uppercase">
-              The results
-            </span>
-            <div className="mt-6 grid gap-6 sm:grid-cols-2">
-              {caseStudy.results.map((result) => (
-                <div key={result.label}>
-                  <div className="font-display text-gold text-3xl font-bold">
-                    {result.num}
+        </section>
+      ) : (
+        <section className="bg-white py-20">
+          <div className="max-w-site mx-auto grid gap-12 px-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]">
+            <div>
+              <span className="text-gold text-xs font-semibold tracking-widest uppercase">
+                The challenge
+              </span>
+              <h2 className="font-display text-navy mt-3 text-3xl font-bold">
+                Building a practical path forward
+              </h2>
+              <p className="text-slate mt-6 text-lg leading-8">
+                {caseStudy.challenge}
+              </p>
+            </div>
+            <div className="bg-navy rounded-sm p-8">
+              <span className="text-gold text-xs font-semibold tracking-widest uppercase">
+                The results
+              </span>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                {caseStudy.results.map((result) => (
+                  <div key={result.label}>
+                    <div className="font-display text-gold text-3xl font-bold">
+                      {result.num}
+                    </div>
+                    <div className="mt-1 text-sm leading-5 text-white/65">
+                      {result.label}
+                    </div>
                   </div>
-                  <div className="mt-1 text-sm leading-5 text-white/65">
-                    {result.label}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
       <section className="bg-gold py-16">
         <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
           <div>
