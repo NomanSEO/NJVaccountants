@@ -466,3 +466,5 @@ Yes. You can estimate paychecks from hourly wages or annual salaries.
 Is this calculator suitable for employers?
 
 Yes. HR professionals, payroll administrators, and employers can use it for payroll planning and salary estimates.
+
+}
