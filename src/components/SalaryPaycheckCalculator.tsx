@@ -324,10 +324,6 @@ function Field({
         onChange={(e) => onChange(Number(e.target.value) || 0)}
         className="border-border text-navy mt-1 w-full border p-3"
       />
-    </label>
-  );
-}
-
 Salary Paycheck Calculator USA
 
 Estimate your take-home pay in seconds with our free Salary Paycheck Calculator. Whether you're an employee, HR professional, payroll administrator, or employer, this calculator helps estimate your net paycheck after federal income tax, state income tax, Social Security, Medicare, retirement contributions, and other payroll deductions.
@@ -466,5 +462,9 @@ Yes. You can estimate paychecks from hourly wages or annual salaries.
 Is this calculator suitable for employers?
 
 Yes. HR professionals, payroll administrators, and employers can use it for payroll planning and salary estimates.
-
+    </label>
+  );
 }
+
+
+
