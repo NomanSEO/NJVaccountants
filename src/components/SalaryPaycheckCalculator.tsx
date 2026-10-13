@@ -326,7 +326,7 @@ function Field({
       />
 Salary Paycheck Calculator USA
 
-Estimate your take-home pay in seconds with our free Salary Paycheck Calculator. Whether you're an employee, HR professional, payroll administrator, or employer, this calculator helps estimate your net paycheck after federal income tax, state income tax, Social Security, Medicare, retirement contributions, and other payroll deductions.
+Estimate your take-home pay in seconds with our free Salary Paycheck Calculator. Whether you&apos;re an employee, HR professional, payroll administrator, or employer, this calculator helps estimate your net paycheck after federal income tax, state income tax, Social Security, Medicare, retirement contributions, and other payroll deductions.
 
 What is a Salary Paycheck Calculator?
 
