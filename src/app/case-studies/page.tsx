@@ -1,25 +1,35 @@
 import type { Metadata } from "next";
-import CaseStudies from "@/components/CaseStudies";
 import DirectoryPageShell from "@/components/DirectoryPageShell";
-import { absoluteUrl } from "@/lib/seo";
-
-export const revalidate = 600;
+import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Client Case Studies | NJV Accountants",
+  title: "Case Studies | NJV Accountants",
   description:
-    "See how NJV Accountants delivers practical financial outcomes for its clients.",
-  alternates: { canonical: absoluteUrl("/case-studies") },
+    "NJV Accountants is reviewing its case study content before publication.",
+  robots: { index: false, follow: true },
 };
 
 export default function CaseStudiesPage() {
   return (
     <DirectoryPageShell
-      eyebrow="Client Success"
-      title="Results that speak for themselves"
-      intro="Read about the commercial outcomes and financial progress we help clients achieve through focused, practical advice."
+      eyebrow="Case Studies"
+      title="Case studies are being reviewed"
+      intro="We are checking the permissions and details needed to publish client examples responsibly."
     >
-      <CaseStudies />
+      <section className="bg-white py-20">
+        <div className="max-w-site mx-auto px-6">
+          <p className="text-slate max-w-170 text-lg leading-8">
+            In the meantime, explore our services or speak with us about the
+            financial challenges facing your e-commerce business.
+          </p>
+          <Link
+            href="/services"
+            className="text-navy hover:text-gold mt-6 inline-block font-semibold"
+          >
+            Explore services →
+          </Link>
+        </div>
+      </section>
     </DirectoryPageShell>
   );
 }

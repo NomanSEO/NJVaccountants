@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import {
   getAllAuthorsForSitemap,
-  getAllCaseStudiesForSitemap,
   getAllPublishedPosts,
   getAllServicesForSitemap,
 } from "@/sanity/lib/queries";
@@ -11,13 +10,12 @@ export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
-    const [posts, authors, services, caseStudies] = await Promise.all([
+    const [posts, authors, services] = await Promise.all([
       getAllPublishedPosts(),
       getAllAuthorsForSitemap(),
       getAllServicesForSitemap(),
-      getAllCaseStudiesForSitemap(),
     ]);
-    return buildSitemapEntries({ posts, authors, services, caseStudies });
+    return buildSitemapEntries({ posts, authors, services });
   } catch (error) {
     console.error("Unable to load dynamic sitemap content.", error);
     return buildSitemapEntries({ posts: [], authors: [] });

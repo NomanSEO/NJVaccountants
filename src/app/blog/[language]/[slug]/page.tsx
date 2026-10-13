@@ -24,6 +24,7 @@ import {
 } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/sanity";
 import {
+  absoluteUrl,
   authorPath,
   blogPath,
   buildBlogAlternates,
@@ -213,7 +214,25 @@ export default async function LocalizedBlogPostPage({
 
   return (
     <>
-      <JsonLd value={post.schemaMarkup} />
+      <JsonLd
+        value={
+          post.schemaMarkup || {
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: post.title,
+            description: post.excerpt,
+            datePublished: post.publishedAt,
+            dateModified: post.updatedAt ?? post.publishedAt,
+            mainEntityOfPage: absoluteUrl(
+              blogPath(post.languageCode, post.slug.current),
+            ),
+            author: post.author
+              ? { "@type": "Person", name: post.author.name }
+              : { "@type": "Organization", name: "NJV Accountants" },
+            publisher: { "@type": "Organization", name: "NJV Accountants" },
+          }
+        }
+      />
       <Navbar />
       <main id="article-top">
         <section className="bg-navy pt-17.5">
@@ -257,7 +276,7 @@ export default async function LocalizedBlogPostPage({
                 </span>
               )}
               <div>
-                {authorSlug ? (
+                {authorSlug && post.author ? (
                   <AuthorPopover
                     author={post.author}
                     imageUrl={
@@ -269,15 +288,19 @@ export default async function LocalizedBlogPostPage({
                   />
                 ) : (
                   <span className="font-semibold text-white">
-                    {post.author?.name}
+                    {post.author?.name ?? "NJV Accountants"}
                   </span>
                 )}
                 <div className="mt-1 flex flex-wrap gap-2 text-sm text-white/50">
                   <span>Published {formattedDate(post.publishedAt)}</span>
-                  {post.updatedAt ? (
+                  {post.updatedAt &&
+                  post.updatedAt.slice(0, 10) !==
+                    post.publishedAt.slice(0, 10) ? (
                     <span>· Updated {formattedDate(post.updatedAt)}</span>
                   ) : null}
-                  {post.readTime ? <span>· {post.readTime} min read</span> : null}
+                  {post.readTime ? (
+                    <span>· {post.readTime} min read</span>
+                  ) : null}
                 </div>
               </div>
             </div>
@@ -337,7 +360,9 @@ export default async function LocalizedBlogPostPage({
                 />
               </div>
             ) : (
-              <p className="text-slate italic">Full article content coming soon.</p>
+              <p className="text-slate italic">
+                Full article content coming soon.
+              </p>
             )}
 
             <div className="border-border mt-14 border-t pt-8 text-right">
@@ -355,7 +380,9 @@ export default async function LocalizedBlogPostPage({
                   About {post.author.name}
                 </h2>
                 {post.author.role ? (
-                  <p className="text-gold mb-3 font-semibold">{post.author.role}</p>
+                  <p className="text-gold mb-3 font-semibold">
+                    {post.author.role}
+                  </p>
                 ) : null}
                 <p className="text-slate leading-7">
                   {post.author.shortBio ?? post.author.bio}
@@ -380,7 +407,10 @@ export default async function LocalizedBlogPostPage({
                   {relatedPosts.map((related) => (
                     <Link
                       key={related._id}
-                      href={blogPath(related.languageCode, related.slug.current)}
+                      href={blogPath(
+                        related.languageCode,
+                        related.slug.current,
+                      )}
                       className="border-border hover:border-gold rounded-sm border p-5 no-underline transition-colors"
                     >
                       <span className="text-gold text-xs font-semibold uppercase">

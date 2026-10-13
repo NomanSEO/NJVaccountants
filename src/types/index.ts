@@ -120,7 +120,7 @@ export interface Post {
   slug: { current: string };
   excerpt: string;
   category: string;
-  author: AuthorSummary;
+  author?: AuthorSummary;
   publishedAt: string;
   updatedAt?: string;
   readTime: number;

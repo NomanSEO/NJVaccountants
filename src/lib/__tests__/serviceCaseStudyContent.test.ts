@@ -20,14 +20,12 @@ describe("service and case-study Portable Text content", () => {
     }
   });
 
-  it("renders rich content on both detail pages when the editor provides it", () => {
-    for (const file of [
-      "src/app/services/[slug]/page.tsx",
-      "src/app/case-studies/[slug]/page.tsx",
-    ]) {
-      const page = source(file);
-      expect(page).toContain("ContentPageBody");
-      expect(page).toContain("body?.length");
-    }
+  it("renders service content and keeps unverified case studies out of search", () => {
+    const service = source("src/app/services/[slug]/page.tsx");
+    expect(service).toContain("ContentPageBody");
+    expect(service).toContain("body?.length");
+    const caseStudy = source("src/app/case-studies/[slug]/page.tsx");
+    expect(caseStudy).toContain("index: false");
+    expect(caseStudy).not.toContain("caseStudy.results");
   });
 });

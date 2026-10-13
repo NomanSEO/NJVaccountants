@@ -123,9 +123,14 @@ export async function getAllCaseStudiesForSitemap(): Promise<
 }
 
 export async function getPosts(): Promise<Post[]> {
-  return client.fetch(
+  const posts = await client.fetch<Post[]>(
     `*[_type == "post" && coalesce(language->code, "en") == "en"]
-      | order(publishedAt desc)[0...3] ${POST_CARD_PROJECTION}`,
+      | order(publishedAt desc)[0...4] ${POST_CARD_PROJECTION}`,
+  );
+  return posts.sort(
+    (a, b) =>
+      Number(b.slug.current === "Income-tax-return-2026") -
+      Number(a.slug.current === "Income-tax-return-2026"),
   );
 }
 

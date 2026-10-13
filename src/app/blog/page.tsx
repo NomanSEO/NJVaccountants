@@ -11,12 +11,12 @@ import PageJsonLd from "@/components/PageJsonLd";
 export const revalidate = 600;
 
 export const metadata = {
-  title: "Blogs | NJV Accountants",
+  title: "E-commerce Accounting & Tax Insights in Pakistan | NJV Accountants",
   description:
-    "Timely, practical perspectives on accounting, tax, regulation, and business strategy from our senior professionals.",
+    "Practical resources on Pakistan income tax filing, e-commerce accounting, COD reconciliation and profitability for online sellers.",
 };
 
-const SYMBOLS = ["§", "₤", "↗", "∑", "¥", "€", "∆", "∞"];
+const SYMBOLS = ["§", "↗", "›", "∑"];
 
 export default async function BlogPage() {
   const posts = await getAllPosts();
@@ -37,14 +37,14 @@ export default async function BlogPage() {
             </Link>
             <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
               <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
-              Blogs
+              Resources
             </div>
             <h1 className="font-display mb-5 text-[clamp(2.5rem,5vw,3.5rem)] leading-tight font-bold text-white">
-              From Our <em className="text-gold not-italic">Expert</em> Team
+              Insights for E-commerce Businesses in Pakistan
             </h1>
             <p className="max-w-140 text-[1.0625rem] leading-[1.75] text-white/65">
-              Timely, practical perspectives on accounting, tax, regulation, and
-              business strategy — written by our senior professionals.
+              Practical guidance on accounting, tax filing, COD settlements and
+              financial decisions for online sellers.
             </p>
           </div>
         </section>
@@ -119,14 +119,17 @@ export default async function BlogPage() {
                         </span>
                         <span>·</span>
                         <span>
-                          {new Date(post.publishedAt).toLocaleDateString(
-                            "en-US",
-                            {
-                              month: "long",
-                              day: "numeric",
-                              year: "numeric",
-                            },
-                          )}
+                          {post.updatedAt?.slice(0, 10) !==
+                            post.publishedAt.slice(0, 10) && post.updatedAt
+                            ? "Updated "
+                            : "Published "}
+                          {new Date(
+                            post.updatedAt ?? post.publishedAt,
+                          ).toLocaleDateString("en-US", {
+                            month: "long",
+                            day: "numeric",
+                            year: "numeric",
+                          })}
                         </span>
                         {post.readTime && (
                           <>
@@ -165,14 +168,14 @@ export default async function BlogPage() {
           <div className="max-w-site mx-auto flex flex-wrap items-center justify-between gap-8 px-6">
             <div>
               <div className="font-display text-navy text-[clamp(1.25rem,2.5vw,1.75rem)] leading-[1.3] font-bold">
-                 Ready to put these ideas into action?
+                Ready to put these ideas into action?
               </div>
               <div className="text-navy/70 mt-2 text-[0.9375rem]">
                 Book a free consultation with one of our senior partners.
               </div>
             </div>
             <Link
-               href="/contact"
+              href="/contact"
               className="bg-navy hover:bg-navy-light inline-flex shrink-0 items-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wider text-white uppercase no-underline transition-colors"
             >
               Speak to a Partner &rsaquo;

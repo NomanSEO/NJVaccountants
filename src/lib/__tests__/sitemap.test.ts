@@ -5,7 +5,7 @@ import { buildSitemapEntries } from "@/lib/sitemap";
 describe("buildSitemapEntries", () => {
   it("includes each dedicated marketing page", () => {
     expect(PUBLIC_ROUTES).toEqual(
-      expect.arrayContaining(["/services", "/case-studies", "/team", "/contact"]),
+      expect.arrayContaining(["/services", "/privacy", "/team", "/contact"]),
     );
   });
 

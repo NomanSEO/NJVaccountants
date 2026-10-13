@@ -6,9 +6,10 @@ import { absoluteUrl } from "@/lib/seo";
 export const revalidate = 600;
 
 export const metadata: Metadata = {
-  title: "Financial Services | NJV Accountants",
+  title:
+    "E-commerce Accounting, Tax, Advisory & Audit Services | NJV Accountants",
   description:
-    "Explore NJV Accountants' accounting, tax, audit, and business advisory services.",
+    "Explore accounting, business advisory, tax planning and internal audit services for e-commerce businesses in Pakistan.",
   alternates: { canonical: absoluteUrl("/services") },
 };
 
@@ -16,8 +17,8 @@ export default function ServicesPage() {
   return (
     <DirectoryPageShell
       eyebrow="Professional Services"
-      title="Financial expertise for every stage of your business"
-      intro="Explore our accounting, tax, audit and advisory services. Each engagement is tailored to the priorities, challenges and ambitions of your organisation."
+      title="Financial services for e-commerce businesses in Pakistan"
+      intro="Explore accounting, tax planning, business advisory and internal audit support shaped around the financial challenges of online selling."
     >
       <Services />
     </DirectoryPageShell>

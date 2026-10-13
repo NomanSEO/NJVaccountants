@@ -5,7 +5,7 @@ import { urlFor } from "@/sanity/lib/sanity";
 import { blogPath } from "@/lib/seo";
 import AuthorPopover from "@/components/AuthorPopover";
 
-const SYMBOLS = ["§", "₤", "↗"];
+const SYMBOLS = ["§", "↗", "•", "›"];
 
 export default async function Blog() {
   const posts = await getPosts();
@@ -14,26 +14,26 @@ export default async function Blog() {
     <section
       id="blog"
       className="bg-white py-24"
-      aria-label="Blogs"
+      aria-label="Insights and resources"
     >
       <div className="max-w-site mx-auto px-6">
         <header className="mb-14">
           <div className="text-gold mb-5 flex items-center gap-3.5 text-xs font-semibold tracking-[0.12em] uppercase">
             <span className="bg-gold block h-5.5 w-0.75 shrink-0" />
-            Blogs
+            Resources
           </div>
           <h2 className="font-display text-navy mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-tight font-bold">
-            From Our <em className="text-gold not-italic">Expert</em> Team
+            Insights for E-commerce Businesses in Pakistan
           </h2>
           <p className="text-slate max-w-140 text-[1.0625rem] leading-[1.7]">
-            Timely, practical perspectives on accounting, tax, regulation, and
-            business strategy.
+            Practical guidance on tax filing, financial records, courier
+            settlements and profitability.
           </p>
         </header>
 
-        <div className="grid grid-cols-1 gap-7 md:grid-cols-[2fr_1fr_1fr]">
+        <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-4">
           {posts.map((post, i) => {
-            const imgHeight = i === 0 ? 260 : 200;
+            const imgHeight = 200;
             return (
               <article
                 key={post._id}
@@ -48,17 +48,11 @@ export default async function Blog() {
                     {post.headerImage?.asset ? (
                       <>
                         <Image
-                          src={urlFor(post.headerImage)
-                            .width(i === 0 ? 800 : 400)
-                            .url()}
+                          src={urlFor(post.headerImage).width(500).url()}
                           alt={post.headerImage.alt ?? post.title}
                           fill
                           className="bg-cream object-contain"
-                          sizes={
-                            i === 0
-                              ? "(max-width: 768px) 100vw, 50vw"
-                              : "(max-width: 768px) 100vw, 25vw"
-                          }
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                         />
                         <div className="bg-navy/40 absolute inset-0" />
                         <div className="absolute bottom-4 left-4">
@@ -80,25 +74,41 @@ export default async function Blog() {
                   </div>
 
                   {/* Card body */}
-                    <div className="p-6">
-                      <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
-                      <AuthorPopover
-                        author={post.author}
-                        imageUrl={
-                          post.author.image?.asset
-                            ? urlFor(post.author.image)
-                                .width(160)
-                                .height(160)
-                                .url()
-                            : null
-                        }
-                      />
-                      <span>·</span>
+                  <div className="p-6">
+                    <div className="text-slate-light mb-2.5 flex flex-wrap gap-3 text-[0.75rem]">
+                      {post.author ? (
+                        <>
+                          <AuthorPopover
+                            author={post.author}
+                            imageUrl={
+                              post.author.image?.asset
+                                ? urlFor(post.author.image)
+                                    .width(160)
+                                    .height(160)
+                                    .url()
+                                : null
+                            }
+                          />
+                          <span>·</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>NJV Accountants</span>
+                          <span>·</span>
+                        </>
+                      )}
                       <span>
-                        {new Date(post.publishedAt).toLocaleDateString(
-                          "en-US",
-                          { month: "long", day: "numeric", year: "numeric" },
-                        )}
+                        {post.updatedAt?.slice(0, 10) !==
+                          post.publishedAt.slice(0, 10) && post.updatedAt
+                          ? "Updated "
+                          : "Published "}
+                        {new Date(
+                          post.updatedAt ?? post.publishedAt,
+                        ).toLocaleDateString("en-US", {
+                          month: "long",
+                          day: "numeric",
+                          year: "numeric",
+                        })}
                       </span>
                       {post.readTime && (
                         <>
@@ -107,9 +117,7 @@ export default async function Blog() {
                         </>
                       )}
                     </div>
-                    <h3
-                      className={`font-display text-navy group-hover:text-gold mb-2.5 leading-[1.3] font-bold transition-colors ${i === 0 ? "text-[1.375rem]" : "text-[1.125rem]"}`}
-                    >
+                    <h3 className="font-display text-navy group-hover:text-gold mb-2.5 text-[1.125rem] leading-[1.3] font-bold transition-colors">
                       <Link
                         href={blogPath(post.languageCode, post.slug.current)}
                         className="text-inherit no-underline"
@@ -124,7 +132,7 @@ export default async function Blog() {
                       href={blogPath(post.languageCode, post.slug.current)}
                       className="text-navy group-hover:text-gold flex items-center gap-1.5 text-[0.8125rem] font-semibold tracking-[0.04em] no-underline transition-colors"
                     >
-                      Read {i === 0 ? "Full Article" : "Article"} &rsaquo;
+                      Read Article &rsaquo;
                     </Link>
                   </div>
                 </div>

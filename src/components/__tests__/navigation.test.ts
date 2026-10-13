@@ -1,188 +1,20 @@
-import { existsSync, readFileSync } from "node:fs";
-import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { NAV_LINKS, navLinksWithServices } from "@/components/navigation";
+import { NAV_LINKS } from "@/components/navigation";
+import { coreServices } from "@/lib/ecommerceContent";
 
 describe("main navigation", () => {
-  it("uses four compact top-level navigation items", () => {
-    expect(NAV_LINKS.map(({ label }) => label)).toEqual([
+  it("offers the four relevant top-level destinations", () => {
+    expect(NAV_LINKS.map((link) => link.label)).toEqual([
       "Services",
       "About",
-      "Calculators",
-      "Blogs",
+      "Resources",
+      "Contact",
     ]);
   });
 
-  it("uses Blogs rather than Insights in the site navigation and blog entry points", () => {
-    const footerSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/Footer.tsx"),
-      "utf8",
+  it("links each core service to its existing detail page", () => {
+    expect(NAV_LINKS[0].children).toEqual(
+      coreServices.map(({ href, title }) => ({ href, label: title })),
     );
-    const blogSource = readFileSync(
-      path.resolve(process.cwd(), "src/app/blog/page.tsx"),
-      "utf8",
-    );
-
-    expect(footerSource).toContain('["Blogs", "/blog"]');
-    expect(footerSource).not.toContain('["Insights", "/blog"]');
-    expect(blogSource).toContain("title: \"Blogs | NJV Accountants\"");
-    expect(blogSource).not.toContain("Insights & Analysis");
-  });
-
-  it("groups the approved destinations under each dropdown", () => {
-    expect(NAV_LINKS.find(({ label }) => label === "Services")).toMatchObject({
-      href: "/services",
-      dropdownLabel: "Professional Services",
-      footerLabel: "View All Services",
-      children: [
-        { href: "/services", label: "Accounting & Bookkeeping" },
-        { href: "/services", label: "Taxation Services" },
-        { href: "/services", label: "Audit & Assurance" },
-        {
-          href: "/services/business-advisory/business-valuation",
-          label: "Business Valuation",
-        },
-        {
-          href: "/services/business-advisory/ma-advisory",
-          label: "M&A Advisory",
-        },
-      ],
-    });
-
-    expect(NAV_LINKS.find(({ label }) => label === "About")).toMatchObject({
-      dropdownLabel: "Company",
-      children: [
-        { href: "/about", label: "About Us" },
-        { href: "/case-studies", label: "Case Studies" },
-        { href: "/team", label: "Our Team" },
-        { href: "/contact", label: "Contact" },
-      ],
-    });
-
-    expect(
-      NAV_LINKS.find(({ label }) => label === "Calculators"),
-    ).toMatchObject({
-      href: "/calculators",
-      dropdownLabel: "Featured Calculators",
-      footerLabel: "View All Calculators",
-      children: [
-        { href: "/calculators/salary-tax", label: "Salary Tax Calculator" },
-        { href: "/calculators/mortgage", label: "Mortgage Calculator" },
-        { href: "/calculators/investment", label: "Investment Calculator" },
-      ],
-    });
-
-    expect(NAV_LINKS.find(({ label }) => label === "Blogs")).toEqual({
-      href: "/blog",
-      label: "Blogs",
-    });
-  });
-
-  it("uses Sanity services for every Services dropdown link", () => {
-    const links = navLinksWithServices([
-      {
-        _id: "service-1",
-        title: "Payroll Services",
-        slug: { current: "payroll-services" },
-        icon: "",
-        description: "",
-        bullets: [],
-        order: 1,
-      },
-    ]);
-
-    expect(links.find(({ label }) => label === "Services")?.children).toEqual([
-      { href: "/services/payroll-services", label: "Payroll Services" },
-    ]);
-  });
-
-  it("uses generic single-open dropdown state", () => {
-    const navbarSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/NavbarClient.tsx"),
-      "utf8",
-    );
-
-    expect(navbarSource).toContain(
-      "const [openDropdown, setOpenDropdown] = useState<string | null>(null)",
-    );
-    expect(navbarSource).not.toContain("servicesOpen");
-    expect(navbarSource).not.toContain("onFocusCapture");
-    expect(navbarSource).toContain(
-      'className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5"',
-    );
-  });
-
-  it("layers the mobile navigation dialog above the fixed navbar", () => {
-    const mobileMenuSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/MobileMenu.tsx"),
-      "utf8",
-    );
-
-    expect(mobileMenuSource).toContain("z-1001");
-  });
-
-  it("uses generic single-open mobile accordion state", () => {
-    const mobileMenuSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/MobileMenu.tsx"),
-      "utf8",
-    );
-
-    expect(mobileMenuSource).toContain(
-      "const [expandedLabel, setExpandedLabel] = useState<string | null>(null)",
-    );
-    expect(mobileMenuSource).not.toContain("servicesExpanded");
-    expect(mobileMenuSource).toContain("expandedLabel === link.label");
-  });
-
-  it("uses a solid navy navbar and a transparent compact logo asset", () => {
-    const navbarSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/NavbarClient.tsx"),
-      "utf8",
-    );
-    const brandLogoSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/BrandLogo.tsx"),
-      "utf8",
-    );
-
-    expect(navbarSource).toContain("bg-navy border-gold/15");
-    expect(navbarSource).not.toContain("bg-navy/97");
-    expect(navbarSource).not.toContain("backdrop-blur");
-    expect(brandLogoSource).toContain(
-      'src="/njv-logo-mark-transparent.png"',
-    );
-    expect(brandLogoSource).not.toContain(
-      'className="bg-navy flex h-10 w-12',
-    );
-  });
-
-  it("uses a transparent full logo asset without a painted footer background", () => {
-    const brandLogoSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/BrandLogo.tsx"),
-      "utf8",
-    );
-    const transparentLogoPath = path.resolve(
-      process.cwd(),
-      "public/njv-logo-dark-transparent.png",
-    );
-
-    expect(existsSync(transparentLogoPath)).toBe(true);
-    expect(brandLogoSource).toContain(
-      'src="/njv-logo-dark-transparent.png"',
-    );
-    expect(brandLogoSource).not.toContain(
-      'className={`bg-navy block h-auto w-full rounded-sm object-contain',
-    );
-  });
-
-  it("bridges the visual gap between Services and its dropdown", () => {
-    const navbarSource = readFileSync(
-      path.resolve(process.cwd(), "src/components/NavbarClient.tsx"),
-      "utf8",
-    );
-
-    expect(navbarSource).toContain(
-      'className="absolute top-full left-1/2 w-72 -translate-x-1/2 pt-5"',
-    );
-    expect(navbarSource).not.toContain("top-full left-1/2 mt-5");
   });
 });

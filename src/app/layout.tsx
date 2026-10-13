@@ -22,15 +22,17 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "NJV Accountants | Accounting, Tax & Audit Services",
+  title: "E-commerce Accounting, Tax & Advisory in Pakistan | NJV Accountants",
   description:
-    "NJV Accountants — trusted accounting, taxation, advisory, and audit services for businesses and individuals. Decades of expertise, measurable results.",
+    "Accounting, bookkeeping, tax planning, business advisory and internal audit support for e-commerce businesses in Pakistan. Discuss your needs with NJV Accountants.",
   keywords:
-    "accounting firm, taxation services, business advisory, audit services, financial consulting, CPA firm, tax planning, forensic accounting",
+    "e-commerce accounting Pakistan, accounting for online sellers, e-commerce tax services Pakistan, business advisory, internal audit, COD reconciliation",
   robots: "index, follow",
   openGraph: {
-    title: "NJV Accountants | Accounting, Tax & Audit",
-    description: "Trusted accounting, taxation, advisory, and audit services.",
+    title:
+      "E-commerce Accounting, Tax & Advisory in Pakistan | NJV Accountants",
+    description:
+      "Accounting, tax planning, advisory and internal audit for online businesses in Pakistan.",
     images: ["/njv-logo-dark.png"],
     type: "website",
     url: SITE_URL,

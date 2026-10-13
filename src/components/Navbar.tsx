@@ -1,8 +1,6 @@
 import NavbarClient from "./NavbarClient";
-import { navLinksWithServices } from "./navigation";
-import { getServices } from "@/sanity/lib/queries";
+import { NAV_LINKS } from "./navigation";
 
-export default async function Navbar() {
-  const services = await getServices();
-  return <NavbarClient links={navLinksWithServices(services)} />;
+export default function Navbar() {
+  return <NavbarClient links={NAV_LINKS} />;
 }

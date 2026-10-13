@@ -1,6 +1,4 @@
-import { serviceSlug } from "@/lib/contentSlugs";
-import { servicePath } from "@/lib/seo";
-import type { Service } from "@/types";
+import { coreServices } from "@/lib/ecommerceContent";
 
 export interface NavLinkItem {
   href: string;
@@ -12,45 +10,13 @@ export interface NavLinkItem {
 
 export const NAV_LINKS: NavLinkItem[] = [
   {
-    href: "/services", label: "Services", dropdownLabel: "Professional Services", footerLabel: "View All Services",
-    children: [
-      { href: "/services", label: "Accounting & Bookkeeping" },
-      { href: "/services", label: "Taxation Services" },
-      { href: "/services", label: "Audit & Assurance" },
-      { href: "/services/business-advisory/business-valuation", label: "Business Valuation" },
-      { href: "/services/business-advisory/ma-advisory", label: "M&A Advisory" },
-    ],
+    href: "/services",
+    label: "Services",
+    dropdownLabel: "E-commerce Services",
+    footerLabel: "View All Services",
+    children: coreServices.map(({ href, title }) => ({ href, label: title })),
   },
-  {
-    href: "/about", label: "About", dropdownLabel: "Company",
-    children: [
-      { href: "/about", label: "About Us" },
-      { href: "/case-studies", label: "Case Studies" },
-      { href: "/team", label: "Our Team" },
-      { href: "/contact", label: "Contact" },
-    ],
-  },
-  {
-    href: "/calculators", label: "Calculators", dropdownLabel: "Featured Calculators", footerLabel: "View All Calculators",
-    children: [
-      { href: "/calculators/salary-tax", label: "Salary Tax Calculator" },
-      { href: "/calculators/mortgage", label: "Mortgage Calculator" },
-      { href: "/calculators/investment", label: "Investment Calculator" },
-    ],
-  },
-  { href: "/blog", label: "Blogs" },
+  { href: "/about", label: "About" },
+  { href: "/blog", label: "Resources" },
+  { href: "/contact", label: "Contact" },
 ];
-
-export function navLinksWithServices(services: Service[]): NavLinkItem[] {
-  return NAV_LINKS.map((link) =>
-    link.label === "Services"
-      ? {
-          ...link,
-          children: services.map((service) => ({
-            href: servicePath(serviceSlug(service)),
-            label: service.title,
-          })),
-        }
-      : link,
-  );
-}

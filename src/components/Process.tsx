@@ -1,23 +1,23 @@
 const STEPS = [
   {
     num: "1",
-    title: "Discovery Call",
-    desc: "We start with a complimentary consultation to understand your goals, challenges, and current financial position — no obligation, no jargon.",
+    title: "Understand Your Business",
+    desc: "We discuss your business model, current processes, challenges and objectives.",
   },
   {
     num: "2",
-    title: "Financial Review",
-    desc: "Our team conducts a thorough review of your accounts, tax position, and risk profile to identify opportunities and gaps.",
+    title: "Define the Right Scope",
+    desc: "We agree on the services, information, deliverables and timelines for the engagement.",
   },
   {
     num: "3",
-    title: "Bespoke Strategy",
-    desc: "We develop a tailored engagement plan with clear deliverables, timelines, and expected outcomes — aligned to your business strategy.",
+    title: "Review and Analyse",
+    desc: "We organize information, perform the agreed work and identify relevant issues or opportunities.",
   },
   {
     num: "4",
-    title: "Ongoing Partnership",
-    desc: "We work as an extension of your team — proactively advising, adapting, and delivering as your business evolves.",
+    title: "Explain the Findings",
+    desc: "We communicate results, important observations and practical next steps.",
   },
 ];
 
@@ -31,15 +31,14 @@ export default function Process() {
             How We Work
           </div>
           <h2 className="font-display text-navy mb-5 text-[clamp(2rem,3.5vw,2.75rem)] leading-tight font-bold">
-            Our <em className="text-gold not-italic">Engagement</em> Process
+            A Practical Approach to Better Financial Management
           </h2>
           <p className="text-slate mx-auto max-w-140 text-[1.0625rem] leading-[1.7]">
-            A structured approach that delivers clarity, accountability, and
-            measurable outcomes from day one.
+            Clear scope, careful review and useful explanations at each stage.
           </p>
         </header>
 
-        <div className="relative grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-0">
+        <div className="relative grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 md:gap-0">
           {/* Connector line */}
           <div className="bg-border absolute top-7.5 right-[10%] left-[10%] hidden h-px md:block" />
           {STEPS.map((step) => (

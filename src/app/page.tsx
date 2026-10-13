@@ -1,58 +1,53 @@
-import { Suspense } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrustStrip from "@/components/TrustStrip";
+import PainPoints from "@/components/PainPoints";
 import Services from "@/components/Services";
-import About from "@/components/About";
+import FinancialChallenges from "@/components/FinancialChallenges";
 import Process from "@/components/Process";
-import CaseStudies from "@/components/CaseStudies";
-import Testimonials from "@/components/Testimonials";
+import WhyChoose from "@/components/WhyChoose";
+import IllustrativeCaseStudy from "@/components/IllustrativeCaseStudy";
 import Blog from "@/components/Blog";
-import Team from "@/components/Team";
 import CTABanner from "@/components/CTABanner";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import HeroSkeleton from "@/components/skeletons/HeroSkeleton";
-import SectionSkeleton from "@/components/skeletons/SectionSkeleton";
-import CardGridSkeleton from "@/components/skeletons/CardGridSkeleton";
-import PageJsonLd from "@/components/PageJsonLd";
+import JsonLd from "@/components/JsonLd";
+import { SITE_URL } from "@/config/site";
+import type { Metadata } from "next";
 
 export const revalidate = 600;
+export const metadata: Metadata = { alternates: { canonical: SITE_URL } };
 
 export default function Page() {
   return (
     <>
-      <PageJsonLd path="/" />
+      <JsonLd
+        value={{
+          "@context": "https://schema.org",
+          "@type": "ProfessionalService",
+          name: "NJV Accountants",
+          url: SITE_URL,
+          telephone: "+92 322 5401701",
+          areaServed: { "@type": "Country", name: "Pakistan" },
+          serviceType: [
+            "Accounting and bookkeeping",
+            "Business advisory",
+            "Tax planning and compliance",
+            "Internal audit and financial controls",
+          ],
+        }}
+      />
       <Navbar />
-      <Suspense fallback={<HeroSkeleton />}>
-        <Hero />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton />}>
-        <TrustStrip />
-      </Suspense>
-      <Suspense fallback={<CardGridSkeleton cols={2} />}>
-        <Services />
-      </Suspense>
-      <About />
+      <Hero />
+      <PainPoints />
+      <Services />
+      <FinancialChallenges />
       <Process />
-      <Suspense fallback={<CardGridSkeleton cols={3} />}>
-        <CaseStudies />
-      </Suspense>
-      <Suspense fallback={<CardGridSkeleton cols={3} />}>
-        <Testimonials />
-      </Suspense>
-      <Suspense fallback={<CardGridSkeleton cols={3} />}>
-        <Blog />
-      </Suspense>
-      <Suspense fallback={<CardGridSkeleton cols={4} />}>
-        <Team />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton />}>
-        <CTABanner />
-      </Suspense>
+      <WhyChoose />
+      <IllustrativeCaseStudy />
+      <Blog />
+      <CTABanner />
       <Contact />
       <Footer />
     </>
   );
 }
-//

@@ -26,12 +26,12 @@ export interface MarketingPageDescriptor {
 export const aboutPage: MarketingPageDescriptor = {
   path: "/about",
   eyebrow: "About NJV Accountants",
-  title: "Clear financial thinking for confident business decisions",
-  metaTitle: "About NJV Accountants | Accounting & Advisory Team",
+  title: "Financial clarity for e-commerce businesses in Pakistan",
+  metaTitle: "About NJV Accountants | E-commerce Accounting in Pakistan",
   metaDescription:
-    "Learn how NJV Accountants supports businesses and individuals with practical accounting, tax, audit and advisory expertise in Faisalabad and Lahore.",
+    "Learn how NJV Accountants supports Pakistani e-commerce businesses with accounting, tax planning, business advisory and internal audit services.",
   intro:
-    "NJV Accountants helps business owners, leadership teams and individuals understand their financial position, meet important obligations and make decisions with greater clarity. Our work brings accounting discipline together with practical commercial thinking, so clients receive advice that is useful beyond the next filing deadline.",
+    "NJV Accountants focuses on the accounting, tax, advisory and internal control needs of e-commerce businesses in Pakistan. We help online sellers bring together their financial records, understand performance and make better-informed decisions.",
   sections: [
     {
       heading: "Advice grounded in your real business context",
@@ -43,14 +43,14 @@ export const aboutPage: MarketingPageDescriptor = {
     {
       heading: "Who we support",
       paragraphs: [
-        "Our clients include owner-managed businesses, growing companies, established organisations, entrepreneurs and individuals with complex financial or tax requirements. Some need reliable day-to-day finance support; others need focused analysis for a transaction, valuation, control issue or strategic decision.",
+        "We work with online sellers operating through their own websites, marketplaces and social commerce channels. Their needs range from reliable bookkeeping and courier settlement reviews to profitability analysis, tax planning and stronger controls.",
       ],
       bullets: [
-        "Business owners seeking better visibility over performance and cash flow",
-        "Leadership teams preparing for growth, investment or organisational change",
-        "Companies strengthening reporting, controls and compliance processes",
-        "Buyers and sellers assessing the financial implications of a transaction",
-        "Individuals who value organised records and clear tax guidance",
+        "Online sellers seeking better visibility over profitability and cash flow",
+        "Businesses reconciling orders, courier settlements and bank receipts",
+        "Growing teams strengthening reporting, controls and compliance processes",
+        "Owners planning budgets, stock purchases and working capital",
+        "Businesses preparing accurate records for applicable tax obligations",
       ],
     },
     {
@@ -61,7 +61,7 @@ export const aboutPage: MarketingPageDescriptor = {
       bullets: [
         "Accounting, bookkeeping and management reporting",
         "Tax compliance, planning support and financial organisation",
-        "Audit and assurance support",
+        "Internal audit and financial control reviews",
         "Business advisory, forecasting and decision analysis",
         "Business valuation and transaction-focused financial review",
         "Forensic accounting and investigation support",
