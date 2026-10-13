@@ -18,5 +18,6 @@ export const NAV_LINKS: NavLinkItem[] = [
   },
   { href: "/about", label: "About" },
   { href: "/blog", label: "Resources" },
+  { href: "/calculators", label: "Calculators" },
   { href: "/contact", label: "Contact" },
 ];

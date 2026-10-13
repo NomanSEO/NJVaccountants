@@ -53,6 +53,11 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/calculators" className="hover:text-gold no-underline">
+                  Calculators
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="hover:text-gold no-underline">
                   Contact
                 </Link>

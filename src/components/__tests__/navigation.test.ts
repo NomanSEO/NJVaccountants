@@ -3,11 +3,12 @@ import { NAV_LINKS } from "@/components/navigation";
 import { coreServices } from "@/lib/ecommerceContent";
 
 describe("main navigation", () => {
-  it("offers the four relevant top-level destinations", () => {
+  it("keeps the calculator directory accessible from the main navigation", () => {
     expect(NAV_LINKS.map((link) => link.label)).toEqual([
       "Services",
       "About",
       "Resources",
+      "Calculators",
       "Contact",
     ]);
   });
