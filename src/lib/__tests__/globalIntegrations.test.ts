@@ -12,8 +12,8 @@ describe("global integration configuration", () => {
 
   it("builds an encoded WhatsApp consultation URL for the requested number", () => {
     const url = new URL(whatsappUrl());
-    expect(WHATSAPP_PHONE).toBe("923225401701");
-    expect(`${url.origin}${url.pathname}`).toBe("https://wa.me/923225401701");
+    expect(WHATSAPP_PHONE).toBe("923059385003");
+    expect(`${url.origin}${url.pathname}`).toBe("https://wa.me/923059385003");
     expect(url.searchParams.get("text")).toBe(
       "Hello NJV Accountants, I would like to request a consultation.",
     );
