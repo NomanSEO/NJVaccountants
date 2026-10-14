@@ -26,7 +26,7 @@ export default function Page() {
           "@type": "ProfessionalService",
           name: "NJV Accountants",
           url: SITE_URL,
-          telephone: "+92 322 5401701",
+          telephone: "+92 305 9385003",
           areaServed: { "@type": "Country", name: "Pakistan" },
           serviceType: [
             "Accounting and bookkeeping",

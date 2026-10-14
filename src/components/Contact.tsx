@@ -186,10 +186,10 @@ export default function Contact() {
                     Telephone
                   </div>
                   <a
-                    href="tel:+923225401701"
+                    href="tel:+923059385003"
                     className="mt-1 block text-white/80 hover:text-gold"
                   >
-                    +92 322 5401701
+                    +92 305 9385003
                   </a>
                 </div>
               </div>
@@ -366,10 +366,10 @@ export default function Contact() {
                 Contact Us on WhatsApp
               </a>
               <a
-                href="tel:+923225401701"
+                href="tel:+923059385003"
                 className="text-gold mt-4 w-fit font-semibold"
               >
-                Call +92 322 5401701
+                Call +92 305 9385003
               </a>
             </div>
           )}
