@@ -40,10 +40,13 @@ export default function PrivacyPage() {
           </h2>
           <p className="text-slate mt-3 leading-7">
             The website uses analytics and performance tools to understand site
-            usage. When the contact form is enabled, a third-party email service
-            processes submissions and a reCAPTCHA check helps prevent spam.
-            WhatsApp is operated by its own provider and applies its own privacy
-            terms.
+            usage. Meta Pixel records visits to public pages to help measure
+            advertising activity; Meta may process this information under its
+            own privacy terms. We do not send contact-form messages to Meta
+            Pixel. When the contact form is enabled, a third-party email
+            service processes submissions and a reCAPTCHA check helps prevent
+            spam. WhatsApp is operated by its own provider and applies its own
+            privacy terms.
           </p>
           <h2 className="font-display text-navy mt-10 text-2xl font-bold">
             Questions or requests

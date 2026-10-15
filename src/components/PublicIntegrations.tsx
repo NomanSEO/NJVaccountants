@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import MetaPixel from "@/components/MetaPixel";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 export default function PublicIntegrations() {
@@ -10,6 +11,7 @@ export default function PublicIntegrations() {
   return (
     <>
       <GoogleAnalytics />
+      <MetaPixel pathname={pathname} />
       <WhatsAppWidget />
     </>
   );
